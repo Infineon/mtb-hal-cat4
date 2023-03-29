@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['wdt_20hal_20results',['WDT HAL Results',['../group__group__hal__results__wdt.html',1,'']]],
-  ['wdt_20_28watchdog_20timer_29',['WDT (Watchdog Timer)',['../group__group__hal__wdt.html',1,'']]],
-  ['wcpu_5fdma_5frx_5fchannel',['WCPU_DMA_RX_CHANNEL',['../group__group__hal__impl__m2m.html#ga1970ed73271daedfc508b8f3b515aa09',1,'cyhal_m2m_impl.h']]],
-  ['wcpu_5fdma_5ftx_5fchannel',['WCPU_DMA_TX_CHANNEL',['../group__group__hal__impl__m2m.html#ga875e88872ec42b08c027c716622991f1',1,'cyhal_m2m_impl.h']]]
+  ['uart_0',['UART',['../group__group__hal__impl__uart.html',1,'']]],
+  ['uart_20_28universal_20asynchronous_20receiver_2dtransmitter_29_1',['UART (Universal Asynchronous Receiver-Transmitter)',['../group__group__hal__uart.html',1,'']]],
+  ['uart_20hal_20results_2',['UART HAL Results',['../group__group__hal__results__uart.html',1,'']]],
+  ['usr1_5fdma_5frx_5fchannel_3',['USR1_DMA_RX_CHANNEL',['../group__group__hal__impl__m2m.html#ga69f0464f99ca15ba9c0bdd0917195023',1,'cyhal_m2m_impl.h']]],
+  ['usr1_5fdma_5ftx_5fchannel_4',['USR1_DMA_TX_CHANNEL',['../group__group__hal__impl__m2m.html#gae3b943fb8d7fb405b849e9211d4c3fea',1,'cyhal_m2m_impl.h']]],
+  ['usr2_5fdma_5frx_5fchannel_5',['USR2_DMA_RX_CHANNEL',['../group__group__hal__impl__m2m.html#ga2f6c9142d60e854140cd0250cdca5bed',1,'cyhal_m2m_impl.h']]],
+  ['usr2_5fdma_5ftx_5fchannel_6',['USR2_DMA_TX_CHANNEL',['../group__group__hal__impl__m2m.html#gaee2be0429c23e7bd949944bb5a742760',1,'cyhal_m2m_impl.h']]]
 ];

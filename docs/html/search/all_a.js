@@ -1,8 +1,17 @@
 var searchData=
 [
-  ['lptimer_20_28low_2dpower_20timer_29',['LPTimer (Low-Power Timer)',['../group__group__hal__lptimer.html',1,'']]],
-  ['lptimer_20hal_20results',['LPTimer HAL Results',['../group__group__hal__results__lptimer.html',1,'']]],
-  ['lcr',['lcr',['../struct__cyhal__uart__slow__t.html#ad41ca150511fcf829d2275a7b8e1d523',1,'_cyhal_uart_slow_t::lcr()'],['../struct__cyhal__uart__seci__t.html#a20b3937269fcd64c1b35a944af7aa921',1,'_cyhal_uart_seci_t::lcr()']]],
-  ['length',['length',['../group__group__hal__dma.html#aa7fbd97e22cee8fd0079fe27479f00c1',1,'cyhal_dma_cfg_t']]],
-  ['lsr',['lsr',['../struct__cyhal__uart__slow__t.html#ab4257ba8352fea018082cf5fd206534a',1,'_cyhal_uart_slow_t::lsr()'],['../struct__cyhal__uart__seci__t.html#acd8fdb0c3f2baba1bf44894477d69b51',1,'_cyhal_uart_seci_t::lsr()']]]
+  ['i2c_0',['I2C',['../group__group__hal__impl__i2c.html',1,'']]],
+  ['i2c_20_28inter_2dintegrated_20circuit_29_1',['I2C (Inter-Integrated Circuit)',['../group__group__hal__i2c.html',1,'']]],
+  ['i2c_20hal_20results_2',['I2C HAL Results',['../group__group__hal__results__i2c.html',1,'']]],
+  ['ier_5fdlm_3',['ier_dlm',['../struct__cyhal__uart__slow__t.html#a2ef686744a8599fcc73f991012dd290e',1,'_cyhal_uart_slow_t']]],
+  ['ignore_5fmodes_4',['ignore_modes',['../group__group__hal__syspm.html#a0a5827d8c4bb7f81086fdfc02a2e5067',1,'cyhal_syspm_callback_data_t']]],
+  ['iir_5ffcr_5',['iir_fcr',['../struct__cyhal__uart__slow__t.html#a5e728cb36416f5ce8e6edc68522f4d86',1,'_cyhal_uart_slow_t']]],
+  ['implementation_20specific_20types_6',['Implementation Specific Types',['../group__group__hal__types__implementation.html',1,'']]],
+  ['input_7',['input',['../group__group__hal__dma.html#a4a84836c06db798025e21943f253659f',1,'cyhal_dma_src_t']]],
+  ['ipc_20_28inter_2dprocessor_20communication_29_8',['IPC (Inter-Processor Communication)',['../group__group__hal__ipc.html',1,'']]],
+  ['ipc_20hal_20results_9',['IPC HAL Results',['../group__group__hal__results__ipc.html',1,'']]],
+  ['is_5fcompare_10',['is_compare',['../group__group__hal__timer.html#a795fed3044bc17924b8c73b37019ce99',1,'cyhal_timer_cfg_t']]],
+  ['is_5fcontinuous_11',['is_continuous',['../group__group__hal__timer.html#ae8be9b8ef3b99902c9f2bd29e498d558',1,'cyhal_timer_cfg_t']]],
+  ['is_5fslave_12',['is_slave',['../group__group__hal__i2c.html#a734b40ed68843e48a0b2586e3fb58fcb',1,'cyhal_i2c_cfg_t::is_slave()'],['../group__group__hal__spi.html#afbea547c3e4cbe19a70781e361f9c1dc',1,'cyhal_spi_cfg_t::is_slave()']]],
+  ['item_5fsize_13',['item_size',['../group__group__hal__ipc.html#a29b4e980563d9d015f571310946844d6',1,'cyhal_ipc_queue_t']]]
 ];

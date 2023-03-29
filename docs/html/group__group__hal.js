@@ -6,6 +6,7 @@ var group__group__hal =
     [ "GPIO (General Purpose Input Output)", "group__group__hal__gpio.html", "group__group__hal__gpio" ],
     [ "HWMGR (Hardware Manager)", "group__group__hal__hwmgr.html", "group__group__hal__hwmgr" ],
     [ "I2C (Inter-Integrated Circuit)", "group__group__hal__i2c.html", "group__group__hal__i2c" ],
+    [ "IPC (Inter-Processor Communication)", "group__group__hal__ipc.html", "group__group__hal__ipc" ],
     [ "LPTimer (Low-Power Timer)", "group__group__hal__lptimer.html", "group__group__hal__lptimer" ],
     [ "M2M DMA (Memory-to-Memory Direct Memory Access)", "group__group__hal__m2m.html", "group__group__hal__m2m" ],
     [ "PWM (Pulse Width Modulator)", "group__group__hal__pwm.html", "group__group__hal__pwm" ],

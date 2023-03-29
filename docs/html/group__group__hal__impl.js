@@ -10,6 +10,7 @@ var group__group__hal__impl =
     [ "I2C", "group__group__hal__impl__i2c.html", null ],
     [ "PWM (Pulse Width Modulator)", "group__group__hal__impl__pwm.html", null ],
     [ "SPI", "group__group__hal__impl__spi.html", null ],
+    [ "Power Management", "group__group__hal__impl__PM.html", null ],
     [ "Timer", "group__group__hal__impl__timer.html", null ],
     [ "UART", "group__group__hal__impl__uart.html", null ]
 ];

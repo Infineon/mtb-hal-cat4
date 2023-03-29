@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['gci_5fchipcontrol_5fpos',['gci_chipcontrol_pos',['../group__group__hal__impl__pin__package.html#ace900f3c94339d6fcf9c15000e234cbb',1,'cyhal_pin_gci_mapping_t']]],
-  ['gci_5fchipcontrol_5freg',['gci_chipcontrol_reg',['../group__group__hal__impl__pin__package.html#a57a3096a76668081e94c38fb6ea0dac2',1,'cyhal_pin_gci_mapping_t']]]
+  ['fcr_0',['fcr',['../struct__cyhal__uart__seci__t.html#aba3ac31b40220ae93c5feecbcfa74d86',1,'_cyhal_uart_seci_t']]],
+  ['frequency_5fhz_1',['frequency_hz',['../group__group__hal__lptimer.html#a4e13c1d5a49242cc9c88c1ae28eaa6d1',1,'cyhal_lptimer_info_t']]],
+  ['frequencyhal_5fhz_2',['frequencyhal_hz',['../group__group__hal__i2c.html#a4bc56f48688bf67f70d721fd7d94c16a',1,'cyhal_i2c_cfg_t']]],
+  ['function_3',['function',['../group__group__hal__impl__pin__package.html#a6b4b69acd5e3e648e4b02117f4b771a6',1,'cyhal_resource_pin_mapping_t']]]
 ];

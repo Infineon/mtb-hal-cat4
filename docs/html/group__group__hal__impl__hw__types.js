@@ -1,110 +1,22 @@
 var group__group__hal__impl__hw__types =
 [
-    [ "cyhal_clock_t", "group__group__hal__impl__hw__types.html#structcyhal__clock__t", [
-      [ "block", "group__group__hal__impl__hw__types.html#a60762f348f4de6260d4eee35a6cd6560", null ],
-      [ "channel", "group__group__hal__impl__hw__types.html#aa27063ada31404de933c54ade97205df", null ],
-      [ "reserved", "group__group__hal__impl__hw__types.html#a4b783c0785fab0565508506aeb055429", null ]
-    ] ],
+    [ "cyhal_clock_t", "group__group__hal__impl__hw__types.html#structcyhal__clock__t", null ],
     [ "cyhal_resource_inst_t", "group__group__hal__impl__hw__types.html#structcyhal__resource__inst__t", [
       [ "type", "group__group__hal__impl__hw__types.html#ad111187a65d182386ea96858369b83d4", null ],
       [ "block_num", "group__group__hal__impl__hw__types.html#a91895766b5f5efe1dfffac2d7537e73a", null ],
       [ "channel_num", "group__group__hal__impl__hw__types.html#a4488a199114a86e5a72184c7a0a16c06", null ]
     ] ],
-    [ "cyhal_event_callback_data_t", "group__group__hal__impl__hw__types.html#structcyhal__event__callback__data__t", [
-      [ "callback", "group__group__hal__impl__hw__types.html#a3c3d10edf78afaf402eb6eb9004a17c0", null ],
-      [ "callback_arg", "group__group__hal__impl__hw__types.html#aeabdbaef4f75c5b947fa9d1534d230f9", null ]
-    ] ],
-    [ "cyhal_dma_t", "group__group__hal__impl__hw__types.html#structcyhal__dma__t", [
-      [ "resource", "group__group__hal__impl__hw__types.html#a435949478e9279c9270c62843a69070e", null ],
-      [ "tx_ch", "group__group__hal__impl__hw__types.html#a2d69141903790029a17d6e53c67792de", null ],
-      [ "rx_ch", "group__group__hal__impl__hw__types.html#a3d0258a6748475ad27c81b105dbbc0f8", null ],
-      [ "dma_ch", "group__group__hal__impl__hw__types.html#ae7b553ba5eb5c27783a687160b8dc68a", null ],
-      [ "group", "group__group__hal__impl__hw__types.html#ad8e713a4409a41a99245f57f9eff063a", null ],
-      [ "src_addr", "group__group__hal__impl__hw__types.html#a3b5b1761c1d6af4d1b822db535224ebc", null ],
-      [ "dst_addr", "group__group__hal__impl__hw__types.html#a378259433caf258071f0a09ff36b6010", null ],
-      [ "bytes", "group__group__hal__impl__hw__types.html#ad70b6534ba57fbb438f82ffe7a2f5a38", null ],
-      [ "direction", "group__group__hal__impl__hw__types.html#a6bfa3d9c7ef3bb07d45f1022bab70c87", null ],
-      [ "tx_started", "group__group__hal__impl__hw__types.html#a07d61659e397a309c18cf8c91c6054b2", null ],
-      [ "is_enabled", "group__group__hal__impl__hw__types.html#a45bc4944f39407cdef994106d1222f13", null ],
-      [ "callback_data", "group__group__hal__impl__hw__types.html#a9fb6d3fe2403deb665ce86e958fb956a", null ]
-    ] ],
-    [ "cyhal_i2c_t", "group__group__hal__impl__hw__types.html#structcyhal__i2c__t", [
-      [ "resource", "group__group__hal__impl__hw__types.html#a34241849f682fd5bee4f6b7be9c5e44d", null ],
-      [ "pin_sda", "group__group__hal__impl__hw__types.html#ab6d7b3f033a28dd9589d765d3c12e758", null ],
-      [ "pin_scl", "group__group__hal__impl__hw__types.html#ae48ab483971698a3695c2145e1eafe28", null ],
-      [ "callback_data", "group__group__hal__impl__hw__types.html#aaaab9b7e79c057162b0f000e0502295c", null ]
-    ] ],
-    [ "cyhal_lptimer_t", "group__group__hal__impl__hw__types.html#structcyhal__lptimer__t", [
-      [ "resource", "group__group__hal__impl__hw__types.html#a06e532202124b44f3cbd3a88270f50ae", null ],
-      [ "started", "group__group__hal__impl__hw__types.html#adc1e54cbed03a3a7b21b12f4112204d7", null ],
-      [ "matching", "group__group__hal__impl__hw__types.html#aa368cd90cf7fdaac370d258b61ff9a7c", null ],
-      [ "reset_ticks", "group__group__hal__impl__hw__types.html#ae8e5c22ee619195d81b9341b901a9690", null ],
-      [ "compare_event_enabled", "group__group__hal__impl__hw__types.html#a0b3e86c5987f79ad077a3edfb6826241", null ],
-      [ "callback_data", "group__group__hal__impl__hw__types.html#aee76c50832553de4525a4270d5d06df5", null ]
-    ] ],
-    [ "cyhal_m2m_t", "group__group__hal__impl__hw__types.html#structcyhal__m2m__t", [
-      [ "dma_obj", "group__group__hal__impl__hw__types.html#aed95652ed3318e816f07d17ff35a88c6", null ]
-    ] ],
-    [ "cyhal_pwm_t", "group__group__hal__impl__hw__types.html#structcyhal__pwm__t", [
-      [ "resource", "group__group__hal__impl__hw__types.html#a95ce1ac7eb33b0923c3d6ee60a1f94e8", null ],
-      [ "compl_resource", "group__group__hal__impl__hw__types.html#a7109655bf2f05e87162c46b59c8291cd", null ],
-      [ "pin", "group__group__hal__impl__hw__types.html#adbc3775af399b89b28f710ba299e633e", null ],
-      [ "compl_pin", "group__group__hal__impl__hw__types.html#a3bcd8bd4ead7b177fd0e9b358aabf356", null ],
-      [ "dead_time_us", "group__group__hal__impl__hw__types.html#ab181025d10f7cfadbc10ffcd0df5b82e", null ],
-      [ "is_enabled", "group__group__hal__impl__hw__types.html#a3b56683469eaa99231d0711cfb760a88", null ]
-    ] ],
-    [ "cyhal_rtc_t", "group__group__hal__impl__hw__types.html#structcyhal__rtc__t", [
-      [ "empty", "group__group__hal__impl__hw__types.html#aff21062458721c4f2e7cc6eb9700f815", null ]
-    ] ],
-    [ "cyhal_spi_t", "group__group__hal__impl__hw__types.html#structcyhal__spi__t", [
-      [ "resource", "group__group__hal__impl__hw__types.html#a50ef30629c0ed6b9b88fd3edd1d6d917", null ],
-      [ "pin_mosi", "group__group__hal__impl__hw__types.html#aeb604dd90daa694e30c9401c4a35a261", null ],
-      [ "pin_miso", "group__group__hal__impl__hw__types.html#a4abba543deddc161985cb5e2bce54a27", null ],
-      [ "pin_clk", "group__group__hal__impl__hw__types.html#a0ab661809d6ef101709611748ab10e1c", null ],
-      [ "pin_cs", "group__group__hal__impl__hw__types.html#a2503bef2f94164b267ed113026b3cb63", null ],
-      [ "numDataBytes", "group__group__hal__impl__hw__types.html#ab075e19c36c529c85937c3fa64cffad9", null ],
-      [ "callback_data", "group__group__hal__impl__hw__types.html#a81359f063c7f6603a9665c2af197595e", null ]
-    ] ],
-    [ "cyhal_timer_t", "group__group__hal__impl__hw__types.html#structcyhal__timer__t", [
-      [ "resource", "group__group__hal__impl__hw__types.html#a9352515090b84442156c98d65c0cac3f", null ],
-      [ "running", "group__group__hal__impl__hw__types.html#a7ce3c14282f88ffc972dbc46c38d574b", null ],
-      [ "ever_stopped", "group__group__hal__impl__hw__types.html#aaa16b11d3027ef05f83ab9fe81aa0aed", null ],
-      [ "in_compare_phase", "group__group__hal__impl__hw__types.html#a831e9a5ae5b45532c6dd17fe2d11e7f7", null ],
-      [ "is_continuous", "group__group__hal__impl__hw__types.html#a1d32e3b441be2be671ed2baa03875af4", null ],
-      [ "freq_ratio", "group__group__hal__impl__hw__types.html#a4a974ac3a7f54b260a1d45da5d0ca97c", null ],
-      [ "max_fw_ticks", "group__group__hal__impl__hw__types.html#a5be88e016b98784da9fdc6e0a2b2042a", null ],
-      [ "fw_start_ticks", "group__group__hal__impl__hw__types.html#abe0ffc50c43fe4d8cd608e8ff2a93e6b", null ],
-      [ "fw_ticks_to_compare", "group__group__hal__impl__hw__types.html#a8c4e1d40fa1712c535227a9f7841b81b", null ],
-      [ "fw_tick_period", "group__group__hal__impl__hw__types.html#a50ae32f6537bd50cd7f4796fc0eafbc5", null ],
-      [ "hw_ticks_to_compare", "group__group__hal__impl__hw__types.html#a9019d892ba671fdb8b352cc573c559a0", null ],
-      [ "hw_ticks_to_terminal", "group__group__hal__impl__hw__types.html#a3942ce409f1bf38f68ddac26ff06d5a6", null ],
-      [ "previous_stop_hw_ticks", "group__group__hal__impl__hw__types.html#a4ba63a43c6429a099dcb4d325416f504", null ],
-      [ "compare_event_enabled", "group__group__hal__impl__hw__types.html#ac4237283aadc47c5b5c303f48c2793dd", null ],
-      [ "terminal_event_enabled", "group__group__hal__impl__hw__types.html#a5782a7696e8f1d227da283abbc882c01", null ],
-      [ "callback_data", "group__group__hal__impl__hw__types.html#aaeb99b486d72d0d37a3f61fcb2ba69cf", null ]
-    ] ],
-    [ "cyhal_uart_t", "group__group__hal__impl__hw__types.html#structcyhal__uart__t", [
-      [ "resource", "group__group__hal__impl__hw__types.html#a8500bcc4df32b74911f7f2c7e620e609", null ],
-      [ "pin_rx", "group__group__hal__impl__hw__types.html#aa211e6d348346ecb7391dfc07df98454", null ],
-      [ "pin_tx", "group__group__hal__impl__hw__types.html#a934295a171024345bf34fb06d79572dc", null ],
-      [ "pin_rts", "group__group__hal__impl__hw__types.html#a7620d3f9a57ea1299c92d34229d126c3", null ],
-      [ "enable_rts", "group__group__hal__impl__hw__types.html#a2f437338d7619f13a55d886ada079094", null ],
-      [ "pin_cts", "group__group__hal__impl__hw__types.html#a8b5b034b002f4e0f8070705fe4e79cc0", null ],
-      [ "enable_cts", "group__group__hal__impl__hw__types.html#aac32262aadf2ae10faf2f634a1b04169", null ],
-      [ "clk", "group__group__hal__impl__hw__types.html#ae09111635c3023eb4a29efe0f802483e", null ],
-      [ "buffer", "group__group__hal__impl__hw__types.html#a3b3d35f74395ba0484a72098df4129f2", null ],
-      [ "user_enabled_events", "group__group__hal__impl__hw__types.html#a6dbfab08771f8540eecb363f19aa1f12", null ],
-      [ "user_rx_trigger_level", "group__group__hal__impl__hw__types.html#a612479215d5f6c69bb9f50d523a2cad1", null ],
-      [ "user_tx_trigger_level", "group__group__hal__impl__hw__types.html#ae5cc336fbbb94ec17c6d9067fac9ecdb", null ],
-      [ "async_tx_buff", "group__group__hal__impl__hw__types.html#ac24588b56aca10c6081f031b929aab52", null ],
-      [ "async_tx_length", "group__group__hal__impl__hw__types.html#ae31d3b100787457506ed839bcf48dcd2", null ],
-      [ "async_rx_buff", "group__group__hal__impl__hw__types.html#a09b8582176e8d7bdb90d23cdc5b58f9c", null ],
-      [ "async_rx_length", "group__group__hal__impl__hw__types.html#a57f99c81f24edce57730fe56cc2a0877", null ],
-      [ "callback_data", "group__group__hal__impl__hw__types.html#af4a8e8f055a31f3ed62aec9a50bc7fec", null ]
-    ] ],
-    [ "cyhal_wdt_t", "group__group__hal__impl__hw__types.html#structcyhal__wdt__t", [
-      [ "empty", "group__group__hal__impl__hw__types.html#a404324ce6c8db33e3a3402f587f303ca", null ]
-    ] ],
+    [ "cyhal_event_callback_data_t", "group__group__hal__impl__hw__types.html#structcyhal__event__callback__data__t", null ],
+    [ "cyhal_dma_t", "group__group__hal__impl__hw__types.html#structcyhal__dma__t", null ],
+    [ "cyhal_i2c_t", "group__group__hal__impl__hw__types.html#structcyhal__i2c__t", null ],
+    [ "cyhal_lptimer_t", "group__group__hal__impl__hw__types.html#structcyhal__lptimer__t", null ],
+    [ "cyhal_m2m_t", "group__group__hal__impl__hw__types.html#structcyhal__m2m__t", null ],
+    [ "cyhal_pwm_t", "group__group__hal__impl__hw__types.html#structcyhal__pwm__t", null ],
+    [ "cyhal_rtc_t", "group__group__hal__impl__hw__types.html#structcyhal__rtc__t", null ],
+    [ "cyhal_spi_t", "group__group__hal__impl__hw__types.html#structcyhal__spi__t", null ],
+    [ "cyhal_timer_t", "group__group__hal__impl__hw__types.html#structcyhal__timer__t", null ],
+    [ "cyhal_uart_t", "group__group__hal__impl__hw__types.html#structcyhal__uart__t", null ],
+    [ "cyhal_wdt_t", "group__group__hal__impl__hw__types.html#structcyhal__wdt__t", null ],
     [ "CYHAL_API_VERSION", "group__group__hal__impl__hw__types.html#gafd2c6be6a2b5da41f85c8d08bc79c2ca", null ],
     [ "CYHAL_DRIVER_AVAILABLE_CLOCK", "group__group__hal__availability.html#gab7b277f7243da4199aaf63f304dbb213", null ],
     [ "CYHAL_DRIVER_AVAILABLE_COMP", "group__group__hal__availability.html#gac065212a08722e9fe4d44bffd41296c7", null ],
@@ -112,6 +24,7 @@ var group__group__hal__impl__hw__types =
     [ "CYHAL_DRIVER_AVAILABLE_DAC", "group__group__hal__availability.html#ga11e5b6567243892d3b7ee5ea3d636923", null ],
     [ "CYHAL_DRIVER_AVAILABLE_DMA", "group__group__hal__availability.html#gab6ff6036bf3f1646f562f687d3341eaf", null ],
     [ "CYHAL_DRIVER_AVAILABLE_EZI2C", "group__group__hal__availability.html#ga5d668f66e4de981f1b6016b0b9842e97", null ],
+    [ "CYHAL_DRIVER_AVAILABLE_NVM", "group__group__hal__availability.html#ga5a2601a3ad02e25fcca8f9c4ff5179c9", null ],
     [ "CYHAL_DRIVER_AVAILABLE_FLASH", "group__group__hal__availability.html#ga144cd0560450d7a2ba7cbd41004c9514", null ],
     [ "CYHAL_DRIVER_AVAILABLE_GPIO", "group__group__hal__availability.html#ga5b7df65b88b9c989f06505501808208b", null ],
     [ "CYHAL_DRIVER_AVAILABLE_HWMGR", "group__group__hal__availability.html#gaa097ddb6e6636ab99420a10fd4d7f755", null ],
@@ -130,6 +43,8 @@ var group__group__hal__impl__hw__types =
     [ "CYHAL_DRIVER_AVAILABLE_RTC", "group__group__hal__availability.html#gaa2d11bfc0756f86ab20e67b63440723a", null ],
     [ "CYHAL_DRIVER_AVAILABLE_SDHC", "group__group__hal__availability.html#gae04cb2342d4832ed58a9ebb501a8ddf2", null ],
     [ "CYHAL_DRIVER_AVAILABLE_SDIO", "group__group__hal__availability.html#ga34d490d013103cd54a492df567f16ad7", null ],
+    [ "CYHAL_DRIVER_AVAILABLE_SDIO_HOST", "group__group__hal__availability.html#gaaa024446105f87484845a4037f81d7da", null ],
+    [ "CYHAL_DRIVER_AVAILABLE_SDIO_DEV", "group__group__hal__availability.html#ga67f98cb71269fc69d11f84092012e92f", null ],
     [ "CYHAL_DRIVER_AVAILABLE_SPI", "group__group__hal__availability.html#ga2864729e542a1b4f9aba48579ee6b654", null ],
     [ "CYHAL_DRIVER_AVAILABLE_SYSPM", "group__group__hal__availability.html#ga086d627b651b34fa50e15badbb2108c9", null ],
     [ "CYHAL_DRIVER_AVAILABLE_SYSTEM", "group__group__hal__availability.html#gae8d9f6c5a92ee3bcf678bfb8e93397cf", null ],
@@ -141,8 +56,9 @@ var group__group__hal__impl__hw__types =
     [ "CYHAL_DRIVER_AVAILABLE_UART", "group__group__hal__availability.html#ga4fde53d7b3403ca345ea93986aed7312", null ],
     [ "CYHAL_DRIVER_AVAILABLE_USB_DEV", "group__group__hal__availability.html#ga684b8b73042ae9142e14d4da5f22f427", null ],
     [ "CYHAL_DRIVER_AVAILABLE_WDT", "group__group__hal__availability.html#gac9caca2293c6a9e6788b022f94884737", null ],
+    [ "CYHAL_DRIVER_AVAILABLE_IPC", "group__group__hal__availability.html#ga0e37b73eca19c580d7f0807747542acc", null ],
     [ "CYHAL_ISR_PRIORITY_DEFAULT", "group__group__hal__impl__hw__types.html#gad822a466fc63847114add720ef84c83a", null ],
-    [ "cy_israddress", "group__group__hal__impl__hw__types.html#ga71c09beda7671d1f69c8f06a546e2ae6", null ],
+    [ "cy_israddress", "group__group__hal__impl__hw__types.html#ga691f08ab6aaf93ee11929fa59698d01a", null ],
     [ "cyhal_dma_configurator_t", "group__group__hal__impl__hw__types.html#ga4de4de8dcb5afabdded1610bfc9b5e46", null ],
     [ "cyhal_i2c_configurator_t", "group__group__hal__impl__hw__types.html#gabbb066290e177fc7f2dc9ef05663ec2d", null ],
     [ "cyhal_pwm_configurator_t", "group__group__hal__impl__hw__types.html#ga41994fe8b2c1308deae1d58d894c737f", null ],

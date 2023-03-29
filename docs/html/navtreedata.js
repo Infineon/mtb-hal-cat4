@@ -1,30 +1,42 @@
 /*
-@ @licstart  The following is the entire license notice for the
-JavaScript code in this file.
+ @licstart  The following is the entire license notice for the JavaScript code in this file.
 
-Copyright (C) 1997-2017 by Dimitri van Heesch
+ The MIT License (MIT)
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+ Copyright (C) 1997-2020 by Dimitri van Heesch
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+ and associated documentation files (the "Software"), to deal in the Software without restriction,
+ including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-You should have received a copy of the GNU General Public License along
-with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ The above copyright notice and this permission notice shall be included in all copies or
+ substantial portions of the Software.
 
-@licend  The above is the entire license notice
-for the JavaScript code in this file
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+ BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ @licend  The above is the entire license notice for the JavaScript code in this file
 */
 var NAVTREE =
 [
   [ "Hardware Abstraction Layer (HAL)", "index.html", [
-    [ "Hardware Abstraction Layer", "index.html", null ],
+    [ "Hardware Abstraction Layer", "index.html", [
+      [ "Overview", "index.html#autotoc_md1", null ],
+      [ "API Structure", "index.html#autotoc_md2", null ],
+      [ "Resource Identification", "index.html#autotoc_md3", null ],
+      [ "Hardware Manager", "index.html#autotoc_md4", null ],
+      [ "Power Management", "index.html#autotoc_md5", null ],
+      [ "Compile Time Dependencies", "index.html#autotoc_md6", null ],
+      [ "Event Handling", "index.html#autotoc_md7", null ],
+      [ "Error reporting", "index.html#autotoc_md8", null ],
+      [ "RTOS Integration", "index.html#autotoc_md9", null ],
+      [ "More information", "index.html#autotoc_md10", null ]
+    ] ],
     [ "HAL API Reference", "modules.html", "modules" ]
   ] ]
 ];
@@ -32,11 +44,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "group__group__hal.html",
-"group__group__hal__i2c.html#a734b40ed68843e48a0b2586e3fb58fcb",
-"group__group__hal__impl__pin__package.html#gab00ec84fab993eadeb820063b2f7dc63",
-"group__group__hal__results__lptimer.html#gaab76b1a89013f80e937322727c727e26",
-"group__group__hal__system.html#ga9a7b601e0b06a896860f411103a4abc6",
-"group__group__result.html#gga9008565cba0207520330a1cb8509a8d0aee8135d483646c13aabed95928197a20"
+"group__group__hal__gpio.html#structcyhal__gpio__callback__data__t",
+"group__group__hal__ipc.html",
+"group__group__hal__results__ipc.html#ga1b26c63a66b9992b78761493d5f1e2c8",
+"group__group__hal__syspm.html#gga5a6a88eb2b6e35dbea25e36b027bf4baadd83c77cb81d9d4aafef1d094e6c4e71",
+"group__group__result.html#gga9008565cba0207520330a1cb8509a8d0a56e06a06124185c15f410e6cc202365f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -40,6 +40,8 @@ The following HAL drivers are not supported on CAT4 as none of the devices in Mo
 * USB Device
 
 ### What Changed?
+#### v1.0.0
+* Initial production release
 #### v0.5.0
 * Initial release supporting GCC_ARM
 
@@ -48,10 +50,10 @@ This version of the CAT4 Hardware Abstraction Layer was validated for compatibil
 
 | Software and Tools                        | Version |
 | :---                                      | :----:  |
-| ModusToolbox™ Software Environment        | 2.4.0   |
+| ModusToolbox™ Software Environment        | 3.0.0   |
 | GCC Compiler                              | 10.3.1  |
 
-Minimum required ModusToolbox™ Software Environment: v2.4.0
+Minimum required ModusToolbox™ Software Environment: v3.0.0
 
 ### More information
 Use the following links for more information, as needed:
@@ -61,4 +63,4 @@ Use the following links for more information, as needed:
 * [ModusToolbox™](https://www.cypress.com/products/modustoolbox-software-environment)
 
 ---
-© Cypress Semiconductor Corporation (an Infineon company) or an affiliate of Cypress Semiconductor Corporation, 2019-2021.
+© Cypress Semiconductor Corporation (an Infineon company) or an affiliate of Cypress Semiconductor Corporation, 2019-2023.
