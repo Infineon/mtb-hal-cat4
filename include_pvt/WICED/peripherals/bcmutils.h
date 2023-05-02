@@ -972,8 +972,8 @@ extern void bcm_bitprint32(const uint32 u32);
 static INLINE void setbit##NB(void *ptr, uint32 ix, uint32 val)     \
 {                                                                   \
 	uint32 *addr = (uint32 *)ptr;                                   \
-	uint32 *a = addr + (ix >> RSH); /* (ix / 2^RSH) */              \
-	uint32 pos = (ix & OFF) << LSH; /* (ix % 2^RSH) * 2^LSH */      \
+	uint32 *a = addr + (ix >> (RSH)); /* (ix / 2^RSH) */            \
+	uint32 pos = (ix & (OFF)) << (LSH); /* (ix % 2^RSH) * 2^LSH */  \
 	uint32 mask = (MSK << pos);                                     \
 	uint32 tmp = *a & ~mask;                                        \
 	*a = tmp | (val << pos);                                        \
@@ -981,9 +981,9 @@ static INLINE void setbit##NB(void *ptr, uint32 ix, uint32 val)     \
 static INLINE uint32 getbit##NB(void *ptr, uint32 ix)               \
 {                                                                   \
 	uint32 *addr = (uint32 *)ptr;                                   \
-	uint32 *a = addr + (ix >> RSH);                                 \
-	uint32 pos = (ix & OFF) << LSH;                                 \
-	return ((*a >> pos) & MSK);                                     \
+	uint32 *a = addr + (ix >> (RSH));                               \
+	uint32 pos = (ix & (OFF)) << (LSH);                             \
+	return ((*a >> pos) & (MSK));                                   \
 }
 
 DECLARE_MAP_API(2,  4, 1, 15U, 0x0003) /* setbit2() and getbit2() */
@@ -1301,9 +1301,9 @@ extern void bcm_uint64_divide(uint32* r, uint32 a_high, uint32 a_low, uint32 b);
 static const uint8 /* Table only for use by bcm_cntsetbits */
 _CSBTBL[256] =
 {
-#	define B2(n)    n,     n + 1,     n + 1,     n + 2
-#	define B4(n) B2(n), B2(n + 1), B2(n + 1), B2(n + 2)
-#	define B6(n) B4(n), B4(n + 1), B4(n + 1), B4(n + 2)
+#	define B2(n)   (n),    (n) + 1,     (n) + 1,     (n) + 2
+#	define B4(n) B2(n), B2((n) + 1), B2((n) + 1), B2((n) + 2)
+#	define B6(n) B4(n), B4((n) + 1), B4((n) + 1), B4((n) + 2)
 	B6(0), B6(0 + 1), B6(0 + 1), B6(0 + 2)
 };
 

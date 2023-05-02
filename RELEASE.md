@@ -40,6 +40,9 @@ The following HAL drivers are not supported on CAT4 as none of the devices in Mo
 * USB Device
 
 ### What Changed?
+#### v1.0.1
+* Fix failure to retrieve clock frequency when exiting low power modes
+* Rename `wiced_result_t` in UART ringbuffer to avoid naming collision with other libraries.
 #### v1.0.0
 * Initial production release
 #### v0.5.0

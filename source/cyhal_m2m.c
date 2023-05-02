@@ -63,7 +63,7 @@ extern cyhal_dma_t*          _cyhal_m2m_cb[];
 *******************************************************************************/
 
 const cyhal_resource_inst_t rscObj = {CYHAL_RSC_DMA, _CYHAL_M2M_GRP_WWD, 0u};
-cyhal_dma_t _cyhal_m2m_obj = 
+cyhal_dma_t _cyhal_m2m_obj =
 {
     .resource.type = CYHAL_RSC_DMA,
     .resource.block_num = _CYHAL_M2M_GRP_WWD,
@@ -125,7 +125,7 @@ cy_rslt_t cyhal_m2m_init(cyhal_m2m_t *obj, uint32_t rx_buffer_size)
     {
         // The underlying resource is DMA so initialize it the same way
         _cyhal_m2m_init_dma(_CYHAL_M2M_GRP_WWD, ACPU_DMA_TX_CHANNEL, ACPU_DMA_RX_CHANNEL, rx_buffer_size);
-        
+
         /* Configure all m2m channels except ACPU_DMA_TX_CHANNEL to use irq1 and remap the m2m irq */
         int channel_count = (_cyhal_m2m_m2mreg->capabilities & M2M_CAPABILITIES_CHANNEL_COUNT_MASK) + 1;
         for (int i = 0; i < channel_count ; i++)
@@ -140,7 +140,7 @@ cy_rslt_t cyhal_m2m_init(cyhal_m2m_t *obj, uint32_t rx_buffer_size)
 
         /* Last step of initialization. Register settings inside tells WLAN that RX is ready. */
         m2m_dma_txinit(_cyhal_m2m_dma_handle[_CYHAL_M2M_GRP_WWD]);
-    
+
         _cyhal_m2m_cb[_CYHAL_M2M_GRP_WWD] = &_cyhal_m2m_obj;
         obj->dma_obj = &_cyhal_m2m_obj;
     }
@@ -341,7 +341,7 @@ cyhal_m2m_event_t cyhal_m2m_intr_status(cyhal_m2m_t *obj, bool* signal_txdone)
         event |= CYHAL_M2M_RX_CHANNEL_INTERRUPT;
     if (intstatus & I_XI)
         event |= CYHAL_M2M_TX_CHANNEL_INTERRUPT; // Note: WWD repurposes "TX error" for "TX interrupt"
-        
+
     return event;
 }
 

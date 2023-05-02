@@ -790,7 +790,7 @@ uint32_t cyhal_clock_get_frequency(const cyhal_clock_t *clock)
         case CYHAL_CLOCK_BLOCK_WLAN_PLL:
             return 0; // Add when working on peripherals
         case CYHAL_CLOCK_BLOCK_CPU:
-            return _cyhal_clock_cpu_clock_get_freq();
+            return _cyhal_clock_cpu_clock_hz;
         case CYHAL_CLOCK_BLOCK_BACKPLANE:
             return _cyhal_clock_backplane_clock_get_freq();
         case CYHAL_CLOCK_BLOCK_FAST_UART:

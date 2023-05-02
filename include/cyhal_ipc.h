@@ -122,9 +122,9 @@ typedef void (*cyhal_ipc_event_callback_t)(void *callback_arg, cyhal_ipc_event_t
 */
 typedef struct cyhal_ipc_queue_s
 {
-    uint32_t channel_num;       //!< IPC channel number (e.g. CYHAL_IPC_CHAN_0) (populated by user during initialization)
-    uint32_t queue_num;         //!< Queue number (populated by user during initialization)
-    void *queue_pool;           //!< Pointer to the queue pool (populated by user during initialization). This is pointer to shared memory, in which queue elements will be stored. CYHAL_IPC_QUEUE_POOL_ALLOC macro can be used to allocate memory for pool.
+    uint32_t channel_num;       //!< IPC channel number (e.g. CYHAL_IPC_CHAN_0) (populated by user during initialization). Please refer to implementation specific documentation for number of available IPC HAL channels for particular device.
+    uint32_t queue_num;         //!< Queue number, which should be unique for each queue in scope of one IPC channel. Valid range is from 0 to 2^32-1. (populated by user during initialization). Number of queues per channel is limited to 2^32 and device's memory, which is required to allocate this number of queues and elements inside them.
+    void *queue_pool;           //!< Pointer to the queue pool (populated by user during initialization). This is pointer to shared memory, in which queue elements will be stored. CYHAL_IPC_QUEUE_POOL_ALLOC macro can be used to allocate memory for pool. Please refer to implementation specific documentation for the requirements for memory allocation if macro is not used.
     uint32_t num_items;         //!< Maximum number of items allowed in the queue (populated by user during initialization)
     uint32_t item_size;         //!< Size of each item in the queue (populated by user during initialization)
     uint32_t curr_items;        //!< Current number of items in the queue (not expected to be modified by user)
@@ -139,7 +139,7 @@ typedef struct cyhal_ipc_queue_s
  * This function must be called by all tasks/CPUs accessing the semaphore.
  * @param[out] obj              Pointer to an IPC object. The caller must allocate the memory for this object but the
  * init function will initialize its contents.
- * @param[in] semaphore_num     The semaphore number to initialize.
+ * @param[in] semaphore_num     The semaphore number to initialize. Please refer to implementation specific documentation for valid range for this parameter.
  * @param[in] preemptable       Allows whether the semaphore can be preempted by another task.
  * @return The status of the init request
  */
@@ -180,9 +180,10 @@ cy_rslt_t cyhal_ipc_semaphore_give(cyhal_ipc_t *obj);
  * Queue handle is used by other tasks/CPUs to refer to the queue. Note that this function must be called only by one
  * of the tasks/CPUs for the same IPC channel. This CPU can call the function multiple times for the same IPC
  * channel, but with a different queue number.
- * \note CYHAL_IPC_QUEUE_HANDLE_ALLOC and CYHAL_IPC_QUEUE_POOL_ALLOC macro can be used in order to allocate
- * memory for (respectively) queue handle (cyhal_ipc_queue_t) and queue pool in shared section. Please refer to
- * \ref subsection_ipc_snippet2 for initialization guidance.
+ * \note CYHAL_IPC_QUEUE_HANDLE_ALLOC and CYHAL_IPC_QUEUE_POOL_ALLOC macro can (and not mandatory) be used in order to
+ * allocate memory for (respectively) queue handle (cyhal_ipc_queue_t) and queue pool in shared section.
+ * Please refer to implementation specific documentation for the requirements for memory allocation if macro is not used.
+ * Please refer to \ref subsection_ipc_snippet2 for initialization guidance.
  * @param[out] obj              Pointer to an IPC object. The caller must allocate the memory for this object
  * but the init function will initialize its contents.
  * @param[in] queue_handle      Queue handle. Fields channel_num, queue_num, queue_pool, num_items and item_size
@@ -203,6 +204,8 @@ void cyhal_ipc_queue_free(cyhal_ipc_t *obj);
 /** Gets a handle pointer for a given IPC channel and queue number.
  *
  * This function should be called by other tasks/CPUs that have not called the initialization function.
+ * Unpredicted behavior can happen if this function is called before \ref cyhal_ipc_queue_init. Please refer
+ * to implementation specific documentation for additional details.
  * @param[out] obj              The IPC object handle.
  * @param[in] channel_num       IPC channel to use for the queue messaging.
  * @param[in] queue_num         Queue number.

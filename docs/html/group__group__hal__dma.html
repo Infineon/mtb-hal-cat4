@@ -339,6 +339,10 @@ Macros</h2></td></tr>
 <tr class="memitem:gab9c200507a8ee87b894150416e4f5dd1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group__hal__dma.html#gab9c200507a8ee87b894150416e4f5dd1">cyhal_dma_init</a>(obj,  priority,  direction)&#160;&#160;&#160;(<a class="el" href="group__group__hal__dma.html#gac1ab5fd8128e928de6827c5469de598f">cyhal_dma_init_adv</a>(obj, NULL, NULL, NULL, priority, direction))</td></tr>
 <tr class="memdesc:gab9c200507a8ee87b894150416e4f5dd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the DMA peripheral.  <a href="group__group__hal__dma.html#gab9c200507a8ee87b894150416e4f5dd1">More...</a><br /></td></tr>
 <tr class="separator:gab9c200507a8ee87b894150416e4f5dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga194384ce7d983a690840b5ad29a23a3e"><td class="memItemLeft" align="right" valign="top"><a id="ga194384ce7d983a690840b5ad29a23a3e" name="ga194384ce7d983a690840b5ad29a23a3e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CYHAL_API_AVAILABLE_DMA_GET_MAX_ELEMENTS_PER_BURST</b></td></tr>
+<tr class="memdesc:ga194384ce7d983a690840b5ad29a23a3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates, that <a class="el" href="group__group__hal__dma.html#ga26bef1a4962ad9f720e57333ff31ac98">cyhal_dma_get_max_elements_per_burst</a> function is available in this version of HAL. <br /></td></tr>
+<tr class="separator:ga194384ce7d983a690840b5ad29a23a3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -462,6 +466,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gae6e7c942c2943ae20266611f8891002e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__group__result.html#gaca79700fcc701534ce61778a9bcf57d1">cy_rslt_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group__hal__dma.html#gae6e7c942c2943ae20266611f8891002e">cyhal_dma_disable_output</a> (<a class="el" href="group__group__hal__impl__hw__types.html#structcyhal__dma__t">cyhal_dma_t</a> *obj, <a class="el" href="group__group__hal__dma.html#ga68d247465101e4ca9d62d6c1ea2343c9">cyhal_dma_output_t</a> output)</td></tr>
 <tr class="memdesc:gae6e7c942c2943ae20266611f8891002e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the specified output signal from a DMA channel.  <a href="group__group__hal__dma.html#gae6e7c942c2943ae20266611f8891002e">More...</a><br /></td></tr>
 <tr class="separator:gae6e7c942c2943ae20266611f8891002e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga26bef1a4962ad9f720e57333ff31ac98"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group__hal__dma.html#ga26bef1a4962ad9f720e57333ff31ac98">cyhal_dma_get_max_elements_per_burst</a> (<a class="el" href="group__group__hal__impl__hw__types.html#structcyhal__dma__t">cyhal_dma_t</a> *obj)</td></tr>
+<tr class="memdesc:ga26bef1a4962ad9f720e57333ff31ac98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max number of elements, that can be transferred by one burst.  <a href="group__group__hal__dma.html#ga26bef1a4962ad9f720e57333ff31ac98">More...</a><br /></td></tr>
+<tr class="separator:ga26bef1a4962ad9f720e57333ff31ac98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Data Structure Documentation</h2>
 <a name="structcyhal__dma__cfg__t" id="structcyhal__dma__cfg__t"></a>
@@ -518,7 +525,7 @@ Number of elements to be transferred in total. </td></tr>
 <td class="fieldname">
 burst_size</td>
 <td class="fielddoc">
-Number of elements to be transferred per trigger. If set to 0 every element is transferred, otherwise burst_size must evenly divide length. </td></tr>
+Number of elements to be transferred per trigger. If set to 0 every element is transferred, otherwise burst_size must evenly divide length. <a class="el" href="group__group__hal__dma.html#ga26bef1a4962ad9f720e57333ff31ac98">cyhal_dma_get_max_elements_per_burst</a> can be used to determine max supported count of elements per one burst. </td></tr>
 <tr><td class="fieldtype">
 <a id="a17a6575e0901cce49fdf8b7da8f2130d" name="a17a6575e0901cce49fdf8b7da8f2130d"></a><a class="el" href="group__group__hal__dma.html#ga05291825b0a7c7b9a92373ec53342b7a">cyhal_dma_transfer_action_t</a></td>
 <td class="fieldname">
@@ -1337,6 +1344,33 @@ If the DMA was setup using <a class="el" href="group__group__hal__dma.html#gabc9
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The status of the disablement </dd></dl>
+
+</div>
+</div>
+<a id="ga26bef1a4962ad9f720e57333ff31ac98" name="ga26bef1a4962ad9f720e57333ff31ac98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga26bef1a4962ad9f720e57333ff31ac98">&#9670;&nbsp;</a></span>cyhal_dma_get_max_elements_per_burst()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t cyhal_dma_get_max_elements_per_burst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__group__hal__impl__hw__types.html#structcyhal__dma__t">cyhal_dma_t</a> *&#160;</td>
+          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Max number of elements, that can be transferred by one burst. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">obj</td><td>The DMA object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Max number of elements, that can be transferred by one burst </dd></dl>
 
 </div>
 </div>

@@ -334,7 +334,7 @@ cy_rslt_t cyhal_dma_start_transfer(cyhal_dma_t *obj)
     {
         if (cyhal_dma_is_busy(obj))
             return CYHAL_DMA_RSLT_WARN_TRANSFER_ALREADY_STARTED;
-        
+
         // DMA channel is shared so only transmit if neither are transmitting
         if ((obj->group == _CYHAL_M2M_GRP_WWD)
             || ((_cyhal_m2m_cb[_CYHAL_M2M_GRP_USR_1] == NULL || !_cyhal_m2m_cb[_CYHAL_M2M_GRP_USR_1]->tx_started)
@@ -349,7 +349,7 @@ cy_rslt_t cyhal_dma_start_transfer(cyhal_dma_t *obj)
             return CYHAL_DMA_RSLT_ERR_CHANNEL_BUSY;
         }
     }
-    
+
     return CY_RSLT_SUCCESS; // Note: Intentional to match PSoC behavior
 }
 
@@ -479,6 +479,12 @@ cy_rslt_t cyhal_dma_disable_output(cyhal_dma_t *obj, cyhal_dma_output_t output)
     CY_UNUSED_PARAMETER(obj);
     CY_UNUSED_PARAMETER(output);
     return CYHAL_DMA_RSLT_FATAL_UNSUPPORTED_HARDWARE;
+}
+
+uint32_t cyhal_dma_get_max_elements_per_burst(cyhal_dma_t *obj)
+{
+    CY_UNUSED_PARAMETER(obj);
+    return D64_CTRL2_BC_USABLE_MASK;
 }
 
 #if defined(__cplusplus)

@@ -34,43 +34,19 @@
 #pragma once
 
 #include <stdint.h>
+#include "cy_result.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /******************************************************
- *          wiced_result.h
- ******************************************************/
-
-#ifndef RESULT_ENUM
-#define RESULT_ENUM( prefix, name, value )  prefix ## name = (value)
-#endif /* ifndef RESULT_ENUM */
-
-/*
- * Values: 0 - 999
- */
-#define WICED_RESULT_LIST( prefix ) \
-    RESULT_ENUM( prefix, SUCCESS,                        0 ),   /**< Success */                        \
-    RESULT_ENUM( prefix, PENDING,                        1 ),   /**< Pending */                        \
-    RESULT_ENUM( prefix, TIMEOUT,                        2 ),   /**< Timeout */                        \
-    RESULT_ENUM( prefix, PARTIAL_RESULTS,                3 ),   /**< Partial results */                \
-    RESULT_ENUM( prefix, ERROR,                          4 ),   /**< Error */                          \
-    RESULT_ENUM( prefix, BADARG,                         5 ),   /**< Bad Arguments */                  \
-    RESULT_ENUM( prefix, BADOPTION,                      6 ),   /**< Mode not supported */             \
-    RESULT_ENUM( prefix, UNSUPPORTED,                    7 ),   /**< Unsupported function */
-
-/**
- * WICED Result Type
- */
-typedef enum
-{
-    WICED_RESULT_LIST     ( WICED_            )  /*     0 -   999 */
-} wiced_result_t;
-
-/******************************************************
  *                      Macros
  ******************************************************/
+
+#define CY_RSLT_MODULE_RING_BUFFER_BASE               		CY_RSLT_CREATE(CY_RSLT_TYPE_ERROR, CY_RSLT_MODULE_ABSTRACTION_HAL_BASE, 0)
+
+#define CY_RSLT_MODULE_RING_BUFFER_BAD_ARG					( CY_RSLT_MODULE_RING_BUFFER_BASE + 1 )
 
 /******************************************************
  *                    Constants
@@ -127,17 +103,17 @@ typedef /*@abstract@*/ /*@immutable@*/ struct
  * @param[in]  buffer      : Pointer to the buffer to use for the ring buffer.
  * @param[in]  buffer_size : Size of the buffer (maximum buffer_size - 1 bytes will be stored).
  *
- * @return @ref wiced_result_t
+ * @return @ref cy_rslt_t
  */
-wiced_result_t ring_buffer_init       ( /*@out@*/ wiced_ring_buffer_t* ring_buffer, /*@keep@*/ uint8_t* buffer, uint32_t buffer_size );
+cy_rslt_t ring_buffer_init       ( /*@out@*/ wiced_ring_buffer_t* ring_buffer, /*@keep@*/ uint8_t* buffer, uint32_t buffer_size );
 
 /** De-initialize a ring buffer.
  *
  * @param[in] ring_buffer : Pointer to the ring buffer structure.
  *
- * @return @ref wiced_result_t
+ * @return @ref cy_rslt_t
  */
-wiced_result_t ring_buffer_deinit     ( wiced_ring_buffer_t* ring_buffer );
+cy_rslt_t ring_buffer_deinit     ( wiced_ring_buffer_t* ring_buffer );
 
 /** Write to a ring buffer.
  *
@@ -171,18 +147,18 @@ uint32_t       ring_buffer_free_space ( wiced_ring_buffer_t* ring_buffer );
  * @param[out] data        : Address of the pointer for the data start in the buffer.
  * @param[out] data_length : Length of contiguous data bytes in the buffer.
  *
- * @return @ref wiced_result_t
+ * @return @ref cy_rslt_t
  */
-wiced_result_t ring_buffer_get_data   ( wiced_ring_buffer_t* ring_buffer, uint8_t** data, uint32_t* contiguous_bytes );
+cy_rslt_t ring_buffer_get_data   ( wiced_ring_buffer_t* ring_buffer, uint8_t** data, uint32_t* contiguous_bytes );
 
 /** Consume (discard) data in a ring buffer.
  *
  * @param[in] ring_buffer    : Pointer to the ring buffer structure.
  * @param[in] bytes_consumed : Number of bytes to consume.
  *
- * @return @ref wiced_result_t
+ * @return @ref cy_rslt_t
  */
-wiced_result_t ring_buffer_consume    ( wiced_ring_buffer_t* ring_buffer, uint32_t bytes_consumed );
+cy_rslt_t ring_buffer_consume    ( wiced_ring_buffer_t* ring_buffer, uint32_t bytes_consumed );
 
 /** Read data from a ring buffer.
  *
@@ -191,9 +167,9 @@ wiced_result_t ring_buffer_consume    ( wiced_ring_buffer_t* ring_buffer, uint32
  * @param[in] data_length           : Length of the data buffer.
  * @param[out] number_of_bytes_read : Number of bytes read from the ring buffer.
  *
- * @return @ref wiced_result_t
+ * @return @ref cy_rslt_t
  */
-wiced_result_t ring_buffer_read       ( wiced_ring_buffer_t* ring_buffer, uint8_t* data, uint32_t data_length, uint32_t* number_of_bytes_read );
+cy_rslt_t ring_buffer_read       ( wiced_ring_buffer_t* ring_buffer, uint8_t* data, uint32_t data_length, uint32_t* number_of_bytes_read );
 
 /** @} */
 

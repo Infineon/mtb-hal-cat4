@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"group__group__hal__gpio.html#ggaa18cb21d1ea9d64311a7c8ddc6a27656a966472a025b6099a9c758c22975ab8d7":[1,2,3,4,3],
+"group__group__hal__gpio.html#ggaa18cb21d1ea9d64311a7c8ddc6a27656aa7946bc42b986d4739a0917d156daa96":[1,2,3,4,0],
 "group__group__hal__gpio.html#structcyhal__gpio__callback__data__t":[1,2,3,1],
 "group__group__hal__hwmgr.html":[1,2,4],
 "group__group__hal__hwmgr.html#ga16c02006114bccbf64acbdfd5f2066c2":[1,2,4,4],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "group__group__hal__impl__system.html#gaf20f6d8ad18a5cc241b6e3bf0436b03c":[1,3,5,8],
 "group__group__hal__impl__timer.html":[1,3,11],
 "group__group__hal__impl__triggers.html":[1,3,6],
-"group__group__hal__impl__triggers.html#ga8cc68fc0f23a2de010228ae5188598f0":[1,3,6,1],
-"group__group__hal__impl__triggers.html#gae6e4ea4100036d96d2efc006a3f69c9b":[1,3,6,0],
-"group__group__hal__impl__uart.html":[1,3,12]
+"group__group__hal__impl__triggers.html#ga8cc68fc0f23a2de010228ae5188598f0":[1,3,6,1]
 };

@@ -75,7 +75,7 @@
  ******************************************************/
 
 
-wiced_result_t ring_buffer_init( /*@out@*/ wiced_ring_buffer_t* ring_buffer, /*@keep@*/ uint8_t* buffer, uint32_t buffer_size )
+cy_rslt_t ring_buffer_init( /*@out@*/ wiced_ring_buffer_t* ring_buffer, /*@keep@*/ uint8_t* buffer, uint32_t buffer_size )
 {
     if (ring_buffer)
     {
@@ -83,16 +83,16 @@ wiced_result_t ring_buffer_init( /*@out@*/ wiced_ring_buffer_t* ring_buffer, /*@
         ring_buffer->size   = buffer_size;
         ring_buffer->head   = 0;
         ring_buffer->tail   = 0;
-        return WICED_SUCCESS;
+        return CY_RSLT_SUCCESS;
     }
     else
-        return WICED_BADARG;
+        return CY_RSLT_MODULE_RING_BUFFER_BAD_ARG;
 }
 
-wiced_result_t ring_buffer_deinit( wiced_ring_buffer_t* ring_buffer )
+cy_rslt_t ring_buffer_deinit( wiced_ring_buffer_t* ring_buffer )
 {
     CY_UNUSED_PARAMETER(ring_buffer);
-    return WICED_SUCCESS;
+    return CY_RSLT_SUCCESS;
 }
 
 uint32_t ring_buffer_write( wiced_ring_buffer_t* ring_buffer, const uint8_t* data, uint32_t data_length )
@@ -118,7 +118,7 @@ uint32_t ring_buffer_write( wiced_ring_buffer_t* ring_buffer, const uint8_t* dat
     return amount_to_copy;
 }
 
-wiced_result_t ring_buffer_get_data( wiced_ring_buffer_t* ring_buffer, uint8_t** data, uint32_t* contiguous_bytes )
+cy_rslt_t ring_buffer_get_data( wiced_ring_buffer_t* ring_buffer, uint8_t** data, uint32_t* contiguous_bytes )
 {
     /* Count the number of number of elements (inclusively) between the head element and the end of the buffer */
     uint32_t head_to_end = ring_buffer->size - ring_buffer->head;
@@ -129,18 +129,18 @@ wiced_result_t ring_buffer_get_data( wiced_ring_buffer_t* ring_buffer, uint8_t**
     /* Calculate the amount of contiguous elements */
     *contiguous_bytes = MIN(head_to_end, (head_to_end + ring_buffer->tail) % ring_buffer->size);
 
-    return WICED_SUCCESS;
+    return CY_RSLT_SUCCESS;
 }
 
-wiced_result_t ring_buffer_consume( wiced_ring_buffer_t* ring_buffer, uint32_t bytes_consumed )
+cy_rslt_t ring_buffer_consume( wiced_ring_buffer_t* ring_buffer, uint32_t bytes_consumed )
 {
     /* Consume elements by updating the head */
     ring_buffer->head = (ring_buffer->head + bytes_consumed) % ring_buffer->size;
-    return WICED_SUCCESS;
+    return CY_RSLT_SUCCESS;
 }
 
 
-wiced_result_t ring_buffer_read( wiced_ring_buffer_t* ring_buffer, uint8_t* data, uint32_t data_length, uint32_t* number_of_bytes_read )
+cy_rslt_t ring_buffer_read( wiced_ring_buffer_t* ring_buffer, uint8_t* data, uint32_t data_length, uint32_t* number_of_bytes_read )
 {
     uint32_t max_bytes_to_read;
     uint32_t i;
@@ -165,7 +165,7 @@ wiced_result_t ring_buffer_read( wiced_ring_buffer_t* ring_buffer, uint8_t* data
     }
 
     *number_of_bytes_read = max_bytes_to_read;
-    return WICED_SUCCESS;
+    return CY_RSLT_SUCCESS;
 }
 
 uint32_t ring_buffer_free_space( wiced_ring_buffer_t* ring_buffer )

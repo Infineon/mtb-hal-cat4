@@ -124,7 +124,7 @@ extern "C" {
  * @param[in]  clk  An optional, pre-allocated clock to use, if NULL a new clock will be allocated
  * @return The status of the init request.
  */
-#define cyhal_pwm_init(obj, pin, clk) (cyhal_pwm_init_adv(obj, pin, NC, CYHAL_PWM_LEFT_ALIGN, true, 0u, false, clk))
+#define cyhal_pwm_init(obj, pin, clk) (cyhal_pwm_init_adv((obj), (pin), NC, CYHAL_PWM_LEFT_ALIGN, true, 0u, false, (clk)))
 
 /** PWM interrupt triggers */
 typedef enum {
