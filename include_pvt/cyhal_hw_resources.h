@@ -49,6 +49,7 @@ extern "C" {
 #define CYHAL_DRIVER_AVAILABLE_CRC          (0)
 #define CYHAL_DRIVER_AVAILABLE_DAC          (0)
 #define CYHAL_DRIVER_AVAILABLE_DMA          (1)
+#define CYHAL_DRIVER_AVAILABLE_ETHERNET     (1)
 #define CYHAL_DRIVER_AVAILABLE_EZI2C        (0)
 #define CYHAL_DRIVER_AVAILABLE_NVM          (0)
 #define CYHAL_DRIVER_AVAILABLE_FLASH        (0)   /* Deprecated */
@@ -91,6 +92,7 @@ typedef enum
     CYHAL_RSC_CLOCK,    /*!< Clock */
     CYHAL_RSC_CRYPTO,   /*!< Crypto */
     CYHAL_RSC_DMA,      /*!< DMA */
+    CYHAL_RSC_ETHERNET, /*!< Ethernet block */
     CYHAL_RSC_GPIO,     /*!< General purpose I/O pin */
     CYHAL_RSC_I2C,      /*!< I2C block */
     CYHAL_RSC_I2S,      /*!< I2S block */
@@ -125,7 +127,7 @@ typedef enum
     */
     CYHAL_CLOCK_BLOCK_ALP,       // source - XTAL
     CYHAL_CLOCK_BLOCK_HT,        // source - BB_PLL
-    CYHAL_CLOCK_BLOCK_ILP,       // source - LPO / ALP. Note: ALP option is not available in WICED
+    CYHAL_CLOCK_BLOCK_ILP,       // source - LPO / ALP. Note: ALP option was not available in WICED
     CYHAL_CLOCK_BLOCK_LPO,       // source - N/A
     CYHAL_CLOCK_BLOCK_XTAL,      // source - N/A
     CYHAL_CLOCK_BLOCK_BB_PLL,    // source - XTAL
@@ -134,7 +136,7 @@ typedef enum
     CYHAL_CLOCK_BLOCK_HSIC_PLL,  // source - XTAL. Verify if derived from BB_PLL
     CYHAL_CLOCK_BLOCK_WLAN_PLL,  // source - XTAL. Verify if derived from BB_PLL
     CYHAL_CLOCK_BLOCK_CPU,       // source - ARM (BB_PLL path) / backplane (BB_PLL path)
-    CYHAL_CLOCK_BLOCK_BACKPLANE, // source - HT / ALP. Note: ALP option is not available in WICED
+    CYHAL_CLOCK_BLOCK_BACKPLANE, // source - HT / ALP. Note: ALP option was not available in WICED
     CYHAL_CLOCK_BLOCK_FAST_UART  // source - Dedicated 160MHz connection from BB_PLL
 } cyhal_clock_block_t;
 

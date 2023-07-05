@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -35,8 +35,7 @@
  * $Id: osl.h 459072 2014-02-28 20:11:12Z cabhinav $
  */
 
-#ifndef _osl_h_
-#define _osl_h_
+#pragma once
 
 #include <osl_decl.h>
 
@@ -144,11 +143,11 @@ MAKE_PREFETCH_RANGE_FN(PREF_STORE_RETAINED)
 #endif /* defined(vxworks) */
 
 #ifndef PKTDBG_TRACE
-#define PKTDBG_TRACE(osh, pkt, bit)	BCM_REFERENCE(osh)
+#define PKTDBG_TRACE(osh, pkt, bit)	UNUSED_PARAMETER(osh)
 #endif
 
 #ifndef PKTCTFMAP
-#define PKTCTFMAP(osh, p)		BCM_REFERENCE(osh)
+#define PKTCTFMAP(osh, p)		UNUSED_PARAMETER(osh)
 #endif /* PKTCTFMAP */
 
 /* --------------------------------------------------------------------------
@@ -175,23 +174,23 @@ MAKE_PREFETCH_RANGE_FN(PREF_STORE_RETAINED)
 #if !(defined(linux) && defined(PKTC)) && !defined(PKTC_DONGLE) && \
 	!(defined(__NetBSD__) && defined(PKTC))
 #define	PKTCGETATTR(skb)	(0)
-#define	PKTCSETATTR(skb, f, p, b) BCM_REFERENCE(skb)
-#define	PKTCCLRATTR(skb)	BCM_REFERENCE(skb)
+#define	PKTCSETATTR(skb, f, p, b) UNUSED_PARAMETER(skb)
+#define	PKTCCLRATTR(skb)	UNUSED_PARAMETER(skb)
 #define	PKTCCNT(skb)		(1)
 #define	PKTCLEN(skb)		PKTLEN(NULL, skb)
 #define	PKTCGETFLAGS(skb)	(0)
-#define	PKTCSETFLAGS(skb, f)	BCM_REFERENCE(skb)
-#define	PKTCCLRFLAGS(skb)	BCM_REFERENCE(skb)
+#define	PKTCSETFLAGS(skb, f)	UNUSED_PARAMETER(skb)
+#define	PKTCCLRFLAGS(skb)	UNUSED_PARAMETER(skb)
 #define	PKTCFLAGS(skb)		(0)
-#define	PKTCSETCNT(skb, c)	BCM_REFERENCE(skb)
-#define	PKTCINCRCNT(skb)	BCM_REFERENCE(skb)
-#define	PKTCADDCNT(skb, c)	BCM_REFERENCE(skb)
-#define	PKTCSETLEN(skb, l)	BCM_REFERENCE(skb)
-#define	PKTCADDLEN(skb, l)	BCM_REFERENCE(skb)
-#define	PKTCSETFLAG(skb, fb)	BCM_REFERENCE(skb)
-#define	PKTCCLRFLAG(skb, fb)	BCM_REFERENCE(skb)
+#define	PKTCSETCNT(skb, c)	UNUSED_PARAMETER(skb)
+#define	PKTCINCRCNT(skb)	UNUSED_PARAMETER(skb)
+#define	PKTCADDCNT(skb, c)	UNUSED_PARAMETER(skb)
+#define	PKTCSETLEN(skb, l)	UNUSED_PARAMETER(skb)
+#define	PKTCADDLEN(skb, l)	UNUSED_PARAMETER(skb)
+#define	PKTCSETFLAG(skb, fb)	UNUSED_PARAMETER(skb)
+#define	PKTCCLRFLAG(skb, fb)	UNUSED_PARAMETER(skb)
 #define	PKTCLINK(skb)		NULL
-#define	PKTSETCLINK(skb, x)	BCM_REFERENCE(skb)
+#define	PKTSETCLINK(skb, x)	UNUSED_PARAMETER(skb)
 #define FOREACH_CHAINED_PKT(skb, nskb) \
 	for ((nskb) = NULL; (skb) != NULL; (skb) = (nskb))
 #define	PKTCFREE		PKTFREE
@@ -204,47 +203,47 @@ do { \
 #endif /* !linux || !PKTC */
 
 #if !defined(HNDCTF) && !defined(PKTC_TX_DONGLE) && !(defined(__NetBSD__) && defined(PKTC))
-#define PKTSETCHAINED(osh, skb)		BCM_REFERENCE(osh)
-#define PKTCLRCHAINED(osh, skb)		BCM_REFERENCE(osh)
+#define PKTSETCHAINED(osh, skb)		UNUSED_PARAMETER(osh)
+#define PKTCLRCHAINED(osh, skb)		UNUSED_PARAMETER(osh)
 #define PKTISCHAINED(skb)		FALSE
 #endif
 
 #ifndef _HNDRTE_
 /* Lbuf with fraglist */
 #define PKTFRAGPKTID(osh, lb)		(0)
-#define PKTSETFRAGPKTID(osh, lb, id)	BCM_REFERENCE(osh)
+#define PKTSETFRAGPKTID(osh, lb, id)	UNUSED_PARAMETER(osh)
 #define PKTFRAGTOTNUM(osh, lb)		(0)
-#define PKTSETFRAGTOTNUM(osh, lb, tot)	BCM_REFERENCE(osh)
+#define PKTSETFRAGTOTNUM(osh, lb, tot)	UNUSED_PARAMETER(osh)
 #define PKTFRAGTOTLEN(osh, lb)		(0)
-#define PKTSETFRAGTOTLEN(osh, lb, len)	BCM_REFERENCE(osh)
+#define PKTSETFRAGTOTLEN(osh, lb, len)	UNUSED_PARAMETER(osh)
 #define PKTIFINDEX(osh, lb)		(0)
-#define PKTSETIFINDEX(osh, lb, idx)	BCM_REFERENCE(osh)
+#define PKTSETIFINDEX(osh, lb, idx)	UNUSED_PARAMETER(osh)
 #define	PKTGETLF(osh, len, send, lbuf_type)	(0)
 
 /* in rx path, reuse totlen as used len */
 #define PKTFRAGUSEDLEN(osh, lb)			(0)
-#define PKTSETFRAGUSEDLEN(osh, lb, len)		BCM_REFERENCE(osh)
+#define PKTSETFRAGUSEDLEN(osh, lb, len)		UNUSED_PARAMETER(osh)
 
 #define PKTFRAGLEN(osh, lb, ix)			(0)
-#define PKTSETFRAGLEN(osh, lb, ix, len)		BCM_REFERENCE(osh)
+#define PKTSETFRAGLEN(osh, lb, ix, len)		UNUSED_PARAMETER(osh)
 #define PKTFRAGDATA_LO(osh, lb, ix)		(0)
-#define PKTSETFRAGDATA_LO(osh, lb, ix, addr)	BCM_REFERENCE(osh)
+#define PKTSETFRAGDATA_LO(osh, lb, ix, addr)	UNUSED_PARAMETER(osh)
 #define PKTFRAGDATA_HI(osh, lb, ix)		(0)
-#define PKTSETFRAGDATA_HI(osh, lb, ix, addr)	BCM_REFERENCE(osh)
+#define PKTSETFRAGDATA_HI(osh, lb, ix, addr)	UNUSED_PARAMETER(osh)
 
 /* RX FRAG */
 #define PKTISRXFRAG(osh, lb)    	(0)
-#define PKTSETRXFRAG(osh, lb)		BCM_REFERENCE(osh)
-#define PKTRESETRXFRAG(osh, lb)		BCM_REFERENCE(osh)
+#define PKTSETRXFRAG(osh, lb)		UNUSED_PARAMETER(osh)
+#define PKTRESETRXFRAG(osh, lb)		UNUSED_PARAMETER(osh)
 
 /* TX FRAG */
 #define PKTISTXFRAG(osh, lb)       	(0)
-#define PKTSETTXFRAG(osh, lb)		BCM_REFERENCE(osh)
+#define PKTSETTXFRAG(osh, lb)		UNUSED_PARAMETER(osh)
 
 /* Need Rx completion used for AMPDU reordering */
 #define PKTNEEDRXCPL(osh, lb)           (TRUE)
-#define PKTSETNORXCPL(osh, lb)          BCM_REFERENCE(osh)
-#define PKTRESETNORXCPL(osh, lb)        BCM_REFERENCE(osh)
+#define PKTSETNORXCPL(osh, lb)          UNUSED_PARAMETER(osh)
+#define PKTRESETNORXCPL(osh, lb)        UNUSED_PARAMETER(osh)
 
 #define PKTISFRAG(osh, lb)		(0)
 #define PKTFRAGISCHAINED(osh, i)	(0)
@@ -252,4 +251,3 @@ do { \
 #define PKTFRAG_TRIM_TAILBYTES(osh, p, len)	PKTSETLEN(osh, p, PKTLEN(osh, p) - len)
 #endif	/* _HNDRTE_ */
 
-#endif	/* _osl_h_ */

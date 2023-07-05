@@ -59,7 +59,6 @@
 #include <stdlib.h>
 #include <string.h> // For memset
 #include "cyhal_clock.h"
-#include "cyhal_gpio.h"
 #include "cyhal_hwmgr.h"
 #include "cyhal_uart.h"
 #include "cyhal_utils.h"
@@ -1014,15 +1013,18 @@ cy_rslt_t cyhal_uart_set_fifo_level(cyhal_uart_t *obj, cyhal_uart_fifo_type_t ty
     }
 
     uint16_t old_level;
+    uint16_t* member_ptr;
     switch(type)
     {
         case CYHAL_UART_FIFO_RX:
             old_level = obj->user_rx_trigger_level;
             obj->user_rx_trigger_level = level;
+            member_ptr = &(obj->user_rx_trigger_level);
             break;
         case CYHAL_UART_FIFO_TX:
             old_level = obj->user_tx_trigger_level;
             obj->user_tx_trigger_level = level;
+            member_ptr = &(obj->user_tx_trigger_level);
             break;
         default:
             CY_ASSERT(false);
@@ -1032,19 +1034,7 @@ cy_rslt_t cyhal_uart_set_fifo_level(cyhal_uart_t *obj, cyhal_uart_fifo_type_t ty
     cy_rslt_t result = _cyhal_uart_update_fifo_level(obj, type);
     if(CY_RSLT_SUCCESS != result)
     {
-        /* Revert to the previous value so that we don't stay in an error state */
-        switch(type)
-        {
-            case CYHAL_UART_FIFO_RX:
-                obj->user_rx_trigger_level = old_level;
-                break;
-            case CYHAL_UART_FIFO_TX:
-                obj->user_tx_trigger_level = old_level;
-                break;
-            default:
-                CY_ASSERT(false);
-                break;
-        }
+        *member_ptr = old_level;
     }
     return result;
 }
@@ -1223,11 +1213,12 @@ static cy_rslt_t _cyhal_uart_seci_set_baud(cyhal_uart_t* obj, uint32_t desired_b
 {
     _cyhal_uart_seci_t* uart_seci_base = _cyhal_uart_get_seci_base(obj);
     uint32_t source_freq_hz = cyhal_clock_get_frequency(&obj->clk);
-    cy_rslt_t result = _cyhal_uart_seci_check_baud(source_freq_hz, CYHAL_UART_DEFAULT_BAUD);
+    uint32_t uart_seci_baud_rate = _cyhal_uart_seci_target_baud_rate(source_freq_hz, desired_baud);
+
+    cy_rslt_t result = _cyhal_uart_seci_check_baud(source_freq_hz, uart_seci_baud_rate);
     if(CY_RSLT_SUCCESS == result)
     {
         /* Setup SECI UART baud rate */
-        uint32_t uart_seci_baud_rate = _cyhal_uart_seci_target_baud_rate(source_freq_hz, desired_baud);
         uint32_t baud_rate_div_high_rate;
         bool uart_high_rate_mode;
 

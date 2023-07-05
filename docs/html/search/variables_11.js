@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['value_0',['value',['../group__group__hal__clock.html#a616d2f8495efbc9076a57ae15a76ec24',1,'cyhal_clock_tolerance_t::value()'],['../group__group__hal__timer.html#a53f34c0bd94d7d4b3661b9bc758d2536',1,'cyhal_timer_cfg_t::value()']]]
+  ['user_5fcallback_0',['user_callback',['../group__group__hal__impl__hw__types.html#a51c276bc34bc0185d2270ff56a3d638e',1,'cyhal_ethernet_t']]],
+  ['user_5fdata_1',['user_data',['../group__group__hal__impl__hw__types.html#abb407cbc8b2c3be52fc4154071929448',1,'cyhal_ethernet_t']]]
 ];

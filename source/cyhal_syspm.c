@@ -14,7 +14,7 @@
 *
 * For CAT4 devices, use the power modes CY_CFG_PWR_MODE_ACTIVE, CY_CFG_PWR_MODE_SLEEP and
 * CY_CFG_PWR_MODE_DEEPSLEEP. These are defined at compile time in the TARGET_XXXX/cybsp.h file.
-* define CY_CFG_PWR_SYS_IDLE_MODE		CY_CFG_PWR_MODE_ACTIVE
+* define CY_CFG_PWR_SYS_IDLE_MODE        CY_CFG_PWR_MODE_ACTIVE
 *  -- or in the application Makefile with
 * DEFINES+=CY_CFG_PWR_SYS_IDLE_MODE=CY_CFG_PWR_MODE_ACTIVE
 *
@@ -908,7 +908,7 @@ static void _cyhal_syspm_apps_clock_control(bool deep_sleep, bool enable)
             core_status->bits.force_ht_request = 0;     /* Need ILP on backplane */
             core_status->bits.hq_clock_required = 0;    /* HQ clock off */
             core_status->bits.ht_avail_request = 0;     /* disable HT request */
-            core_status->bits.alp_avail_request = 0;  	/* disable ALP request */
+            core_status->bits.alp_avail_request = 0;    /* disable ALP request */
         }
     }
     else

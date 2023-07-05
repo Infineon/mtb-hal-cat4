@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['m2m_20dma_20_28memory_2dto_2dmemory_20direct_20memory_20access_29_0',['M2M DMA (Memory-to-Memory Direct Memory Access)',['../group__group__hal__impl__m2m.html',1,'(Global Namespace)'],['../group__group__hal__m2m.html',1,'(Global Namespace)']]]
+  ['lptimer_20_28low_2dpower_20timer_29_0',['LPTimer (Low-Power Timer)',['../group__group__hal__lptimer.html',1,'']]],
+  ['lptimer_20hal_20results_1',['LPTimer HAL Results',['../group__group__hal__results__lptimer.html',1,'']]]
 ];

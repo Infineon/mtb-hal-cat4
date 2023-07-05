@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -35,11 +35,9 @@
  * $Id$
  */
 
-#ifndef _osl_decl_h_
-#define _osl_decl_h_
+#pragma once
 
 /* osl handle type forward declaration */
 typedef struct wiced_osh osl_t;
 typedef struct osl_dmainfo osldma_t;
 
-#endif

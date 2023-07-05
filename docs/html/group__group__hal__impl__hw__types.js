@@ -1,13 +1,34 @@
 var group__group__hal__impl__hw__types =
 [
+    [ "Group_hal_ethernet_header", "group__group__hal__ethernet__header.html", "group__group__hal__ethernet__header" ],
     [ "cyhal_clock_t", "group__group__hal__impl__hw__types.html#structcyhal__clock__t", null ],
     [ "cyhal_resource_inst_t", "group__group__hal__impl__hw__types.html#structcyhal__resource__inst__t", [
       [ "type", "group__group__hal__impl__hw__types.html#ad111187a65d182386ea96858369b83d4", null ],
       [ "block_num", "group__group__hal__impl__hw__types.html#a91895766b5f5efe1dfffac2d7537e73a", null ],
       [ "channel_num", "group__group__hal__impl__hw__types.html#a4488a199114a86e5a72184c7a0a16c06", null ]
     ] ],
+    [ "cyhal_ether_addr_t", "group__group__hal__impl__hw__types.html#structcyhal__ether__addr__t", [
+      [ "octet", "group__group__hal__impl__hw__types.html#a1a0ccd172c589b83706ca8be7eee5b47", null ]
+    ] ],
     [ "cyhal_event_callback_data_t", "group__group__hal__impl__hw__types.html#structcyhal__event__callback__data__t", null ],
     [ "cyhal_dma_t", "group__group__hal__impl__hw__types.html#structcyhal__dma__t", null ],
+    [ "_cyhal_ethernet_info_t", "group__group__hal__impl__hw__types.html#struct__cyhal__ethernet__info__t", [
+      [ "etc", "group__group__hal__impl__hw__types.html#ab6009eaa04af75e004213891f03332e5", null ],
+      [ "mac_address", "group__group__hal__impl__hw__types.html#ac87cba053864be3cfd29984b99e6f9e4", null ],
+      [ "watchdog_events", "group__group__hal__impl__hw__types.html#afcfd6265fe15c360ac5d4d149df69a80", null ],
+      [ "started", "group__group__hal__impl__hw__types.html#ac817df17020f2a2487b46ae869650e6a", null ]
+    ] ],
+    [ "cyhal_ethernet_t", "group__group__hal__impl__hw__types.html#structcyhal__ethernet__t", [
+      [ "tag", "group__group__hal__impl__hw__types.html#a8eee005bf18983528ade11e023f552b6", null ],
+      [ "network_up", "group__group__hal__impl__hw__types.html#aa6e5d3e8d2c0b34c5dfdb4953fc6c42d", null ],
+      [ "events_from_GMAC_irq", "group__group__hal__impl__hw__types.html#a2ddf6c2421e3b66438afeb620ca9f2ae", null ],
+      [ "user_callback", "group__group__hal__impl__hw__types.html#a51c276bc34bc0185d2270ff56a3d638e", null ],
+      [ "user_data", "group__group__hal__impl__hw__types.html#abb407cbc8b2c3be52fc4154071929448", null ],
+      [ "event_req", "group__group__hal__impl__hw__types.html#a61800f76e8c6c802546263e4ac71cd1d", null ],
+      [ "intr_priority", "group__group__hal__impl__hw__types.html#a02f963acba9c8c80ee5f73188d3274c9", null ],
+      [ "clk", "group__group__hal__impl__hw__types.html#ab2ee44c033dbc4c36a538c6cec7c648f", null ],
+      [ "et_info", "group__group__hal__impl__hw__types.html#ad3b0c5f3eecaa93c22a96ef5eb81df72", null ]
+    ] ],
     [ "cyhal_i2c_t", "group__group__hal__impl__hw__types.html#structcyhal__i2c__t", null ],
     [ "cyhal_lptimer_t", "group__group__hal__impl__hw__types.html#structcyhal__lptimer__t", null ],
     [ "cyhal_m2m_t", "group__group__hal__impl__hw__types.html#structcyhal__m2m__t", null ],
@@ -23,6 +44,7 @@ var group__group__hal__impl__hw__types =
     [ "CYHAL_DRIVER_AVAILABLE_CRC", "group__group__hal__availability.html#ga34ccfba8df596cb51121cd939f5dc8e7", null ],
     [ "CYHAL_DRIVER_AVAILABLE_DAC", "group__group__hal__availability.html#ga11e5b6567243892d3b7ee5ea3d636923", null ],
     [ "CYHAL_DRIVER_AVAILABLE_DMA", "group__group__hal__availability.html#gab6ff6036bf3f1646f562f687d3341eaf", null ],
+    [ "CYHAL_DRIVER_AVAILABLE_ETHERNET", "group__group__hal__availability.html#gac94b302c6f8ac6cfa4e3584795822eb6", null ],
     [ "CYHAL_DRIVER_AVAILABLE_EZI2C", "group__group__hal__availability.html#ga5d668f66e4de981f1b6016b0b9842e97", null ],
     [ "CYHAL_DRIVER_AVAILABLE_NVM", "group__group__hal__availability.html#ga5a2601a3ad02e25fcca8f9c4ff5179c9", null ],
     [ "CYHAL_DRIVER_AVAILABLE_FLASH", "group__group__hal__availability.html#ga144cd0560450d7a2ba7cbd41004c9514", null ],
@@ -58,6 +80,8 @@ var group__group__hal__impl__hw__types =
     [ "CYHAL_DRIVER_AVAILABLE_WDT", "group__group__hal__availability.html#gac9caca2293c6a9e6788b022f94884737", null ],
     [ "CYHAL_DRIVER_AVAILABLE_IPC", "group__group__hal__availability.html#ga0e37b73eca19c580d7f0807747542acc", null ],
     [ "CYHAL_ISR_PRIORITY_DEFAULT", "group__group__hal__impl__hw__types.html#gad822a466fc63847114add720ef84c83a", null ],
+    [ "_CYHAL_ETHERNET_CLOCK_BLOCK", "group__group__hal__impl__hw__types.html#gaec6df9aef3f455f1b241345403a62ecd", null ],
+    [ "_CYHAL_ETHERNET_CLOCK_CHANNEL", "group__group__hal__impl__hw__types.html#ga2bc1d8b420651e50a5accb431cb7ad7d", null ],
     [ "cy_israddress", "group__group__hal__impl__hw__types.html#ga691f08ab6aaf93ee11929fa59698d01a", null ],
     [ "cyhal_dma_configurator_t", "group__group__hal__impl__hw__types.html#ga4de4de8dcb5afabdded1610bfc9b5e46", null ],
     [ "cyhal_i2c_configurator_t", "group__group__hal__impl__hw__types.html#gabbb066290e177fc7f2dc9ef05663ec2d", null ],
@@ -66,10 +90,12 @@ var group__group__hal__impl__hw__types =
     [ "cyhal_spi_configurator_t", "group__group__hal__impl__hw__types.html#ga86dfe308bc24214dfa5c6e16123a29bb", null ],
     [ "cyhal_timer_configurator_t", "group__group__hal__impl__hw__types.html#ga15b6368ecaa1722fce28253448107b04", null ],
     [ "cyhal_uart_configurator_t", "group__group__hal__impl__hw__types.html#gaf9e8a811b3c2ce6c67b16d3fe2cd46dd", null ],
+    [ "cyhal_ethernet_configurator_t", "group__group__hal__impl__hw__types.html#ga512f0368b833b685b13969340029f31d", null ],
     [ "cyhal_resource_t", "group__group__hal__impl__hw__types.html#ga63b023ea7b5e73db59ddc0423c77975b", [
       [ "CYHAL_RSC_CLOCK", "group__group__hal__impl__hw__types.html#gga63b023ea7b5e73db59ddc0423c77975ba87c497b200dfbc0c5daf9617a89f4aa7", null ],
       [ "CYHAL_RSC_CRYPTO", "group__group__hal__impl__hw__types.html#gga63b023ea7b5e73db59ddc0423c77975ba25fa2cb684b519d6826067ce6d5d1afe", null ],
       [ "CYHAL_RSC_DMA", "group__group__hal__impl__hw__types.html#gga63b023ea7b5e73db59ddc0423c77975badd087e136a6661d42919ab8c145a395f", null ],
+      [ "CYHAL_RSC_ETHERNET", "group__group__hal__impl__hw__types.html#gga63b023ea7b5e73db59ddc0423c77975ba1d8384793c756fed24c0535cb0ee5170", null ],
       [ "CYHAL_RSC_GPIO", "group__group__hal__impl__hw__types.html#gga63b023ea7b5e73db59ddc0423c77975ba5f4259788e0fc887772496df602d7549", null ],
       [ "CYHAL_RSC_I2C", "group__group__hal__impl__hw__types.html#gga63b023ea7b5e73db59ddc0423c77975ba13300b7da7fb9bf7480b7ad0329727d9", null ],
       [ "CYHAL_RSC_I2S", "group__group__hal__impl__hw__types.html#gga63b023ea7b5e73db59ddc0423c77975ba6b93380724a9f1c695cf1f7a2e993a90", null ],

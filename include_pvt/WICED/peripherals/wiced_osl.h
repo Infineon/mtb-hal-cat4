@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -34,8 +34,7 @@
  *
  */
 
-#ifndef _wiced_osl_h_
-#define _wiced_osl_h_
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -44,22 +43,17 @@ extern "C" {
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-#include <bcmdefs.h>
-#include <bcmutils.h>
+#include "bcmdefs.h"
+#include "bcmutils.h"
 #include "platform_toolchain.h"
 #include "wwd_buffer_interface.h"
 #include "cy_utils.h"
-
-/* Define OSL assert via WICED assert */
-#ifndef ASSERT
-#define ASSERT(b)               CY_ASSERT(b)
-#endif
 
 /* Misc */
 
 extern void osl_udelay(unsigned usec);
 
-#define BUS_SWAP32(v)           (v)
+#define _CYHAL_BUS_SWAP32(v)           (v)
 #define OSL_DELAY(usec)         osl_udelay(usec)
 #define OSL_ARCH_IS_COHERENT()  0
 #define OSL_ACP_WAR_ENAB()      0
@@ -73,15 +67,15 @@ extern void osl_udelay(unsigned usec);
 #define rreg8(r)                (*(volatile uint8 *)(r))
 
 #if defined (__GNUC__)
-#define R_REG(osh, r)           (BCM_REFERENCE(osh), *((volatile typeof(r))(r)))
-#define W_REG(osh, r, v)        ({BCM_REFERENCE(osh); *((volatile typeof(r))(r)) = (v); __COMPILER_BARRIER();})
+#define R_REG(osh, r)           (UNUSED_PARAMETER(osh), *((volatile typeof(r))(r)))
+#define W_REG(osh, r, v)        ({UNUSED_PARAMETER(osh); *((volatile typeof(r))(r)) = (v); __COMPILER_BARRIER();})
 #else
 #define R_REG(osh, r) \
-    (BCM_REFERENCE(osh), sizeof(*(r)) == sizeof(uint32_t) ? \
+    (UNUSED_PARAMETER(osh), sizeof(*(r)) == sizeof(uint32_t) ? \
         rreg32(r) : (sizeof(*(r)) == sizeof(uint16_t) ? rreg16(r) : rreg8(r)))
 #define W_REG(osh, r, v) \
     do { \
-        BCM_REFERENCE(osh); \
+        UNUSED_PARAMETER(osh); \
         if (sizeof(*(r)) == sizeof(uint32)) { \
             wreg32(r, v); \
         } else if (sizeof(*(r)) == sizeof(uint16)) { \
@@ -95,20 +89,20 @@ extern void osl_udelay(unsigned usec);
 #define AND_REG(osh, r, v)      W_REG(osh, (r), R_REG(osh, r) & (v))
 #define OR_REG(osh, r, v)       W_REG(osh, (r), R_REG(osh, r) | (v))
 
-#define REG_MAP(pa, size)       ({BCM_REFERENCE(size); (void *)(pa);})
-#define REG_UNMAP(va)           BCM_REFERENCE(va)
+#define REG_MAP(pa, size)       ({UNUSED_PARAMETER(size); (void *)(pa);})
+#define REG_UNMAP(va)           UNUSED_PARAMETER(va)
 
 /* general purpose memory allocation */
 
 extern void* osl_malloc_align(uint size, uint align_bits);
 extern int osl_mfree(void *addr);
 
-#define MALLOC(osh, size)                       ({BCM_REFERENCE(osh); malloc(size);})
-#define MALLOC_ALIGN(osh, size, align_bits)     ({BCM_REFERENCE(osh); osl_malloc_align(size, align_bits);})
-#define MFREE(osh, addr, size)                  ({BCM_REFERENCE(osh); BCM_REFERENCE(size); free(addr);})
-#define MALLOCED(osh)                           ({BCM_REFERENCE(osh); 0;})
-#define MALLOC_FAILED(osh)                      ({BCM_REFERENCE(osh); 0;})
-#define MALLOC_DUMP(osh, b)                     ({BCM_REFERENCE(osh); BCM_REFERENCE(b);})
+#define MALLOC(osh, size)                       ({UNUSED_PARAMETER(osh); malloc(size);})
+#define MALLOC_ALIGN(osh, size, align_bits)     ({UNUSED_PARAMETER(osh); osl_malloc_align(size, align_bits);})
+#define MFREE(osh, addr, size)                  ({UNUSED_PARAMETER(osh); UNUSED_PARAMETER(size); free(addr);})
+#define MALLOCED(osh)                           ({UNUSED_PARAMETER(osh); 0;})
+#define MALLOC_FAILED(osh)                      ({UNUSED_PARAMETER(osh); 0;})
+#define MALLOC_DUMP(osh, b)                     ({UNUSED_PARAMETER(osh); UNUSED_PARAMETER(b);})
 
 /* Prefetch */
 #if defined (__GNUC__)
@@ -132,16 +126,16 @@ extern void osl_dma_free_consistent(void *va);
 
 #define DMA_ALLOC_CONSISTENT(osh, size, align, alloced, pap, dmah) \
     ({ \
-        BCM_REFERENCE(osh); \
-        BCM_REFERENCE(dmah); \
+        UNUSED_PARAMETER(osh); \
+        UNUSED_PARAMETER(dmah); \
         osl_dma_alloc_consistent((size), (align), (alloced), (pap)); \
     })
 #define DMA_FREE_CONSISTENT(osh, va, size, pa, dmah) \
     ({ \
-        BCM_REFERENCE(osh); \
-        BCM_REFERENCE(size); \
-        BCM_REFERENCE(pa); \
-        BCM_REFERENCE(dmah); \
+        UNUSED_PARAMETER(osh); \
+        UNUSED_PARAMETER(size); \
+        UNUSED_PARAMETER(pa); \
+        UNUSED_PARAMETER(dmah); \
         osl_dma_free_consistent(va); \
     })
 
@@ -154,23 +148,23 @@ extern dmaaddr_t osl_dma_map(void *va, uint size, int direction);
 
 #define DMA_MAP(osh, va, size, direction, p, dmah) \
     ({ \
-        BCM_REFERENCE(osh); \
-        BCM_REFERENCE(p); \
-        BCM_REFERENCE(dmah); \
+        UNUSED_PARAMETER(osh); \
+        UNUSED_PARAMETER(p); \
+        UNUSED_PARAMETER(dmah); \
         osl_dma_map((va), (size), (direction)); \
     })
 #define DMA_UNMAP(osh, pa, size, direction, p, dmah) \
     ({ \
-        BCM_REFERENCE(osh); \
-        BCM_REFERENCE(pa); \
-        BCM_REFERENCE(size); \
-        BCM_REFERENCE(direction); \
-        BCM_REFERENCE(p); \
-        BCM_REFERENCE(dmah); \
+        UNUSED_PARAMETER(osh); \
+        UNUSED_PARAMETER(pa); \
+        UNUSED_PARAMETER(size); \
+        UNUSED_PARAMETER(direction); \
+        UNUSED_PARAMETER(p); \
+        UNUSED_PARAMETER(dmah); \
     })
 
 /* API for DMA addressing capability */
-#define OSL_DMADDRWIDTH(osh, addrwidth) BCM_REFERENCE(osh)
+#define OSL_DMADDRWIDTH(osh, addrwidth) UNUSED_PARAMETER(osh)
 
 /* Shared (dma-able) memory access macros */
 #define R_SM(r)                         *(r)
@@ -184,14 +178,14 @@ extern void osl_pktfree(void *osh, void *p, bool send);
 
 #define PKTGET(osh, len, send)          osl_pktget((osh), (len), (send))
 #define PKTFREE(osh, p, send)           osl_pktfree((osh), (p), (send))
-#define PKTDATA(osh, p)                 ({BCM_REFERENCE(osh); host_buffer_get_current_piece_data_pointer(p);})
-#define PKTLEN(osh, p)                  ({BCM_REFERENCE(osh); host_buffer_get_current_piece_size(p);})
-#define PKTSETLEN(osh, p, len)          ({BCM_REFERENCE(osh); host_buffer_set_size((p), (len));})
-#define PKTPULL(osh, p, bytes)          ({BCM_REFERENCE(osh); host_buffer_add_remove_at_front((wiced_buffer_t *)&p, (bytes));})
+#define PKTDATA(osh, p)                 ({UNUSED_PARAMETER(osh); host_buffer_get_current_piece_data_pointer(p);})
+#define PKTLEN(osh, p)                  ({UNUSED_PARAMETER(osh); host_buffer_get_current_piece_size(p);})
+#define PKTSETLEN(osh, p, len)          ({UNUSED_PARAMETER(osh); host_buffer_set_size((p), (len));})
+#define PKTPULL(osh, p, bytes)          ({UNUSED_PARAMETER(osh); host_buffer_add_remove_at_front((wiced_buffer_t *)&p, (bytes));})
 #define PKTPUSH(osh, p, bytes)          PKTPULL((osh), (p), -(bytes))
-#define PKTPRIO(p)                      ({BCM_REFERENCE(p); 0;})
-#define PKTNEXT(osh, p)                 ({BCM_REFERENCE(osh); host_buffer_get_next_piece(p);})
-#define PKTSETNEXT(osh, p, x)           ({BCM_REFERENCE(osh); host_buffer_set_next_piece((p), (x));})
+#define PKTPRIO(p)                      ({UNUSED_PARAMETER(p); 0;})
+#define PKTNEXT(osh, p)                 ({UNUSED_PARAMETER(osh); host_buffer_get_next_piece(p);})
+#define PKTSETNEXT(osh, p, x)           ({UNUSED_PARAMETER(osh); host_buffer_set_next_piece((p), (x));})
 
 #ifndef bcopy
 #define bcopy(src, dst, len)            memcpy((dst), (src), (len))
@@ -230,4 +224,3 @@ typedef struct wiced_osh
 } /* extern "C" */
 #endif
 
-#endif /* _wiced_osl_h_ */

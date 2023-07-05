@@ -67,7 +67,7 @@ const cyhal_resource_inst_t CYHAL_CLOCK_RSC_BACKPLANE = { CYHAL_RSC_CLOCK, (uint
 const cyhal_resource_inst_t CYHAL_CLOCK_RSC_FAST_UART = { CYHAL_RSC_CLOCK, (uint8_t)CYHAL_CLOCK_BLOCK_FAST_UART, 0 };
 
 
-#define _CYHAL_CLOCK_CREATE(x)	{ .block = (CYHAL_CLOCK_BLOCK_##x), .channel = 0, .reserved = false }
+#define _CYHAL_CLOCK_CREATE(x)              { .block = (CYHAL_CLOCK_BLOCK_##x), .channel = 0, .reserved = false }
 
 const cyhal_clock_t CYHAL_CLOCK_ALP         = _CYHAL_CLOCK_CREATE(ALP);
 const cyhal_clock_t CYHAL_CLOCK_HT          = _CYHAL_CLOCK_CREATE(HT);

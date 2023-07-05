@@ -38,7 +38,7 @@
 #include "platform_cmsis.h"
 #endif
 #include <string.h>
-#include <bcmutils.h>
+#include "bcmutils.h"
 #include "ring_buffer.h"
 #include "cy_utils.h"
 
@@ -143,7 +143,7 @@ cy_rslt_t ring_buffer_consume( wiced_ring_buffer_t* ring_buffer, uint32_t bytes_
 cy_rslt_t ring_buffer_read( wiced_ring_buffer_t* ring_buffer, uint8_t* data, uint32_t data_length, uint32_t* number_of_bytes_read )
 {
     uint32_t max_bytes_to_read;
-    uint32_t i;
+    uint32_t i = 0;
     uint32_t head;
 
     // Bad args
@@ -156,9 +156,11 @@ cy_rslt_t ring_buffer_read( wiced_ring_buffer_t* ring_buffer, uint8_t* data, uin
     /* Copy data from the ring buffer to the output buffer */
     if ( max_bytes_to_read != 0 )
     {
-        for ( i = 0; i != max_bytes_to_read; i++, ( head = ( head + 1 ) % ring_buffer->size ) )
+        while ( i != max_bytes_to_read )
         {
             data[ i ] = ring_buffer->buffer[ head ];
+            head = ( head + 1 ) % ring_buffer->size;
+            i++;
         }
 
         ring_buffer_consume( ring_buffer, max_bytes_to_read );

@@ -138,7 +138,7 @@ static void _cyhal_i2c_wait_for_xfer_complete(cyhal_i2c_t *obj, uint32_t timeout
             if (wait_us-- == 0UL)
             {
                 wait_us = 1000;
-                if (timeout_ms-- == 0UL)
+                if (--timeout_ms == 0UL)
                     break;
             }
         }

@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -35,8 +35,7 @@
  * $Id: aidmp.h 476460 2014-05-08 21:57:58Z badhikar $
  */
 
-#ifndef	_AIDMP_H
-#define	_AIDMP_H
+#pragma once
 
 /* Manufacturer Ids */
 #define	MFGID_ARM		0x43b
@@ -423,4 +422,3 @@ typedef volatile struct _aidmp {
 #define AI_OOBSEL_BUSLINE_COUNT 32
 #define AI_IOCTRL_ENABLE_D11_PME	(1 << 14)
 
-#endif	/* _AIDMP_H */

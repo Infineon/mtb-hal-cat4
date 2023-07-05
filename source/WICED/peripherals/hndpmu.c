@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -41,7 +41,7 @@
 #include "sbchipc.h"
 #include "hndsoc.h"
 #include "hndpmu.h"
-#include "bcmdevs.h"
+#include "cyhal_ethernet_devices.h"
 #include "wiced_osl.h"
 
 #include "platform_map.h"
@@ -57,23 +57,6 @@
          (regoff) == OFFSETOF(chipcregs_t, res_req_timer))
 
 #define PMU1_XTALTAB0_960_37400K        14
-
-#ifdef BCMDBG_ERR
-#define PMU_ERROR(args) printf args
-#else
-#define PMU_ERROR(args)
-#endif  /* BCMDBG_ERR */
-
-#ifdef BCMDBG
-#define PMU_MSG(args)   printf args
-#else
-#define PMU_MSG(args)
-#endif  /* BCMDBG */
-
-/* To check in verbose debugging messages not intended
- * to be on except on private builds.
- */
-#define PMU_NONE(args)
 
 /** contains resource bit positions for a specific chip */
 struct rsc_per_chip_s {
@@ -193,7 +176,7 @@ si_pmu_cal_fvco(si_t *sih, osl_t *osh)
     p1_div = (pll_reg & PMU4335_PLL0_PC2_P1DIV_MASK) >> PMU4335_PLL0_PC2_P1DIV_SHIFT;
     if (p1_div == 0)
     {
-        ASSERT(p1_div != 0);
+        CY_ASSERT(p1_div != 0);
         return 0;
     }
 
@@ -246,8 +229,8 @@ si_pmu1_pllfvco0(si_t *sih)
 static uint32
 si_pmu1_cpuclk0(si_t *sih, osl_t *osh, chipcregs_t *cc)
 {
-    (void)osh; // Unused parameter warning
-    (void)cc; // Unused parameter warning
+    CY_UNUSED_PARAMETER(osh);
+    CY_UNUSED_PARAMETER(cc);
 
     uint32 tmp, mdiv = 1;
     uint32 FVCO = si_pmu1_pllfvco0(sih); /* in [hz] units */
@@ -284,7 +267,7 @@ si_pmu_si_clock(si_t *sih, osl_t *osh)
 static const pmu1_xtaltab0_t *
 si_pmu1_xtaltab0(si_t *sih)
 {
-    (void)sih; // Unused parameter warning
+    CY_UNUSED_PARAMETER(sih);
     switch (CHIPID(sih->chip))
     {
         case BCM43909_CHIP_ID:
@@ -297,7 +280,7 @@ si_pmu1_xtaltab0(si_t *sih)
 static const pmu1_xtaltab0_t *
 si_pmu1_xtaldef0(si_t *sih)
 {
-    (void)sih; // Unused parameter warning
+    CY_UNUSED_PARAMETER(sih);
     switch (CHIPID(sih->chip))
     {
         case BCM43909_CHIP_ID:
@@ -310,7 +293,7 @@ si_pmu1_xtaldef0(si_t *sih)
 static uint32
 si_pmu1_alpclk0(si_t *sih, osl_t *osh, chipcregs_t *cc)
 {
-    (void)cc; // Unused parameter warning
+    CY_UNUSED_PARAMETER(cc);
     const pmu1_xtaltab0_t *xt;
     uint32 xf;
 
@@ -329,7 +312,7 @@ si_pmu1_alpclk0(si_t *sih, osl_t *osh, chipcregs_t *cc)
     {
         xt = si_pmu1_xtaldef0(sih);
     }
-    ASSERT(xt != NULL && xt->fref != 0);
+    CY_ASSERT(xt != NULL && xt->fref != 0);
 
     return xt->fref * 1000;
 }
@@ -359,7 +342,7 @@ static rsc_per_chip_t rsc_43909 =  {RES43909_OTP_PU};
 */
 static rsc_per_chip_t* si_pmu_get_rsc_positions(si_t *sih)
 {
-    (void)sih; // Unused parameter warning
+    CY_UNUSED_PARAMETER(sih);
     rsc_per_chip_t *rsc = NULL;
 
     switch (CHIPID(sih->chip))
@@ -368,7 +351,7 @@ static rsc_per_chip_t* si_pmu_get_rsc_positions(si_t *sih)
             rsc = &rsc_43909;
             break;
         default:
-            ASSERT(0);
+            CY_ASSERT(0);
             break;
     }
 
@@ -380,7 +363,7 @@ static rsc_per_chip_t* si_pmu_get_rsc_positions(si_t *sih)
 uint32
 si_pmu_get_pmutimer(si_t *sih, osl_t *osh, chipcregs_t *cc)
 {
-    (void)cc; // Unused parameter warning
+    CY_UNUSED_PARAMETER(cc);
     uint32 start;
     start = R_REG(osh, PMUREG(sih, pmutimer));
     if (start != R_REG(osh, PMUREG(sih, pmutimer)))
@@ -536,7 +519,7 @@ si_pmu_is_otp_powered(si_t *sih, osl_t *osh)
     /* Remember original core before switch to chipc */
     idx = si_coreidx(sih);
     cc = si_setcoreidx(sih, SI_CC_IDX);
-    ASSERT(cc != NULL);
+    CY_ASSERT(cc != NULL);
 
     si_pmu_wait_for_steady_state(sih, osh, cc);
 

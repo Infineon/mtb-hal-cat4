@@ -30,6 +30,11 @@
 // Based on WICED/platform/MCU/BCM4390x/platform_mcu_peripherals.c
 // Based on WICED/platform/MCU/BCM4390x/peripherals/platform_pinmux.c
 /*
+ *        Pin         Pin            Signal
+ *       Name        #define         Name        Description
+ *        ----------------------------------------------------------
+ *        A27         PIN_GPIO_4      PWM_2       Ethernet PHY Reset    NOTE: This is being initialized using PWM code
+ *
  * BCM43909 supports pin multiplexing and function selection
  * in accordance with the below PinMux Table specification.
  *
@@ -190,6 +195,7 @@ const cyhal_resource_pin_mapping_t cyhal_pin_map_i2c_sda[7] = {
 };
 
 /////////////////////////////////////////////// I2S ////////////////////////////////////////////////
+
 /* Connections for: i2s_mclk */
 const cyhal_resource_pin_mapping_t cyhal_pin_map_i2s_mclk[2] = {
     {0, 0, PIN_I2S_MCLK0, PIN_MUX_SEL_1},

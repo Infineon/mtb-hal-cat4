@@ -30,7 +30,6 @@
 #include "cyhal_hwmgr.h"
 #include "cyhal_system_impl.h"
 #include "cyhal_clock.h"
-#include "cyhal_syspm.h"
 
 #include "typedefs.h"
 #include "sbchipc.h"
@@ -121,7 +120,7 @@ static void _cyhal_spi_wait_for_xfer_complete(cyhal_spi_t *obj, uint32_t timeout
             if (wait_us-- == 0UL)
             {
                 wait_us = 1000;
-                if (timeout_ms-- == 0UL)
+                if (--timeout_ms == 0UL)
                     break;
             }
         }
@@ -133,7 +132,7 @@ static uint32_t _cyhal_spi_calculate_divider(uint32_t frequency)
     // Refer to section 2.8.1 of 002-18042
     uint32_t backpane_freq = cyhal_clock_get_frequency(&CYHAL_CLOCK_HT);
     uint32_t divider = backpane_freq / frequency;
-    divider -= 2;
+    divider = (divider > 2) ? (divider - 2) : 0;
 
     divider <<= GSIO_GD_SHIFT;
     divider &= GSIO_GD_MASK;
@@ -267,8 +266,7 @@ cy_rslt_t cyhal_spi_init(cyhal_spi_t *obj, cyhal_gpio_t mosi, cyhal_gpio_t miso,
         return CYHAL_SPI_RSLT_ERR_INVALID_PIN;
     }
 
-    const cyhal_resource_pin_mapping_t *base_map = (NULL != mosi_map) ? mosi_map : (NULL != miso_map) ? miso_map :
-                                            (NULL != sclk_map) ? sclk_map : (NULL != ssel_map) ? ssel_map : NULL;
+    const cyhal_resource_pin_mapping_t *base_map = (NULL != mosi_map) ? mosi_map : miso_map;
 
     cyhal_resource_inst_t rsc = { CYHAL_RSC_SPI, base_map->block_num, base_map->channel_num };
     rslt = cyhal_hwmgr_reserve(&rsc);

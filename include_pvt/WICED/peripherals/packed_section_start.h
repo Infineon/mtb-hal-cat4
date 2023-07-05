@@ -8,9 +8,9 @@
  *
  * #include <packed_section_start.h>
  *
- * typedef BWL_PRE_PACKED_STRUCT struct foobar_t {
+ * typedef CYHAL_PRE_PACKED_STRUCT struct foobar_t {
  *    some_struct_members;
- * } BWL_POST_PACKED_STRUCT foobar_t;
+ * } CYHAL_POST_PACKED_STRUCT foobar_t;
  *
  * #include <packed_section_end.h>
  *
@@ -20,31 +20,31 @@
  */
 
 
-/* Error check - BWL_PACKED_SECTION is defined in packed_section_start.h
+/* Error check - CYHAL_PACKED_STRUCT is defined in packed_section_start.h
  * and undefined in packed_section_end.h. If it is already defined at this
  * point, then there is a missing include of packed_section_end.h.
  */
-#ifdef BWL_PACKED_SECTION
-	#error "BWL_PACKED_SECTION is already defined!"
+#ifdef CYHAL_PACKED_STRUCT
+    #error "CYHAL_PACKED_STRUCT is already defined!"
 #else
-	#define BWL_PACKED_SECTION
+    #define CYHAL_PACKED_STRUCT
 #endif
 
 
 #if defined(_MSC_VER)
-	/* Disable compiler warning about pragma pack changing alignment. */
-	#pragma warning(disable:4103)
+    /* Disable compiler warning about pragma pack changing alignment. */
+    #pragma warning(disable:4103)
 
-	/* The Microsoft compiler uses pragmas for structure packing. Other
-	 * compilers use structure attribute modifiers. Refer to
-	 * BWL_PRE_PACKED_STRUCT and BWL_POST_PACKED_STRUCT defined below.
-	 */
-	#if defined(BWL_DEFAULT_PACKING)
-		/* Default structure packing */
-		#pragma pack(push, 8)
-	#else   /* BWL_PACKED_SECTION */
-		#pragma pack(1)
-	#endif   /* BWL_PACKED_SECTION */
+    /* The Microsoft compiler uses pragmas for structure packing. Other
+     * compilers use structure attribute modifiers. Refer to
+     * CYHAL_PRE_PACKED_STRUCT and CYHAL_POST_PACKED_STRUCT defined below.
+     */
+    #if defined(BWL_DEFAULT_PACKING)
+        /* Default structure packing */
+        #pragma pack(push, 8)
+    #else   /* CYHAL_PACKED_STRUCT */
+        #pragma pack(1)
+    #endif   /* CYHAL_PACKED_STRUCT */
 #endif   /* _MSC_VER */
 
 #if defined(__GNUC__) && defined(EFI)
@@ -54,14 +54,14 @@
 
 /* Declare compiler-specific directives for structure packing. */
 #if defined(_MSC_VER)
-	#define	BWL_PRE_PACKED_STRUCT
-	#define	BWL_POST_PACKED_STRUCT
+    #define CYHAL_PRE_PACKED_STRUCT
+    #define CYHAL_POST_PACKED_STRUCT
 #elif defined(__GNUC__) || defined(__lint)
-	#define	BWL_PRE_PACKED_STRUCT
-	#define	BWL_POST_PACKED_STRUCT	__attribute__ ((packed))
+    #define CYHAL_PRE_PACKED_STRUCT
+    #define CYHAL_POST_PACKED_STRUCT    __attribute__ ((packed))
 #elif defined(__CC_ARM) || defined ( __IAR_SYSTEMS_ICC__ )
-	#define	BWL_PRE_PACKED_STRUCT	__packed
-	#define	BWL_POST_PACKED_STRUCT
+    #define CYHAL_PRE_PACKED_STRUCT    __packed
+    #define CYHAL_POST_PACKED_STRUCT
 #else
-	#error "Unknown compiler!"
+    #error "Unknown compiler!"
 #endif

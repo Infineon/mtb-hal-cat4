@@ -35,8 +35,7 @@
  * $Id: bcmutils.h 479606 2014-05-21 19:08:29Z vsubbiah $
  */
 
-#ifndef	_bcmutils_h_
-#define	_bcmutils_h_
+#pragma once
 
 #define bcm_strcpy_s(dst, noOfElements, src)            strcpy((dst), (src))
 #define bcm_strncpy_s(dst, noOfElements, src, count)    strncpy((dst), (src), (count))
@@ -49,7 +48,7 @@ extern "C" {
 #ifdef PKTQ_LOG
 #include <wlioctl.h>
 #endif
-#include <bcmdefs.h>
+#include "bcmdefs.h"
 
 /* ctype replacement */
 #define _BCM_U	0x01	/* upper */
@@ -331,27 +330,27 @@ extern pktpool_t *pktpool_shared_rxlfrag;
 #endif /* BCM4329C0 */
 
 /* Incarnate a pktpool registry. On success returns total_pools. */
-extern int pktpool_attach(osl_t *osh, uint32 total_pools);
-extern int pktpool_dettach(osl_t *osh); /* Relinquish registry */
+int pktpool_attach(osl_t *osh, uint32 total_pools);
+int pktpool_dettach(osl_t *osh); /* Relinquish registry */
 
-extern int pktpool_init(osl_t *osh, pktpool_t *pktp, int *pktplen, int plen, bool istx, uint8 type);
-extern int pktpool_deinit(osl_t *osh, pktpool_t *pktp);
-extern int pktpool_fill(osl_t *osh, pktpool_t *pktp, bool minimal);
-extern void* pktpool_get(pktpool_t *pktp);
-extern void pktpool_free(pktpool_t *pktp, void *p);
-extern int pktpool_add(pktpool_t *pktp, void *p);
-extern int pktpool_avail_notify_normal(osl_t *osh, pktpool_t *pktp);
-extern int pktpool_avail_notify_exclusive(osl_t *osh, pktpool_t *pktp, pktpool_cb_t cb);
-extern int pktpool_avail_register(pktpool_t *pktp, pktpool_cb_t cb, void *arg);
-extern int pktpool_empty_register(pktpool_t *pktp, pktpool_cb_t cb, void *arg);
-extern int pktpool_setmaxlen(pktpool_t *pktp, uint16 maxlen);
-extern int pktpool_setmaxlen_strict(osl_t *osh, pktpool_t *pktp, uint16 maxlen);
-extern void pktpool_emptycb_disable(pktpool_t *pktp, bool disable);
-extern bool pktpool_emptycb_disabled(pktpool_t *pktp);
-extern int pktpool_hostaddr_fill_register(pktpool_t *pktp, pktpool_cb_extn_t cb, void *arg1);
-extern int pktpool_rxcplid_fill_register(pktpool_t *pktp, pktpool_cb_extn_t cb, void *arg);
-extern void pktpool_invoke_dmarxfill(pktpool_t *pktp);
-extern int pkpool_haddr_avail_register_cb(pktpool_t *pktp, pktpool_cb_t cb, void *arg);
+int pktpool_init(osl_t *osh, pktpool_t *pktp, int *pktplen, int plen, bool istx, uint8 type);
+int pktpool_deinit(osl_t *osh, pktpool_t *pktp);
+int pktpool_fill(osl_t *osh, pktpool_t *pktp, bool minimal);
+void* pktpool_get(pktpool_t *pktp);
+void pktpool_free(pktpool_t *pktp, void *p);
+int pktpool_add(pktpool_t *pktp, void *p);
+int pktpool_avail_notify_normal(osl_t *osh, pktpool_t *pktp);
+int pktpool_avail_notify_exclusive(osl_t *osh, pktpool_t *pktp, pktpool_cb_t cb);
+int pktpool_avail_register(pktpool_t *pktp, pktpool_cb_t cb, void *arg);
+int pktpool_empty_register(pktpool_t *pktp, pktpool_cb_t cb, void *arg);
+int pktpool_setmaxlen(pktpool_t *pktp, uint16 maxlen);
+int pktpool_setmaxlen_strict(osl_t *osh, pktpool_t *pktp, uint16 maxlen);
+void pktpool_emptycb_disable(pktpool_t *pktp, bool disable);
+bool pktpool_emptycb_disabled(pktpool_t *pktp);
+int pktpool_hostaddr_fill_register(pktpool_t *pktp, pktpool_cb_extn_t cb, void *arg1);
+int pktpool_rxcplid_fill_register(pktpool_t *pktp, pktpool_cb_extn_t cb, void *arg);
+void pktpool_invoke_dmarxfill(pktpool_t *pktp);
+int pkpool_haddr_avail_register_cb(pktpool_t *pktp, pktpool_cb_t cb, void *arg);
 
 #define POOLPTR(pp)         ((pktpool_t *)(pp))
 #define POOLID(pp)          (POOLPTR(pp)->id)
@@ -389,23 +388,19 @@ extern pktpool_t *pktpools_registry[PKTPOOL_MAXIMUM_ID + 1];
 
 
 #ifdef BCMDBG_POOL
-extern int pktpool_dbg_register(pktpool_t *pktp, pktpool_cb_t cb, void *arg);
-extern int pktpool_start_trigger(pktpool_t *pktp, void *p);
-extern int pktpool_dbg_dump(pktpool_t *pktp);
-extern int pktpool_dbg_notify(pktpool_t *pktp);
-extern int pktpool_stats_dump(pktpool_t *pktp, pktpool_stats_t *stats);
-extern void print_pktpool_stats(pktpool_t *pktp);
+int pktpool_dbg_register(pktpool_t *pktp, pktpool_cb_t cb, void *arg);
+int pktpool_start_trigger(pktpool_t *pktp, void *p);
+int pktpool_dbg_dump(pktpool_t *pktp);
+int pktpool_dbg_notify(pktpool_t *pktp);
+int pktpool_stats_dump(pktpool_t *pktp, pktpool_stats_t *stats);
+void print_pktpool_stats(pktpool_t *pktp);
 #endif /* BCMDBG_POOL */
 
-/* forward definition of ether_addr structure used by some function prototypes */
+int ether_isbcast(const void *ea);
+int ether_isnulladdr(const void *ea);
 
-struct ether_addr;
-
-extern int ether_isbcast(const void *ea);
-extern int ether_isnulladdr(const void *ea);
-
-extern uint pktsetprio(void *pkt, bool update_vtag);
-extern bool pktgetdscp(uint8 *pktdata, uint pktlen, uint8 *dscp);
+uint pktsetprio(void *pkt, bool update_vtag);
+bool pktgetdscp(uint8 *pktdata, uint pktlen, uint8 *dscp);
 
 /* Get priority from a packet and pass it back in scb (or equiv) */
 #define	PKTPRIO_VDSCP	0x100		/* DSCP prio found after VLAN tag */
@@ -442,23 +437,23 @@ extern bool pktgetdscp(uint8 *pktdata, uint pktlen, uint8 *dscp);
 #define pktq_ppeek(pq, prec)		((pq)->q[prec].head)
 #define pktq_ppeek_tail(pq, prec)	((pq)->q[prec].tail)
 
-extern void *pktq_penq(struct pktq *pq, int prec, void *p);
-extern void *pktq_penq_head(struct pktq *pq, int prec, void *p);
-extern void *pktq_pdeq(struct pktq *pq, int prec);
-extern void *pktq_pdeq_prev(struct pktq *pq, int prec, void *prev_p);
-extern void *pktq_pdeq_with_fn(struct pktq *pq, int prec, ifpkt_cb_t fn, int arg);
-extern void *pktq_pdeq_tail(struct pktq *pq, int prec);
+void *pktq_penq(struct pktq *pq, int prec, void *p);
+void *pktq_penq_head(struct pktq *pq, int prec, void *p);
+void *pktq_pdeq(struct pktq *pq, int prec);
+void *pktq_pdeq_prev(struct pktq *pq, int prec, void *prev_p);
+void *pktq_pdeq_with_fn(struct pktq *pq, int prec, ifpkt_cb_t fn, int arg);
+void *pktq_pdeq_tail(struct pktq *pq, int prec);
 /* Empty the queue at particular precedence level */
-extern void pktq_pflush(osl_t *osh, struct pktq *pq, int prec, bool dir,
+void pktq_pflush(osl_t *osh, struct pktq *pq, int prec, bool dir,
 	ifpkt_cb_t fn, int arg);
 /* Remove a specified packet from its queue */
-extern bool pktq_pdel(struct pktq *pq, void *p, int prec);
+bool pktq_pdel(struct pktq *pq, void *p, int prec);
 
 /* operations on a set of precedences in packet queue */
 
-extern int pktq_mlen(struct pktq *pq, uint prec_bmp);
-extern void *pktq_mdeq(struct pktq *pq, uint prec_bmp, int *prec_out);
-extern void *pktq_mpeek(struct pktq *pq, uint prec_bmp, int *prec_out);
+int pktq_mlen(struct pktq *pq, uint prec_bmp);
+void *pktq_mdeq(struct pktq *pq, uint prec_bmp, int *prec_out);
+void *pktq_mpeek(struct pktq *pq, uint prec_bmp, int *prec_out);
 
 /* operations on packet queue as a whole */
 
@@ -475,15 +470,15 @@ extern void *pktq_mpeek(struct pktq *pq, uint prec_bmp, int *prec_out);
 #define pktdeq_tail(pq)		pktq_pdeq_tail(((struct pktq *)(void *)pq), 0)
 #define pktqinit(pq, len)	pktq_init(((struct pktq *)(void *)pq), 1, len)
 
-extern void pktq_init(struct pktq *pq, int num_prec, int max_len);
-extern void pktq_set_max_plen(struct pktq *pq, int prec, int max_len);
+void pktq_init(struct pktq *pq, int num_prec, int max_len);
+void pktq_set_max_plen(struct pktq *pq, int prec, int max_len);
 
 /* prec_out may be NULL if caller is not interested in return value */
-extern void *pktq_deq(struct pktq *pq, int *prec_out);
-extern void *pktq_deq_tail(struct pktq *pq, int *prec_out);
-extern void *pktq_peek(struct pktq *pq, int *prec_out);
-extern void *pktq_peek_tail(struct pktq *pq, int *prec_out);
-extern void pktq_flush(osl_t *osh, struct pktq *pq, bool dir, ifpkt_cb_t fn, int arg);
+void *pktq_deq(struct pktq *pq, int *prec_out);
+void *pktq_deq_tail(struct pktq *pq, int *prec_out);
+void *pktq_peek(struct pktq *pq, int *prec_out);
+void *pktq_peek_tail(struct pktq *pq, int *prec_out);
+void pktq_flush(osl_t *osh, struct pktq *pq, bool dir, ifpkt_cb_t fn, int arg);
 
 
 #define BCM_MAC_RXCPL_IDX_BITS			12
@@ -547,86 +542,61 @@ typedef struct bcm_rxcplid_list {
 	rxcpl_info_t		*free_list;
 } bcm_rxcplid_list_t;
 
-extern bool BCMATTACHFN(bcm_alloc_rxcplid_list)(osl_t *osh, uint32 max);
-extern rxcpl_info_t * bcm_alloc_rxcplinfo(void);
-extern void bcm_free_rxcplinfo(rxcpl_info_t *ptr);
-extern void bcm_chain_rxcplid(uint16 first,  uint16 next);
-extern rxcpl_info_t *bcm_id2rxcplinfo(uint16 id);
-extern uint16 bcm_rxcplinfo2id(rxcpl_info_t *ptr);
-extern rxcpl_info_t *bcm_rxcpllist_end(rxcpl_info_t *ptr, uint32 *count);
+bool BCMATTACHFN(bcm_alloc_rxcplid_list)(osl_t *osh, uint32 max);
+rxcpl_info_t * bcm_alloc_rxcplinfo(void);
+void bcm_free_rxcplinfo(rxcpl_info_t *ptr);
+void bcm_chain_rxcplid(uint16 first,  uint16 next);
+rxcpl_info_t *bcm_id2rxcplinfo(uint16 id);
+uint16 bcm_rxcplinfo2id(rxcpl_info_t *ptr);
+rxcpl_info_t *bcm_rxcpllist_end(rxcpl_info_t *ptr, uint32 *count);
 
 /* externs */
 /* packet */
-extern uint pktcopy(osl_t *osh, void *p, uint offset, int len, uchar *buf);
-extern uint pktfrombuf(osl_t *osh, void *p, uint offset, int len, uchar *buf);
-extern uint pkttotlen(osl_t *osh, void *p);
-extern void *pktlast(osl_t *osh, void *p);
-extern uint pktsegcnt(osl_t *osh, void *p);
-extern uint pktsegcnt_war(osl_t *osh, void *p);
-extern uint8 *pktdataoffset(osl_t *osh, void *p,  uint offset);
-extern void *pktoffset(osl_t *osh, void *p,  uint offset);
+uint pktcopy(osl_t *osh, void *p, uint offset, int len, uchar *buf);
+uint pktfrombuf(osl_t *osh, void *p, uint offset, int len, uchar *buf);
+uint pkttotlen(osl_t *osh, void *p);
+void *pktlast(osl_t *osh, void *p);
+uint pktsegcnt(osl_t *osh, void *p);
+uint pktsegcnt_war(osl_t *osh, void *p);
+uint8 *pktdataoffset(osl_t *osh, void *p,  uint offset);
+void *pktoffset(osl_t *osh, void *p,  uint offset);
 
 /* string */
-extern int BCMROMFN(bcm4390x_atoi)(const char *s);
-extern ulong BCMROMFN(bcm_strtoul)(const char *cp, char **endp, uint base);
-extern char *BCMROMFN(bcmstrstr)(const char *haystack, const char *needle);
-extern char *BCMROMFN(bcmstrnstr)(const char *s, uint s_len, const char *substr, uint substr_len);
-extern char *BCMROMFN(bcmstrcat)(char *dest, const char *src);
-extern char *BCMROMFN(bcmstrncat)(char *dest, const char *src, uint size);
-extern ulong wchar2ascii(char *abuf, ushort *wbuf, ushort wbuflen, ulong abuflen);
+int BCMROMFN(bcm4390x_atoi)(const char *s);
+ulong BCMROMFN(bcm_strtoul)(const char *cp, char **endp, uint base);
+char *BCMROMFN(bcmstrstr)(const char *haystack, const char *needle);
+char *BCMROMFN(bcmstrnstr)(const char *s, uint s_len, const char *substr, uint substr_len);
+char *BCMROMFN(bcmstrcat)(char *dest, const char *src);
+char *BCMROMFN(bcmstrncat)(char *dest, const char *src, uint size);
+ulong wchar2ascii(char *abuf, ushort *wbuf, ushort wbuflen, ulong abuflen);
 char* bcmstrtok(char **string, const char *delimiters, char *tokdelim);
 int bcmstricmp(const char *s1, const char *s2);
 int bcmstrnicmp(const char* s1, const char* s2, int cnt);
 
-
-/* ethernet address */
-extern char *bcm_ether_ntoa(const struct ether_addr *ea, char *buf);
-extern int BCMROMFN(bcm4390x_ether_atoe)(const char *p, struct ether_addr *ea);
-
 /* ip address */
 struct ipv4_addr;
-extern char *bcm_ip_ntoa(struct ipv4_addr *ia, char *buf);
-extern char *bcm_ipv6_ntoa(void *ipv6, char *buf);
+char *bcm_ip_ntoa(struct ipv4_addr *ia, char *buf);
+char *bcm_ipv6_ntoa(void *ipv6, char *buf);
 
 /* delay */
-extern void bcm_mdelay(uint ms);
-/* variable access */
-#if defined(DONGLEBUILD) && defined(WLC_HIGH) && !defined(WLTEST) && \
-	!defined(BCMINTERNAL) && !defined(BCMDBG_DUMP) && !defined(ATE_BUILD)
-#ifdef BCMDBG
-#define NVRAM_RECLAIM_CHECK(name)							\
-	if (attach_part_reclaimed == TRUE) {						\
-		printf("%s: NVRAM already reclaimed, %s\n", __FUNCTION__, (name));	\
-		*(char*) 0 = 0; /* TRAP */						\
-		return NULL;								\
-	}
-#else /* BCMDBG */
-#define NVRAM_RECLAIM_CHECK(name)							\
-	if (attach_part_reclaimed == TRUE) {						\
-		*(char*) 0 = 0; /* TRAP */						\
-		return NULL;								\
-	}
-#endif /* BCMDBG */
-#else /* DONGLEBUILD && WLC_HIGH && !WLTEST && !BCMINTERNAL && !BCMDBG_DUMP && !ATE_BUILD */
-#define NVRAM_RECLAIM_CHECK(name)
-#endif /* DONGLEBUILD && WLC_HIGH && !WLTEST && !BCMINTERNAL && !BCMDBG_DUMP && !ATE_BUILD */
+void bcm_mdelay(uint ms);
 
-//extern char *getvar(char *vars, const char *name);
+//char *getvar(char *vars, const char *name);
 #define getvar(vars,name) (NULL)
-//extern int getintvar(char *vars, const char *name)
+//int getintvar(char *vars, const char *name)
 #define getintvar(vars, name)  (0)
-extern int getintvararray(char *vars, const char *name, int index);
-extern int getintvararraysize(char *vars, const char *name);
-extern uint getgpiopin(char *vars, char *pin_name, uint def_pin);
+int getintvararray(char *vars, const char *name, int index);
+int getintvararraysize(char *vars, const char *name);
+uint getgpiopin(char *vars, char *pin_name, uint def_pin);
 #ifdef BCMDBG
-extern void prpkt(const char *msg, osl_t *osh, void *p0);
+void prpkt(const char *msg, osl_t *osh, void *p0);
 #endif /* BCMDBG */
 #ifdef BCMPERFSTATS
-extern void bcm_perf_enable(void);
-extern void bcmstats(char *fmt);
-extern void bcmlog(char *fmt, uint a1, uint a2);
-extern void bcmdumplog(char *buf, int size);
-extern int bcmdumplogent(char *buf, uint idx);
+void bcm_perf_enable(void);
+void bcmstats(char *fmt);
+void bcmlog(char *fmt, uint a1, uint a2);
+void bcmdumplog(char *buf, int size);
+int bcmdumplogent(char *buf, uint idx);
 #else
 #define bcm_perf_enable()
 #define bcmstats(fmt)
@@ -641,13 +611,13 @@ extern int bcmdumplogent(char *buf, uint idx);
 
 #if defined(BCMTSTAMPEDLOGS)
 /* Store a TSF timestamp and a log line in the log buffer */
-extern void bcmtslog(uint32 tstamp, char *fmt, uint a1, uint a2);
+void bcmtslog(uint32 tstamp, char *fmt, uint a1, uint a2);
 /* Print out the log buffer with timestamps */
-extern void bcmprinttslogs(void);
+void bcmprinttslogs(void);
 /* Print out a microsecond timestamp as "sec.ms.us " */
-extern void bcmprinttstamp(uint32 us);
+void bcmprinttstamp(uint32 us);
 /* Dump to buffer a microsecond timestamp as "sec.ms.us " */
-extern void bcmdumptslog(char *buf, int size);
+void bcmdumptslog(char *buf, int size);
 #else
 #define bcmtslog(tstamp, fmt, a1, a2)
 #define bcmprinttslogs()
@@ -655,8 +625,8 @@ extern void bcmdumptslog(char *buf, int size);
 #define bcmdumptslog(buf, size)
 #endif /* BCMTSTAMPEDLOGS */
 
-extern char *bcm_nvram_vars(uint *length);
-extern int bcm_nvram_cache(void *sih);
+char *bcm_nvram_vars(uint *length);
+int bcm_nvram_cache(void *sih);
 
 /* Support for sharing code across in-driver iovar implementations.
  * The intent is that a driver use this structure to map iovar names
@@ -688,11 +658,11 @@ typedef struct bcm_iovar {
 
 /* flags are per-driver based on driver attributes */
 
-extern const bcm_iovar_t *bcm_iovar_lookup(const bcm_iovar_t *table, const char *name);
-extern int bcm_iovar_lencheck(const bcm_iovar_t *table, void *arg, int len, bool set);
+const bcm_iovar_t *bcm_iovar_lookup(const bcm_iovar_t *table, const char *name);
+int bcm_iovar_lencheck(const bcm_iovar_t *table, void *arg, int len, bool set);
 #if defined(WLTINYDUMP) || defined(BCMDBG) || defined(WLMSG_INFORM) || \
 	defined(WLMSG_ASSOC) || defined(WLMSG_PRPKT) || defined(WLMSG_WSEC)
-extern int bcm_format_ssid(char* buf, const uchar ssid[], uint ssid_len);
+int bcm_format_ssid(char* buf, const uchar ssid[], uint ssid_len);
 #endif /* WLTINYDUMP || BCMDBG || WLMSG_INFORM || WLMSG_ASSOC || WLMSG_PRPKT */
 #endif	/* BCMDRIVER */
 
@@ -927,20 +897,16 @@ extern int bcm_format_ssid(char* buf, const uchar ssid[], uint ssid_len);
 #define ARRAYLAST(a)		(&a[ARRAYSIZE(a)-1])
 #endif
 
-/* Reference a function; used to prevent a static function from being optimized out */
-extern void *_bcmutils_dummy_fn;
-#define REFERENCE_FUNCTION(f)	(_bcmutils_dummy_fn = (void *)(f))
-
 /* bit map related macros */
 #ifndef setbit
 #ifndef NBBY		/* the BSD family defines NBBY */
 #define	NBBY	8	/* 8 bits per byte */
 #endif /* #ifndef NBBY */
 #ifdef BCMUTILS_BIT_MACROS_USE_FUNCS
-extern void setbit(void *array, uint bit);
-extern void clrbit(void *array, uint bit);
-extern bool isset(const void *array, uint bit);
-extern bool isclr(const void *array, uint bit);
+void setbit(void *array, uint bit);
+void clrbit(void *array, uint bit);
+bool isset(const void *array, uint bit);
+bool isclr(const void *array, uint bit);
 #else
 #define	setbit(a, i)	(((uint8 *)a)[(i) / NBBY] |= 1 << ((i) % NBBY))
 #define	clrbit(a, i)	(((uint8 *)a)[(i) / NBBY] &= ~(1 << ((i) % NBBY)))
@@ -948,7 +914,7 @@ extern bool isclr(const void *array, uint bit);
 #define	isclr(a, i)	((((const uint8 *)a)[(i) / NBBY] & (1 << ((i) % NBBY))) == 0)
 #endif
 #endif /* setbit */
-extern void set_bitrange(void *array, uint start, uint end, uint maxbit);
+void set_bitrange(void *array, uint start, uint end, uint maxbit);
 
 #define	isbitset(a, i)	(((a) & (1 << (i))) != 0)
 
@@ -958,7 +924,7 @@ extern void set_bitrange(void *array, uint start, uint end, uint maxbit);
 #define	NBITMASK(nbits)	MAXBITVAL(nbits)
 #define MAXNBVAL(nbyte)	MAXBITVAL((nbyte) * 8)
 
-extern void bcm_bitprint32(const uint32 u32);
+void bcm_bitprint32(const uint32 u32);
 
 /*
  * ----------------------------------------------------------------------------
@@ -1019,25 +985,6 @@ DECLARE_MAP_API(4,  3, 2,  7U, 0x000F) /* setbit4() and getbit4() */
 #define CRC32_INIT_VALUE 0xffffffff	/* Initial CRC32 checksum value */
 #define CRC32_GOOD_VALUE 0xdebb20e3	/* Good final CRC32 checksum value */
 
-/* use for direct output of MAC address in printf etc */
-#define MACF				"%02x:%02x:%02x:%02x:%02x:%02x"
-#define ETHERP_TO_MACF(ea)	((struct ether_addr *) (ea))->octet[0], \
-							((struct ether_addr *) (ea))->octet[1], \
-							((struct ether_addr *) (ea))->octet[2], \
-							((struct ether_addr *) (ea))->octet[3], \
-							((struct ether_addr *) (ea))->octet[4], \
-							((struct ether_addr *) (ea))->octet[5]
-
-#define ETHER_TO_MACF(ea) 	(ea).octet[0], \
-							(ea).octet[1], \
-							(ea).octet[2], \
-							(ea).octet[3], \
-							(ea).octet[4], \
-							(ea).octet[5]
-/* XXX use only for debug, the string length can be changed
- * If you want to use this macro to the logic,
- * USE MACF instead
- */
 #if !defined(SIMPLE_MAC_PRINT)
 #define MACDBG "%02x:%02x:%02x:%02x:%02x:%02x"
 #define MAC2STRDBG(ea) (ea)[0], (ea)[1], (ea)[2], (ea)[3], (ea)[4], (ea)[5]
@@ -1058,7 +1005,7 @@ typedef struct bcm_bit_desc_ex {
 	const bcm_bit_desc_t *bitfield;
 } bcm_bit_desc_ex_t;
 
-/* buffer length for ethernet address from bcm_ether_ntoa() */
+/* buffer length for ethernet address  */
 #define ETHER_ADDR_STR_LEN	18	/* 18-bytes of Ethernet address buffer length */
 
 /* crypto utility function */
@@ -1087,33 +1034,33 @@ xor_128bit_block(const uint8 *src1, const uint8 *src2, uint8 *dst)
 
 /* externs */
 /* crc */
-extern uint8 BCMROMFN(hndcrc8)(uint8 *p, uint nbytes, uint8 crc);
-extern uint16 BCMROMFN(hndcrc16)(uint8 *p, uint nbytes, uint16 crc);
-extern uint32 BCMROMFN(hndcrc32)(uint8 *p, uint nbytes, uint32 crc);
+uint8 BCMROMFN(hndcrc8)(uint8 *p, uint nbytes, uint8 crc);
+uint16 BCMROMFN(hndcrc16)(uint8 *p, uint nbytes, uint16 crc);
+uint32 BCMROMFN(hndcrc32)(uint8 *p, uint nbytes, uint32 crc);
 
 /* format/print */
 #if defined(BCMDBG) || defined(DHD_DEBUG) || defined(BCMDBG_ERR) || defined(WLMSG_PRHDRS) || \
     defined(WLMSG_PRPKT) || defined(WLMSG_ASSOC) || defined(BCMDBG_DUMP)
 /* print out the value a field has: fields may have 1-32 bits and may hold any value */
-extern int bcm_format_field(const bcm_bit_desc_ex_t *bd, uint32 field, char* buf, int len);
+int bcm_format_field(const bcm_bit_desc_ex_t *bd, uint32 field, char* buf, int len);
 /* print out which bits in flags are set */
-extern int bcm_format_flags(const bcm_bit_desc_t *bd, uint32 flags, char* buf, int len);
+int bcm_format_flags(const bcm_bit_desc_t *bd, uint32 flags, char* buf, int len);
 #endif
 
 #if defined(BCMDBG) || defined(DHD_DEBUG) || defined(BCMDBG_ERR) || defined(WLMSG_PRHDRS) || \
     defined(WLMSG_PRPKT) || defined(WLMSG_ASSOC) || defined(BCMDBG_DUMP) || \
     defined(WLMEDIA_PEAKRATE)
-extern int bcm_format_hex(char *str, const void *bytes, int len);
+int bcm_format_hex(char *str, const void *bytes, int len);
 #endif
 
 #ifdef BCMDBG
-extern void deadbeef(void *p, uint len);
+void deadbeef(void *p, uint len);
 #endif
-extern const char *bcm_crypto_algo_name(uint algo);
-extern char *bcm_chipname(uint chipid, char *buf, uint len);
-extern char *bcm_brev_str(uint32 brev, char *buf);
-extern void printbig(char *buf);
-extern void prhex(const char *msg, uchar *buf, uint len);
+const char *bcm_crypto_algo_name(uint algo);
+char *bcm_chipname(uint chipid, char *buf, uint len);
+char *bcm_brev_str(uint32 brev, char *buf);
+void printbig(char *buf);
+void prhex(const char *msg, uchar *buf, uint len);
 
 /* IE parsing */
 
@@ -1121,18 +1068,18 @@ extern void prhex(const char *msg, uchar *buf, uint len);
 #include <packed_section_start.h>
 
 /* tag_ID/length/value_buffer tuple */
-typedef BWL_PRE_PACKED_STRUCT struct bcm_tlv {
+typedef CYHAL_PRE_PACKED_STRUCT struct bcm_tlv {
 	uint8	id;
 	uint8	len;
 	uint8	data[1];
-} BWL_POST_PACKED_STRUCT bcm_tlv_t;
+} CYHAL_POST_PACKED_STRUCT bcm_tlv_t;
 
 /* bcm tlv w/ 16 bit id/len */
-typedef BWL_PRE_PACKED_STRUCT struct bcm_xtlv {
+typedef CYHAL_PRE_PACKED_STRUCT struct bcm_xtlv {
 	uint16	id;
 	uint16	len;
 	uint8	data[1];
-} BWL_POST_PACKED_STRUCT bcm_xtlv_t;
+} CYHAL_POST_PACKED_STRUCT bcm_xtlv_t;
 
 /* no default structure packing */
 #include <packed_section_end.h>
@@ -1173,44 +1120,42 @@ struct bcm_tlvbuf {
 #define bcm_valid_xtlv(elt, buflen) (\
 	 ((int)(buflen) >= (int)BCM_XTLV_HDR_SIZE) && \
 	 ((int)(buflen) >= (int)BCM_XTLV_SIZE(elt)))
-extern bcm_tlv_t *BCMROMFN(bcm_next_tlv)(bcm_tlv_t *elt, int *buflen);
-extern bcm_tlv_t *BCMROMFN(bcm_parse_tlvs)(void *buf, int buflen, uint key);
+bcm_tlv_t *BCMROMFN(bcm_next_tlv)(bcm_tlv_t *elt, int *buflen);
+bcm_tlv_t *BCMROMFN(bcm_parse_tlvs)(void *buf, int buflen, uint key);
 
-extern bcm_tlv_t *BCMROMFN(bcm_parse_ordered_tlvs)(void *buf, int buflen, uint key);
+bcm_tlv_t *BCMROMFN(bcm_parse_ordered_tlvs)(void *buf, int buflen, uint key);
 
-extern bcm_tlv_t *bcm_find_vendor_ie(void *tlvs, int tlvs_len, const char *voui, uint8 *type,
+bcm_tlv_t *bcm_find_vendor_ie(void *tlvs, int tlvs_len, const char *voui, uint8 *type,
 	int type_len);
 
-extern uint8 *bcm_write_tlv(int type, const void *data, int datalen, uint8 *dst);
-extern uint8 *bcm_write_tlv_safe(int type, const void *data, int datalen, uint8 *dst,
+uint8 *bcm_write_tlv(int type, const void *data, int datalen, uint8 *dst);
+uint8 *bcm_write_tlv_safe(int type, const void *data, int datalen, uint8 *dst,
 	int dst_maxlen);
 
-extern uint8 *bcm_copy_tlv(const void *src, uint8 *dst);
-extern uint8 *bcm_copy_tlv_safe(const void *src, uint8 *dst, int dst_maxlen);
+uint8 *bcm_copy_tlv(const void *src, uint8 *dst);
+uint8 *bcm_copy_tlv_safe(const void *src, uint8 *dst, int dst_maxlen);
 
 /* xtlv */
-extern bcm_xtlv_t *bcm_next_xtlv(bcm_xtlv_t *elt, int *buflen);
-extern struct bcm_tlvbuf *bcm_xtlv_buf_alloc(void *osh, uint16 len);
-extern void bcm_xtlv_buf_free(void *osh, struct bcm_tlvbuf *tbuf);
-extern uint16 bcm_xtlv_buf_len(struct bcm_tlvbuf *tbuf);
-extern uint16 bcm_xtlv_buf_rlen(struct bcm_tlvbuf *tbuf);
-extern uint8 *bcm_xtlv_buf(struct bcm_tlvbuf *tbuf);
-extern uint8 *bcm_xtlv_head(struct bcm_tlvbuf *tbuf);
-extern int bcm_xtlv_put_data(struct bcm_tlvbuf *tbuf, uint16 type, const void *data, uint16 dlen);
-extern int bcm_xtlv_put_8(struct bcm_tlvbuf *tbuf, uint16 type, const int8 data);
-extern int bcm_xtlv_put_16(struct bcm_tlvbuf *tbuf, uint16 type, const int16 data);
-extern int bcm_xtlv_put_32(struct bcm_tlvbuf *tbuf, uint16 type, const int32 data);
-extern int bcm_unpack_xtlv_entry(void **tlv_buf, uint16 xpct_type, uint16 xpct_len, void *dst);
-extern int bcm_pack_xtlv_entry(void **tlv_buf, uint16 *buflen, uint16 type, uint16 len, void *src);
-extern int bcm_unpack_xtlv_buf(void *ctx,
-	void *tlv_buf, uint16 buflen, bcm_set_var_from_tlv_cbfn_t *cbfn);
-extern int
-bcm_unpack_xtlv_buf_to_mem(void *tlv_buf, int *buflen, xtlv_desc_t *items);
-extern int
-bcm_pack_xtlv_buf_from_mem(void **tlv_buf, uint16 *buflen, xtlv_desc_t *items);
+bcm_xtlv_t *bcm_next_xtlv(bcm_xtlv_t *elt, int *buflen);
+struct bcm_tlvbuf *bcm_xtlv_buf_alloc(void *osh, uint16 len);
+void bcm_xtlv_buf_free(void *osh, struct bcm_tlvbuf *tbuf);
+uint16 bcm_xtlv_buf_len(struct bcm_tlvbuf *tbuf);
+uint16 bcm_xtlv_buf_rlen(struct bcm_tlvbuf *tbuf);
+uint8 *bcm_xtlv_buf(struct bcm_tlvbuf *tbuf);
+uint8 *bcm_xtlv_head(struct bcm_tlvbuf *tbuf);
+int bcm_xtlv_put_data(struct bcm_tlvbuf *tbuf, uint16 type, const void *data, uint16 dlen);
+int bcm_xtlv_put_8(struct bcm_tlvbuf *tbuf, uint16 type, const int8 data);
+int bcm_xtlv_put_16(struct bcm_tlvbuf *tbuf, uint16 type, const int16 data);
+int bcm_xtlv_put_32(struct bcm_tlvbuf *tbuf, uint16 type, const int32 data);
+int bcm_unpack_xtlv_entry(void **tlv_buf, uint16 xpct_type, uint16 xpct_len, void *dst);
+int bcm_pack_xtlv_entry(void **tlv_buf, uint16 *buflen, uint16 type, uint16 len, void *src);
+int bcm_unpack_xtlv_buf(void *ctx,
+void *tlv_buf, uint16 buflen, bcm_set_var_from_tlv_cbfn_t *cbfn);
+int bcm_unpack_xtlv_buf_to_mem(void *tlv_buf, int *buflen, xtlv_desc_t *items);
+int bcm_pack_xtlv_buf_from_mem(void **tlv_buf, uint16 *buflen, xtlv_desc_t *items);
 
 /* bcmerror */
-extern const char *bcmerrorstr(int bcmerror);
+const char *bcmerrorstr(int bcmerror);
 
 /* multi-bool data type: set of bools, mbool is true if any is set */
 typedef uint32 mbool;
@@ -1226,24 +1171,24 @@ struct fielddesc {
 	uint32 	len;
 };
 
-extern void bcm_binit(struct bcmstrbuf *b, char *buf, uint size);
-extern void bcm_bprhex(struct bcmstrbuf *b, const char *msg, bool newline, uint8 *buf, int len);
+void bcm_binit(struct bcmstrbuf *b, char *buf, uint size);
+void bcm_bprhex(struct bcmstrbuf *b, const char *msg, bool newline, uint8 *buf, int len);
 
-extern void bcm_inc_bytes(uchar *num, int num_bytes, uint8 amount);
-extern int bcm_cmp_bytes(const uchar *arg1, const uchar *arg2, uint8 nbytes);
-extern void bcm_print_bytes(const char *name, const uchar *cdata, int len);
+void bcm_inc_bytes(uchar *num, int num_bytes, uint8 amount);
+int bcm_cmp_bytes(const uchar *arg1, const uchar *arg2, uint8 nbytes);
+void bcm_print_bytes(const char *name, const uchar *cdata, int len);
 
 typedef  uint32 (*bcmutl_rdreg_rtn)(void *arg0, uint arg1, uint32 offset);
-extern uint bcmdumpfields(bcmutl_rdreg_rtn func_ptr, void *arg0, uint arg1, struct fielddesc *str,
+uint bcmdumpfields(bcmutl_rdreg_rtn func_ptr, void *arg0, uint arg1, struct fielddesc *str,
                           char *buf, uint32 bufsize);
-extern uint BCMROMFN(bcm_bitcount)(uint8 *bitmap, uint bytelength);
+uint BCMROMFN(bcm_bitcount)(uint8 *bitmap, uint bytelength);
 
-extern int bcm_bprintf(struct bcmstrbuf *b, const char *fmt, ...);
+int bcm_bprintf(struct bcmstrbuf *b, const char *fmt, ...);
 
 /* power conversion */
-extern uint16 BCMROMFN(bcm_qdbm_to_mw)(uint8 qdbm);
-extern uint8 BCMROMFN(bcm_mw_to_qdbm)(uint16 mw);
-extern uint bcm_mkiovar(char *name, char *data, uint datalen, char *buf, uint len);
+uint16 BCMROMFN(bcm_qdbm_to_mw)(uint8 qdbm);
+uint8 BCMROMFN(bcm_mw_to_qdbm)(uint16 mw);
+uint bcm_mkiovar(char *name, char *data, uint datalen, char *buf, uint len);
 
 #ifdef BCMDBG_PKT  /* pkt logging for debugging */
 #define PKTLIST_SIZE 3000
@@ -1280,19 +1225,19 @@ typedef struct {
 } pktlist_info_t;
 
 
-extern void pktlist_add(pktlist_info_t *pktlist, void *p, int len, char *file);
-extern void pktlist_remove(pktlist_info_t *pktlist, void *p);
-extern char* pktlist_dump(pktlist_info_t *pktlist, char *buf);
+void pktlist_add(pktlist_info_t *pktlist, void *p, int len, char *file);
+void pktlist_remove(pktlist_info_t *pktlist, void *p);
+char* pktlist_dump(pktlist_info_t *pktlist, char *buf);
 #ifdef BCMDBG_PTRACE
-extern void pktlist_trace(pktlist_info_t *pktlist, void *pkt, uint16 bit);
+void pktlist_trace(pktlist_info_t *pktlist, void *pkt, uint16 bit);
 #endif /* BCMDBG_PTRACE */
 #endif  /* BCMDBG_PKT */
 unsigned int process_nvram_vars(char *varbuf, unsigned int len);
 
 /* calculate a * b + c */
-extern void bcm4390x_uint64_multiple_add(uint32* r_high, uint32* r_low, uint32 a, uint32 b, uint32 c);
+void bcm4390x_uint64_multiple_add(uint32* r_high, uint32* r_low, uint32 a, uint32 b, uint32 c);
 /* calculate a / b */
-extern void bcm_uint64_divide(uint32* r, uint32 a_high, uint32 a_low, uint32 b);
+void bcm_uint64_divide(uint32* r, uint32 a_high, uint32 a_low, uint32 b);
 
 
 /* Public domain bit twiddling hacks/utilities: Sean Eron Anderson */
@@ -1369,30 +1314,30 @@ struct bcm_mwbmap;	/* forward declaration for use as an opaque mwbmap handle */
 #define BCM_MWBMAP_INVALID_IDX	((uint32)(~0U))
 
 /* Incarnate a multiword bitmap based small index allocator */
-extern struct bcm_mwbmap * bcm_mwbmap_init(osl_t * osh, uint32 items_max);
+struct bcm_mwbmap * bcm_mwbmap_init(osl_t * osh, uint32 items_max);
 
 /* Free up the multiword bitmap index allocator */
-extern void bcm_mwbmap_fini(osl_t * osh, struct bcm_mwbmap * mwbmap_hdl);
+void bcm_mwbmap_fini(osl_t * osh, struct bcm_mwbmap * mwbmap_hdl);
 
 /* Allocate a unique small index using a multiword bitmap index allocator */
-extern uint32 bcm_mwbmap_alloc(struct bcm_mwbmap * mwbmap_hdl);
+uint32 bcm_mwbmap_alloc(struct bcm_mwbmap * mwbmap_hdl);
 
 /* Force an index at a specified position to be in use */
-extern void bcm_mwbmap_force(struct bcm_mwbmap * mwbmap_hdl, uint32 bitix);
+void bcm_mwbmap_force(struct bcm_mwbmap * mwbmap_hdl, uint32 bitix);
 
 /* Free a previously allocated index back into the multiword bitmap allocator */
-extern void bcm_mwbmap_free(struct bcm_mwbmap * mwbmap_hdl, uint32 bitix);
+void bcm_mwbmap_free(struct bcm_mwbmap * mwbmap_hdl, uint32 bitix);
 
 /* Fetch the toal number of free indices in the multiword bitmap allocator */
-extern uint32 bcm_mwbmap_free_cnt(struct bcm_mwbmap * mwbmap_hdl);
+uint32 bcm_mwbmap_free_cnt(struct bcm_mwbmap * mwbmap_hdl);
 
 /* Determine whether an index is inuse or free */
-extern bool bcm_mwbmap_isfree(struct bcm_mwbmap * mwbmap_hdl, uint32 bitix);
+bool bcm_mwbmap_isfree(struct bcm_mwbmap * mwbmap_hdl, uint32 bitix);
 
 /* Debug dump a multiword bitmap allocator */
-extern void bcm_mwbmap_show(struct bcm_mwbmap * mwbmap_hdl);
+void bcm_mwbmap_show(struct bcm_mwbmap * mwbmap_hdl);
 
-extern void bcm_mwbmap_audit(struct bcm_mwbmap * mwbmap_hdl);
+void bcm_mwbmap_audit(struct bcm_mwbmap * mwbmap_hdl);
 /* End - Multiword bitmap based small Id allocator. */
 
 
@@ -1406,25 +1351,25 @@ extern void bcm_mwbmap_audit(struct bcm_mwbmap * mwbmap_hdl);
  * Note: start_val16 is inclusive.
  * Returns an opaque handle to the 16bit id allocator.
  */
-extern void * id16_map_init(osl_t *osh, uint16 total_ids, uint16 start_val16);
-extern void * id16_map_fini(osl_t *osh, void * id16_map_hndl);
+void * id16_map_init(osl_t *osh, uint16 total_ids, uint16 start_val16);
+void * id16_map_fini(osl_t *osh, void * id16_map_hndl);
 
 /* Allocate a unique 16bit id */
-extern uint16 id16_map_alloc(void * id16_map_hndl);
+uint16 id16_map_alloc(void * id16_map_hndl);
 
 /* Free a 16bit id value into the id16 allocator */
-extern void id16_map_free(void * id16_map_hndl, uint16 val16);
+void id16_map_free(void * id16_map_hndl, uint16 val16);
 
 /* Get the number of failures encountered during id allocation. */
-extern uint32 id16_map_failures(void * id16_map_hndl);
+uint32 id16_map_failures(void * id16_map_hndl);
 
 /* Audit the 16bit id allocator state. */
-extern bool id16_map_audit(void * id16_map_hndl);
+bool id16_map_audit(void * id16_map_hndl);
 /* End - Simple 16bit Id Allocator. */
 
 #endif /* BCMDRIVER */
 
-extern void bcm4390x_uint64_right_shift(uint32* r, uint32 a_high, uint32 a_low, uint32 b);
+void bcm4390x_uint64_right_shift(uint32* r, uint32 a_high, uint32 a_low, uint32 b);
 
 void bcm_add_64(uint32* r_hi, uint32* r_lo, uint32 offset);
 void bcm_sub_64(uint32* r_hi, uint32* r_lo, uint32 offset);
@@ -1578,4 +1523,3 @@ typedef struct _counter_tbl_t {
 void counter_printlog(counter_tbl_t *ctr_tbl);
 #endif /* DEBUG_COUNTER */
 
-#endif	/* _bcmutils_h_ */

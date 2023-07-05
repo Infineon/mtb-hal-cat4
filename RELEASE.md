@@ -26,6 +26,7 @@ The following HAL drivers are not supported on CAT4 as none of the devices in Mo
 * Comparator
 * CRC
 * DAC
+* Ethernet
 * EZ-I2C
 * Flash
 * I2S
@@ -40,6 +41,9 @@ The following HAL drivers are not supported on CAT4 as none of the devices in Mo
 * USB Device
 
 ### What Changed?
+#### v1.1.0
+* Add Ethernet Support
+* 
 #### v1.0.1
 * Fix failure to retrieve clock frequency when exiting low power modes
 * Rename `wiced_result_t` in UART ringbuffer to avoid naming collision with other libraries.

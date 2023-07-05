@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -35,8 +35,7 @@
  * $Id: hndpmu.h 456199 2014-02-18 03:06:41Z sudhirbs $
  */
 
-#ifndef _hndpmu_h_
-#define _hndpmu_h_
+#pragma once
 
 #if !defined(BCMDONGLEHOST)
 #define SET_LDO_VOLTAGE_LDO1		1
@@ -117,4 +116,3 @@ extern void si_sdiod_drive_strength_init(si_t *sih, osl_t *osh, uint32 drivestre
 extern void si_pmu_minresmask_htavail_set(si_t *sih, osl_t *osh, bool set_clear);
 extern void si_pmu_slow_clk_reinit(si_t *sih, osl_t *osh);
 
-#endif /* _hndpmu_h_ */

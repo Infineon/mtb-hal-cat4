@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -40,8 +40,7 @@
  *
  */
 
-#ifndef	_SBCHIPC_H
-#define	_SBCHIPC_H
+#pragma once
 
 #if !defined(_LANGUAGE_ASSEMBLY) && !defined(__ASSEMBLY__)
 
@@ -3895,4 +3894,3 @@ typedef volatile struct {
 
 #define GCI_GPIO_STS_VALUE		(1 << GCI_GPIO_STS_VALUE_BIT)
 
-#endif	/* _SBCHIPC_H */

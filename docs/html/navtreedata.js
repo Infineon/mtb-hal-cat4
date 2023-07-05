@@ -44,11 +44,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "group__group__hal.html",
-"group__group__hal__gpio.html#ggaa18cb21d1ea9d64311a7c8ddc6a27656a966472a025b6099a9c758c22975ab8d7",
-"group__group__hal__impl__triggers.html#gae6e4ea4100036d96d2efc006a3f69c9b",
-"group__group__hal__results__ipc.html#ga06176c14efc16f21dab4ae20243f7511",
-"group__group__hal__syspm.html#gga5a6a88eb2b6e35dbea25e36b027bf4baa229203f249d95cf1cac7414c1baf66f3",
-"group__group__result.html#gga9008565cba0207520330a1cb8509a8d0a556f94e44063eedd35902918290b3e8b"
+"group__group__hal__ethernet.html#a8422fdbba9e57cfe8d979768ce88429a",
+"group__group__hal__impl__clock.html#ga0dd764e77b5c72c146a6af0a9e3cb69f",
+"group__group__hal__m2m.html#ga3411889a79cc743995601dc441e860a4",
+"group__group__hal__results__pwm.html#ga431ab66d01f4897a131ac3569c776fd0",
+"group__group__hal__syspm.html#gga843f8267deb62a570fff3ce7ebf1a6c4af5c399ada3960bb3f5e6784be9bdccc9",
+"group__group__result.html#gga9008565cba0207520330a1cb8509a8d0aaa418c782ce87fab530d277e60def871"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,7 +1,23 @@
 var searchData=
 [
   ['raw_0',['raw',['../group__group__result.html#aa46cfbec8a99e1c9bce73b87f1f988c9',1,'cy_rslt_decode_t']]],
-  ['rx_5fbuffer_1',['rx_buffer',['../group__group__hal__uart.html#abf31b7706f129f2ea59471ba7fb6835a',1,'cyhal_uart_cfg_t']]],
-  ['rx_5fbuffer_5fsize_2',['rx_buffer_size',['../group__group__hal__uart.html#a3ab4d4e2c33ec8ba1a0943e1f24d61f1',1,'cyhal_uart_cfg_t']]],
-  ['rx_5ftx_5fdll_3',['rx_tx_dll',['../struct__cyhal__uart__slow__t.html#a06362790087c52815222213960cc386c',1,'_cyhal_uart_slow_t']]]
+  ['ref_5fclk_1',['ref_clk',['../group__group__hal__ethernet.html#a02b1d55cecd466a64f4688ae9e1694c6',1,'cyhal_ethernet_rmii_pins_t']]],
+  ['rx_5fbuffer_2',['rx_buffer',['../group__group__hal__uart.html#abf31b7706f129f2ea59471ba7fb6835a',1,'cyhal_uart_cfg_t']]],
+  ['rx_5fbuffer_5fsize_3',['rx_buffer_size',['../group__group__hal__uart.html#a3ab4d4e2c33ec8ba1a0943e1f24d61f1',1,'cyhal_uart_cfg_t']]],
+  ['rx_5fclk_4',['rx_clk',['../group__group__hal__ethernet.html#aa2e2c4b70dac1ee87c3f105d45100f1c',1,'cyhal_ethernet_mii_pins_t::rx_clk()'],['../group__group__hal__ethernet.html#a1fc65870891c1f41dd4b86cf4bce97dd',1,'cyhal_ethernet_gmii_pins_t::rx_clk()'],['../group__group__hal__ethernet.html#a6f7cba6f4b0e22d340a87ea1a415cdea',1,'cyhal_ethernet_rgmii_pins_t::rx_clk()']]],
+  ['rx_5fcol_5',['rx_col',['../group__group__hal__ethernet.html#abb5ae2e035ff50b8137668680db0c6bf',1,'cyhal_ethernet_mii_pins_t::rx_col()'],['../group__group__hal__ethernet.html#a35956a83342fc6d63fa456343f99aa2f',1,'cyhal_ethernet_gmii_pins_t::rx_col()']]],
+  ['rx_5fcrs_6',['rx_crs',['../group__group__hal__ethernet.html#ad3ba38d8f5633c8135968de09fbb6dfe',1,'cyhal_ethernet_mii_pins_t::rx_crs()'],['../group__group__hal__ethernet.html#ae2d76c4002a61dd7c0d23153b06e9d2b',1,'cyhal_ethernet_gmii_pins_t::rx_crs()']]],
+  ['rx_5fctl_7',['rx_ctl',['../group__group__hal__ethernet.html#a714186acef8ad0b141387df1e5fce43e',1,'cyhal_ethernet_rgmii_pins_t']]],
+  ['rx_5fd0_8',['rx_d0',['../group__group__hal__ethernet.html#a178572e6b8f35f0db1113f1cb665abf3',1,'cyhal_ethernet_mii_pins_t::rx_d0()'],['../group__group__hal__ethernet.html#a1536c5bf8494e7ea83bfefc203735aae',1,'cyhal_ethernet_rmii_pins_t::rx_d0()'],['../group__group__hal__ethernet.html#a5f12c1a44ce00060b9175c4b4ae4334f',1,'cyhal_ethernet_gmii_pins_t::rx_d0()'],['../group__group__hal__ethernet.html#ace59260cf10a2bc06e1eda6aa479e3e0',1,'cyhal_ethernet_rgmii_pins_t::rx_d0()']]],
+  ['rx_5fd1_9',['rx_d1',['../group__group__hal__ethernet.html#aa3c84972b8d124bbaa1a799d7386e9d5',1,'cyhal_ethernet_rgmii_pins_t::rx_d1()'],['../group__group__hal__ethernet.html#a8741275070b8ca4e2a6225abc7863d22',1,'cyhal_ethernet_gmii_pins_t::rx_d1()'],['../group__group__hal__ethernet.html#a1b81a8fc92f4ff9917ef3e10fd72852b',1,'cyhal_ethernet_mii_pins_t::rx_d1()'],['../group__group__hal__ethernet.html#a7361b5320a0b22e40f867be07b0ddd95',1,'cyhal_ethernet_rmii_pins_t::rx_d1()']]],
+  ['rx_5fd2_10',['rx_d2',['../group__group__hal__ethernet.html#a141024227f8bafbb8eb7244f2a56d95e',1,'cyhal_ethernet_mii_pins_t::rx_d2()'],['../group__group__hal__ethernet.html#a24470bb2d1e7df17e9aaf9c902c013f8',1,'cyhal_ethernet_gmii_pins_t::rx_d2()'],['../group__group__hal__ethernet.html#aa834cc522a706207771fe3f7bfd4f69b',1,'cyhal_ethernet_rgmii_pins_t::rx_d2()']]],
+  ['rx_5fd3_11',['rx_d3',['../group__group__hal__ethernet.html#a7aee8f4aaa53b77367dac79c3a4d9dc1',1,'cyhal_ethernet_mii_pins_t::rx_d3()'],['../group__group__hal__ethernet.html#a19a02664848b50f29f6d4ae2877a5357',1,'cyhal_ethernet_gmii_pins_t::rx_d3()'],['../group__group__hal__ethernet.html#a60d88d90c369e8a0293f71f53bf12971',1,'cyhal_ethernet_rgmii_pins_t::rx_d3()']]],
+  ['rx_5fd4_12',['rx_d4',['../group__group__hal__ethernet.html#a174ed02d607df8d8e599a816597cb51c',1,'cyhal_ethernet_gmii_pins_t']]],
+  ['rx_5fd5_13',['rx_d5',['../group__group__hal__ethernet.html#a148a139579f79ec248bbe98881aa0efa',1,'cyhal_ethernet_gmii_pins_t']]],
+  ['rx_5fd6_14',['rx_d6',['../group__group__hal__ethernet.html#ac8400b2f0d8734f360d7a320afd64486',1,'cyhal_ethernet_gmii_pins_t']]],
+  ['rx_5fd7_15',['rx_d7',['../group__group__hal__ethernet.html#a575e7f07cca24df67909f628fc16ffb3',1,'cyhal_ethernet_gmii_pins_t']]],
+  ['rx_5fdv_16',['rx_dv',['../group__group__hal__ethernet.html#ab80ebc195134ae80f4ebd6e97cca5904',1,'cyhal_ethernet_mii_pins_t::rx_dv()'],['../group__group__hal__ethernet.html#af5d26aa0b9a3576bbbfa4d80398e7860',1,'cyhal_ethernet_gmii_pins_t::rx_dv()']]],
+  ['rx_5fdv_5fcrs_17',['rx_dv_crs',['../group__group__hal__ethernet.html#a605610c6285ce25279627bb2c0a12429',1,'cyhal_ethernet_rmii_pins_t']]],
+  ['rx_5ferr_18',['rx_err',['../group__group__hal__ethernet.html#a60bfa5f043f2fc37ebfea791500f1498',1,'cyhal_ethernet_mii_pins_t::rx_err()'],['../group__group__hal__ethernet.html#a0919fa484792020e7f47916417eac40c',1,'cyhal_ethernet_rmii_pins_t::rx_err()'],['../group__group__hal__ethernet.html#ac9c08f370df1a4aca2494b528573f306',1,'cyhal_ethernet_gmii_pins_t::rx_err()']]],
+  ['rx_5ftx_5fdll_19',['rx_tx_dll',['../struct__cyhal__uart__slow__t.html#a06362790087c52815222213960cc386c',1,'_cyhal_uart_slow_t']]]
 ];

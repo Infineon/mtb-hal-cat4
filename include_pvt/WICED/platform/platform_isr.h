@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -36,7 +36,6 @@
  */
 #pragma once
 
-#include "platform_constants.h"
 #include "platform_config.h"
 
 #ifdef __cplusplus
@@ -186,7 +185,7 @@ extern void platform_irq_demuxer (void);
 #define PLATFORM_SET_DEFAULT_ISR_DEMUXER( function ) \
         void function( void ); \
         __attribute__(( weak, interrupt, used, section(IRQ_SECTION) )) void function( void )
-        
+
 #elif defined ( __IAR_SYSTEMS_ICC__ )
 
 #define PLATFORM_SET_DEFAULT_ISR_DEMUXER( function ) \

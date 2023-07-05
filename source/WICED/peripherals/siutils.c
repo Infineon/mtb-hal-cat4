@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -41,7 +41,7 @@
 #include "sbchipc.h"
 #include "hndsoc.h"
 #include "hndpmu.h"
-#include "bcmdevs.h"
+#include "cyhal_ethernet_devices.h"
 #include "wiced_osl.h"
 
 #include "platform_map.h"
@@ -60,14 +60,14 @@
 #error CC_CORE_REV not defined!
 #endif
 #define I2S_CORE_REV             5
-#define GMAC_CORE_REV           6
-#define DDR_CONTROLLER_CORE_REV 0
-#define M2MDMA_CORE_REV         0
-#define CRYPTO_CORE_REV         0
-#define GCI_CORE_REV            4
-#define USB20H_CORE_REV         5
+#define GMAC_CORE_REV            6
+#define DDR_CONTROLLER_CORE_REV  0
+#define M2MDMA_CORE_REV          0
+#define CRYPTO_CORE_REV          0
+#define GCI_CORE_REV             4
+#define USB20H_CORE_REV          5
 #define USB20D_CORE_REV         23
-#define SDIOH_CORE_REV          3
+#define SDIOH_CORE_REV           3
 
 typedef struct si_private
 {
@@ -301,7 +301,7 @@ si_core_disable(si_t *sih, uint32 bits)
     volatile uint32 dummy;
     uint32 status;
 
-    ASSERT(ai);
+    CY_ASSERT(ai);
 
     /* if core is already in reset, just return */
     if (R_REG(NULL, &ai->resetctrl) & AIRC_RESET)
@@ -320,12 +320,12 @@ si_core_disable(si_t *sih, uint32 bits)
 
     W_REG(NULL, &ai->resetctrl, AIRC_RESET);
     dummy = R_REG(NULL, &ai->resetctrl);
-    BCM_REFERENCE(dummy);
+    UNUSED_PARAMETER(dummy);
     OSL_DELAY(1);
 
     W_REG(NULL, &ai->ioctrl, bits);
     dummy = R_REG(NULL, &ai->ioctrl);
-    BCM_REFERENCE(dummy);
+    UNUSED_PARAMETER(dummy);
     OSL_DELAY(10);
 }
 
@@ -335,8 +335,8 @@ si_core_cflags(si_t *sih, uint32 mask, uint32 val)
     si_info_t *sii = SI_INFO(sih);
     aidmp_t *ai = sii->priv.curwrap;
 
-    ASSERT(ai);
-    ASSERT((val & ~mask) == 0);
+    CY_ASSERT(ai);
+    CY_ASSERT((val & ~mask) == 0);
 
     if (mask || val)
     {
@@ -353,9 +353,9 @@ si_core_sflags(si_t *sih, uint32 mask, uint32 val)
     si_info_t *sii = SI_INFO(sih);
     aidmp_t *ai = sii->priv.curwrap;
 
-    ASSERT(ai);
-    ASSERT((val & ~mask) == 0);
-    ASSERT((mask & ~SISF_CORE_BITS) == 0);
+    CY_ASSERT(ai);
+    CY_ASSERT((val & ~mask) == 0);
+    CY_ASSERT((mask & ~SISF_CORE_BITS) == 0);
 
     if (mask || val)
     {
@@ -371,7 +371,7 @@ si_iscoreup_wrapper(void *wrapper)
 {
     aidmp_t *ai = wrapper;
 
-    ASSERT(ai);
+    CY_ASSERT(ai);
 
     return (((R_REG(NULL, &ai->ioctrl) & (SICF_FGC | SICF_CLOCK_EN)) == SICF_CLOCK_EN) &&
            ((R_REG(NULL, &ai->resetctrl) & AIRC_RESET) == 0));
@@ -468,8 +468,8 @@ si_clock_rate(uint32 pll_type, uint32 n, uint32 m)
     {
         n1 += CC_T2_BIAS;
         n2 += CC_T2_BIAS;
-        ASSERT((n1 >= 2) && (n1 <= 7));
-        ASSERT((n2 >= 5) && (n2 <= 23));
+        CY_ASSERT((n1 >= 2) && (n1 <= 7));
+        CY_ASSERT((n2 >= 5) && (n2 <= 23));
     }
     else if (pll_type == PLL_TYPE5)
     {
@@ -478,7 +478,7 @@ si_clock_rate(uint32 pll_type, uint32 n, uint32 m)
     }
     else
     {
-        ASSERT(0);
+        CY_ASSERT(0);
     }
 
     /* PLL types 3 and 7 use BASE2 (25Mhz) */
@@ -537,7 +537,7 @@ si_clock_rate(uint32 pll_type, uint32 n, uint32 m)
         if ( false == valid_clock_divisor )
         {
             // invalid clock divisor
-            ASSERT(false);
+            CY_ASSERT(false);
             //WPRINT_WICED_ERROR(( "Invalid clock divisor pll=%d, m1 = %d m2 = %d m3 = %d\n", mc, m1, m2, m3 ));
 
             return 0;
@@ -556,14 +556,14 @@ si_clock_rate(uint32 pll_type, uint32 n, uint32 m)
     }
     else
     {
-        ASSERT(pll_type == PLL_TYPE2);
+        CY_ASSERT(pll_type == PLL_TYPE2);
 
         m1 += CC_T2_BIAS;
         m2 += CC_T2M2_BIAS;
         m3 += CC_T2_BIAS;
-        ASSERT((m1 >= 2) && (m1 <= 7));
-        ASSERT((m2 >= 3) && (m2 <= 10));
-        ASSERT((m3 >= 2) && (m3 <= 7));
+        CY_ASSERT((m1 >= 2) && (m1 <= 7));
+        CY_ASSERT((m2 >= 3) && (m2 <= 10));
+        CY_ASSERT((m3 >= 2) && (m3 <= 7));
 
         if ((mc & CC_T2MC_M1BYP) == 0)
         {
@@ -588,7 +588,7 @@ si_core_reset_set_wrapper(void *wrapper, uint32 bits, uint32 resetbits)
     aidmp_t *ai = wrapper;
     volatile uint32 dummy;
 
-    ASSERT(ai);
+    CY_ASSERT(ai);
 
     /* ensure there are no pending backplane operations */
     SPINWAIT(((dummy = R_REG(NULL, &ai->resetstatus)) != 0), 300);
@@ -602,7 +602,7 @@ si_core_reset_set_wrapper(void *wrapper, uint32 bits, uint32 resetbits)
 
     W_REG(NULL, &ai->ioctrl, (bits | resetbits | SICF_FGC | SICF_CLOCK_EN));
     dummy = R_REG(NULL, &ai->ioctrl);
-    BCM_REFERENCE(dummy);
+    UNUSED_PARAMETER(dummy);
 }
 
 void
@@ -612,7 +612,7 @@ si_core_reset_clear_wrapper(void *wrapper, uint32 bits)
     volatile uint32 dummy;
     uint loop_counter;
 
-    ASSERT(ai);
+    CY_ASSERT(ai);
 
     /* ensure there are no pending backplane operations */
     SPINWAIT(((dummy = R_REG(NULL, &ai->resetstatus)) != 0), 300);
@@ -632,7 +632,7 @@ si_core_reset_clear_wrapper(void *wrapper, uint32 bits)
 
     W_REG(NULL, &ai->ioctrl, (bits | SICF_CLOCK_EN));
     dummy = R_REG(NULL, &ai->ioctrl);
-    BCM_REFERENCE(dummy);
+    UNUSED_PARAMETER(dummy);
     OSL_DELAY(1);
 }
 
@@ -704,9 +704,9 @@ si_corereg(si_t *sih, uint coreindex, uint regoff, uint mask, uint val)
     uint32 *r;
     uint w;
 
-    ASSERT(coreindex < SI_MAXCORES);
-    ASSERT(regoff < SI_CORE_SIZE);
-    ASSERT((val & ~mask) == 0);
+    CY_ASSERT(coreindex < SI_MAXCORES);
+    CY_ASSERT(regoff < SI_CORE_SIZE);
+    CY_ASSERT((val & ~mask) == 0);
 
     if (coreindex >= ARRAYSIZE(core_info))
     {
@@ -714,7 +714,7 @@ si_corereg(si_t *sih, uint coreindex, uint regoff, uint mask, uint val)
     }
 
     r = (uint32 *)((uchar *)core_info[coreindex].curmap + regoff);
-    ASSERT(r != NULL);
+    CY_ASSERT(r != NULL);
 
     /* mask and set */
     if (mask || val)
@@ -735,8 +735,8 @@ si_corereg_addr(si_t *sih, uint coreindex, uint regoff)
     (void)sih; // Unused parameter warning
     uint32 *r = NULL;
 
-    ASSERT(coreindex < SI_MAXCORES);
-    ASSERT(regoff < SI_CORE_SIZE);
+    CY_ASSERT(coreindex < SI_MAXCORES);
+    CY_ASSERT(regoff < SI_CORE_SIZE);
 
     if (coreindex >= ARRAYSIZE(core_info))
     {
@@ -744,7 +744,7 @@ si_corereg_addr(si_t *sih, uint coreindex, uint regoff)
     }
 
     r = (uint32 *)((uchar *)core_info[coreindex].curmap + regoff);
-    ASSERT(r != NULL);
+    CY_ASSERT(r != NULL);
 
     return r;
 }

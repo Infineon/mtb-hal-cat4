@@ -6,6 +6,7 @@ var group__group__hal__availability =
     [ "CYHAL_DRIVER_AVAILABLE_CRC", "group__group__hal__availability.html#ga34ccfba8df596cb51121cd939f5dc8e7", null ],
     [ "CYHAL_DRIVER_AVAILABLE_DAC", "group__group__hal__availability.html#ga11e5b6567243892d3b7ee5ea3d636923", null ],
     [ "CYHAL_DRIVER_AVAILABLE_DMA", "group__group__hal__availability.html#gab6ff6036bf3f1646f562f687d3341eaf", null ],
+    [ "CYHAL_DRIVER_AVAILABLE_ETHERNET", "group__group__hal__availability.html#gac94b302c6f8ac6cfa4e3584795822eb6", null ],
     [ "CYHAL_DRIVER_AVAILABLE_EZI2C", "group__group__hal__availability.html#ga5d668f66e4de981f1b6016b0b9842e97", null ],
     [ "CYHAL_DRIVER_AVAILABLE_NVM", "group__group__hal__availability.html#ga5a2601a3ad02e25fcca8f9c4ff5179c9", null ],
     [ "CYHAL_DRIVER_AVAILABLE_FLASH", "group__group__hal__availability.html#ga144cd0560450d7a2ba7cbd41004c9514", null ],

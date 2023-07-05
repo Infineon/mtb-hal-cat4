@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -41,7 +41,6 @@
 #include "sbchipc.h"
 #include "hndsoc.h"
 #include "hndpmu.h"
-#include "bcmdevs.h"
 #include "wiced_osl.h"
 #include "cyhal_system.h"
 
@@ -336,7 +335,7 @@ osl_get_corerev(uint coreid)
     si_setcore(si, coreid, 0);
     corerev = si_corerev(si);
     si_setcoreidx(si, idx);
-    
+
     return corerev;
 }
 
@@ -491,7 +490,7 @@ bcm_bprintf(struct bcmstrbuf *b, const char *fmt, ...)
 }
 
 /*******************************************************************************
-*       Internal - WHD host buffer default functions 
+*       Internal - WHD host buffer default functions
 *******************************************************************************/
 
 __WEAK cy_rslt_t host_buffer_get(wiced_buffer_t * buffer, wwd_buffer_dir_t direction, unsigned short size, bool wait)

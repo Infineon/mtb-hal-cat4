@@ -118,6 +118,7 @@ var group__group__result =
       [ "CY_RSLT_MODULE_MIDDLEWARE_HTTP_CLIENT", "group__group__result.html#gga9008565cba0207520330a1cb8509a8d0ae69aa06234a499474538f623bb894d0e", null ],
       [ "CY_RSLT_MODULE_MIDDLEWARE_ML", "group__group__result.html#gga9008565cba0207520330a1cb8509a8d0a039aedf17b75679fd45fa19a129f7959", null ],
       [ "CY_RSLT_MODULE_MIDDLEWARE_KVSTORE", "group__group__result.html#gga9008565cba0207520330a1cb8509a8d0a3e046d2c923cd2d31dc65dfd758e3214", null ],
-      [ "CY_RSLT_MODULE_MIDDLEWARE_LIN", "group__group__result.html#gga9008565cba0207520330a1cb8509a8d0ab2647d2f7d4942233e5f778f8226f5e9", null ]
+      [ "CY_RSLT_MODULE_MIDDLEWARE_LIN", "group__group__result.html#gga9008565cba0207520330a1cb8509a8d0ab2647d2f7d4942233e5f778f8226f5e9", null ],
+      [ "CY_RSLT_MODULE_MIDDLEWARE_UBM", "group__group__result.html#gga9008565cba0207520330a1cb8509a8d0aed332676fe75417e82de862638622005", null ]
     ] ]
 ];

@@ -25,14 +25,10 @@
 *******************************************************************************/
 
 #include "cyhal_timer.h"
-#include "cyhal_clock.h"
 #include "cyhal_system.h"
 #include "cyhal_hwmgr.h"
 #include "cy_utils.h"
 #include "platform_appscr4.h"
-
-#include "typedefs.h"
-#include "sbchipc.h"
 
 #if defined(__cplusplus)
 extern "C" {

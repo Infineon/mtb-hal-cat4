@@ -297,8 +297,8 @@ cy_rslt_t cyhal_dma_configure(cyhal_dma_t *obj, const cyhal_dma_cfg_t *cfg)
 
     if (status == CY_RSLT_SUCCESS && obj->direction == CYHAL_DMA_DIRECTION_MEM2MEM)
     {
-        if ((cfg->src_addr < _CYHAL_DMA_SRAM_START) && (cfg->src_addr > _CYHAL_DMA_SRAM_END)
-            && (cfg->dst_addr < _CYHAL_DMA_SRAM_START) && (cfg->dst_addr > _CYHAL_DMA_SRAM_END))
+        if ((cfg->src_addr < _CYHAL_DMA_SRAM_START) || (cfg->src_addr > _CYHAL_DMA_SRAM_END)
+            || (cfg->dst_addr < _CYHAL_DMA_SRAM_START) || (cfg->dst_addr > _CYHAL_DMA_SRAM_END))
         {
             status = CYHAL_DMA_RSLT_ERR_INVALID_PARAMETER;
         }

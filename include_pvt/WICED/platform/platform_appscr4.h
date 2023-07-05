@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -1375,11 +1375,11 @@ typedef union
 #define GCI_CHIPCONTROL_MASK_INVALID                 (0x0)
 #define GCI_CHIPCONTROL_POS_INVALID                  (0xFF)
 
-#define GCI_CHIPCONTROL_GMAC_INTERFACE_REG           6
-#define GCI_CHIPCONTROL_GMAC_INTERFACE_SHIFT         23
+#define GCI_CHIPCONTROL_GMAC_INTERFACE_REG           6      /* GCIChipControl6 */
+#define GCI_CHIPCONTROL_GMAC_INTERFACE_SHIFT         23     /* bits 24:23 - GMACModeSel */
 #define GCI_CHIPCONTROL_GMAC_INTERFACE_MASK          (0x3 << GCI_CHIPCONTROL_GMAC_INTERFACE_SHIFT)
-#define GCI_CHIPCONTROL_GMAC_INTERFACE_RMII          (0x3 << GCI_CHIPCONTROL_GMAC_INTERFACE_SHIFT)
-#define GCI_CHIPCONTROL_GMAC_INTERFACE_MII           (0x1 << GCI_CHIPCONTROL_GMAC_INTERFACE_SHIFT)
+#define GCI_CHIPCONTROL_GMAC_INTERFACE_MII           (0x1 << GCI_CHIPCONTROL_GMAC_INTERFACE_SHIFT)  /* mii mode */
+#define GCI_CHIPCONTROL_GMAC_INTERFACE_RMII          (0x3 << GCI_CHIPCONTROL_GMAC_INTERFACE_SHIFT)  /* rmii mode */
 
 #define GCI_CHIPCONTROL_DDR_FREQ_REG                 5
 #define GCI_CHIPCONTROL_DDR_FREQ_SHIFT               21

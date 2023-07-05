@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -36,8 +36,7 @@
  * $Id: hnddma.h 321146 2012-03-14 08:27:23Z deepakd $
  */
 
-#ifndef    _m2m_hnddma_h_
-#define    _m2m_hnddma_h_
+#pragma once
 
 #include <stdint.h>
 #include "bcmdefs.h"
@@ -102,4 +101,3 @@ extern m2m_hnddma_t * m2m_dma_attach(osl_t *osh, const char *name, si_t *sih,
     uint ntxd, uint nrxd, uint rxbufsize, int rxextheadroom, uint nrxpost,
     uint rxoffset, uint *msg_level);
 
-#endif    /* _m2m_hnddma_h_ */

@@ -6,6 +6,7 @@ var searchData=
   ['pin_3',['pin',['../group__group__hal__gpio.html#adf08cc4c443eb36d53cc943ddd1447a4',1,'cyhal_gpio_callback_data_t::pin()'],['../group__group__hal__impl__pin__package.html#a61f6033fdaae54a06ac8e63656b2a37a',1,'cyhal_resource_pin_mapping_t::pin()']]],
   ['pins_4',['Pins',['../group__group__hal__impl__pin__package.html',1,'']]],
   ['power_20management_5',['Power Management',['../group__group__hal__impl__PM.html',1,'']]],
-  ['pwm_20_28pulse_20width_20modulator_29_6',['PWM (Pulse Width Modulator)',['../group__group__hal__impl__pwm.html',1,'(Global Namespace)'],['../group__group__hal__pwm.html',1,'(Global Namespace)']]],
-  ['pwm_20hal_20results_7',['PWM HAL Results',['../group__group__hal__results__pwm.html',1,'']]]
+  ['preamble_6',['preamble',['../group__group__hal__ethernet.html#a07fcc50bff54b937b4304c0e9324e84a',1,'cyhal_ether_header_t']]],
+  ['pwm_20_28pulse_20width_20modulator_29_7',['PWM (Pulse Width Modulator)',['../group__group__hal__impl__pwm.html',1,'(Global Namespace)'],['../group__group__hal__pwm.html',1,'(Global Namespace)']]],
+  ['pwm_20hal_20results_8',['PWM HAL Results',['../group__group__hal__results__pwm.html',1,'']]]
 ];

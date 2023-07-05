@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -34,11 +34,10 @@
  *
  * $Id:m2mdma _core.h 421139 2013-08-30 17:56:15Z kiranm $
  */
-#ifndef	_M2MDMA_CORE_H
-#define	_M2MDMA_CORE_H
+#pragma once
 
 #include <typedefs.h>
-#include <sbhnddma.h>
+#include "sbhnddma.h"
 /* cpp contortions to concatenate w/arg prescan */
 #ifndef PAD
 #define	_PADLINE(line)	pad ## line
@@ -94,4 +93,3 @@ typedef struct sbpm2mregs {
 #define M2M_CAPABILITIES_CHANNEL_COUNT_SHIFT             0
 #define M2M_CAPABILITIES_CHANNEL_COUNT_MASK             (0xF << M2M_CAPABILITIES_CHANNEL_COUNT_SHIFT)
 
-#endif	/* _M2MDMA_CORE_H */

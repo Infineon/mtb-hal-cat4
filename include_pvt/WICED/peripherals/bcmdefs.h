@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -35,8 +35,7 @@
  * $Id: bcmdefs.h 477788 2014-05-14 17:06:51Z weitsan $
  */
 
-#ifndef	_bcmdefs_h_
-#define	_bcmdefs_h_
+#pragma once
 
 #include "typedefs.h"
 
@@ -44,11 +43,6 @@
  * One doesn't need to include this file explicitly, gets included automatically if
  * typedefs.h is included.
  */
-
-/* Use BCM_REFERENCE to suppress warnings about intentionally-unused function
- * arguments or local variables.
- */
-#define BCM_REFERENCE(data)	((void)(data))
 
 /* Allow for suppressing unused variable warnings. */
 #ifdef __GNUC__
@@ -58,9 +52,9 @@
 #endif
 
 #ifdef EFI
-#define STATIC_ASSERT(expr)	ASSERT((expr))
+#define STATIC_ASSERT(expr)	CY_ASSERT((expr))
 #else
-/* Compile-time assert can be used in place of ASSERT if the expression evaluates
+/* Compile-time assert can be used in place of CY_ASSERT if the expression evaluates
  * to a constant at compile time.
  */
 #define STATIC_ASSERT(expr) { \
@@ -210,7 +204,7 @@ typedef struct {
 #define BCMROMFN_NAME(_fn)	_fn
 #elif defined(BCMROMBUILD) && !defined(BCMROMSYMGEN_BUILD) && !defined(BCMJMPTBL_TCAM) && \
 	!defined(WLC_PATCH_IOCTL_CHECKSUM)
-#include <bcmjmptbl.h>
+#include "bcmjmptbl.h"
 #define STATIC	static
 #else /* !BCMROMBUILD */
 #define BCMROMDATA(_data)	_data
@@ -362,7 +356,8 @@ typedef struct {
  * By doing, we avoid the need  to allocate an extra buffer for the header when bridging to WL.
  * There is a compile time check in wlc.c which ensure that this value is at least as big
  * as TXOFF. This value is used in dma_rxfill (hnddma.c).
- * WICED: In case of 43909 there is no need to share the same rx header room within
+ *
+ * In case of 43909 there is no need to share the same rx header room within
  * interfaces. Every interface should have their own header room in case the forwarding is
  * needed.
  */
@@ -500,4 +495,3 @@ typedef struct {
 
 extern uint32 gFWID;
 
-#endif /* _bcmdefs_h_ */

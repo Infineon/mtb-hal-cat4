@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -30,16 +30,36 @@
  * of such system or application assumes all risk of such use and in doing
  * so agrees to indemnify Cypress against all liability.
  *
- * BCM common config options
+ * Hardware-specific Receive Data Header for the
+ * Broadcom Home Networking Division
+ * BCM47XX GbE cores.
  *
- * $Id: bcm_cfg.h 351867 2012-08-21 18:46:16Z kadavath $
+ * $Id: cyhal_ethernet_gmac_rx_hdr.h 376342 2012-12-24 21:02:49Z palter $
  */
 
-#ifndef _bcm_cfg_h_
-#define _bcm_cfg_h_
-#if defined(__NetBSD__)
-#if defined(_KERNEL)
-#include <opt_bcm.h>
-#endif /* defined(_KERNEL) */
-#endif /* defined(__NetBSD__) */
-#endif /* _bcm_cfg_h_ */
+#pragma once
+
+/*
+ * The Ethernet GMAC core returns an 8-byte Receive Frame Data Header
+ * with every frame consisting of
+ * 16 bits of frame length, followed by
+ * 16 bits of GMAC rx descriptor info, followed by 32bits of undefined.
+ */
+typedef volatile struct {
+    uint16    len;
+    uint16    flags;
+    uint16    pad[12];
+} bcmgmacrxh_t;
+
+#define _CYHAL_ETHERNET_DMA_RX_HEADER_LENGTH      (28)                /* DMA Header length */
+
+#define _CYHAL_ETHERNET_DMA_RX_FLAG_OVERFLOW      ((uint16)1 << 7)    /* 0x80 overflow error occured */
+#define _CYHAL_ETHERNET_DMA_RX_FLAG_OVERSIZED     ((uint16)1 << 4)    /* 0x10 frame size > rxmaxlength */
+#define _CYHAL_ETHERNET_DMA_RX_FLAG_CRC_ERROR     ((uint16)1 << 3)    /* 0x08 crc error */
+#define _CYHAL_ETHERNET_DMA_RX_FLAG_VLAN          ((uint16)1 << 2)    /* 0x04 vlan tag detected */
+
+#define GMAC_GRXF_PACKET_TYPE_MASK               ((uint16)3)     /* packet type Mask */
+#define GMAC_GRXF_PACKET_TYPE_UNICAST            ((uint16)0)     /* packet type 0 - Unicast  */
+#define GMAC_GRXF_PACKET_TYPE_MULTICAST          ((uint16)1)     /* packet type 1 - Multicast */
+#define GMAC_GRXF_PACKET_TYPE_BROADCAST          ((uint16)2)     /* packet type 2 - Broadcast */
+

@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -110,20 +110,6 @@ void _start( void )
 void _exit( int status )
 {
     /* the main loop has returned - there is now nothing to do */
-
-    /* Allow some time for any printf calls to complete */
-    volatile unsigned int i; /* try to make this not get optimized out by declaring the variable as volatile */
-    volatile unsigned int j; /* try to make this not get optimized out by declaring the variable as volatile */
-
     (void) status; /* unused parameter */
-
-    for ( i = 0; i < (unsigned int) 1000; i++ )
-    {
-        for ( j = 0; j < (unsigned int) 10000; j++ )
-        {
-            __asm("NOP");
-        }
-    }
-
-    while(1){};
+    while(1){}
 }

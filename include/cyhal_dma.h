@@ -186,6 +186,8 @@ typedef enum
     CYHAL_DMA_CURR_PTR_NULL       = 1 << 6, //!< Indicates that the current descriptor pointer is null
     CYHAL_DMA_ACTIVE_CH_DISABLED  = 1 << 7, //!< Indicates that the active channel is disabled
     CYHAL_DMA_DESCR_BUS_ERROR     = 1 << 8, //!< Indicates that there has been a descriptor bus error
+    CYHAL_DMA_GENERIC_ERROR       = 1 << 9, /**< Indicates that there has been a generic error during
+                                                the DMA transfer */
 } cyhal_dma_event_t;
 
 /** Specifies the transfer type to trigger when an input signal is received. */

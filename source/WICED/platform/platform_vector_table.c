@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -39,12 +39,6 @@
 #include "platform_toolchain.h"
 #include "platform_isr.h"
 #include "platform_appscr4.h"
-#include "platform_mcu_peripheral.h"
-
-#include "typedefs.h"
-#include "sbchipc.h"
-#include "aidmp.h"
-
 
 /******************************************************
  *               platform_unhandled_isr.c
@@ -169,11 +163,11 @@ void platform_irq_demuxer (void)
 
     if ( status )
     {
-        unsigned i;
+        unsigned i = 0;
 
         PLATFORM_APPSCR4->fiqirq_status = status;
 
-        for ( i = 0; status && (i < ARRAYSIZE(interrupt_vector_table)); ++i )
+        while ( status && (i < ARRAYSIZE(interrupt_vector_table)) )
         {
             uint32_t irqn_mask = IRQN2MASK(interrupt_vector_table[i].irqn);
 
@@ -182,6 +176,7 @@ void platform_irq_demuxer (void)
                 interrupt_vector_table[i].isr();
                 status &= ~irqn_mask;
             }
+            i++;
         }
     }
 
@@ -193,12 +188,12 @@ void platform_irq_demuxer (void)
     cpu_data_synchronisation_barrier( );
 }
 
-/* 
+/*
  * Note: In bare-metal mode, the "interrupt" attribute is needed to tell the compiler to
  * generate the proper entry and exit sequences for handling interrupts. In RTOS, this is
  * handled differently and the "interrupt" attribute must be removed. The trampoline
  * performed here is to allow the RTOS to use the platform_irq_demuxer() function as is.
- * The RTOS is expected to provide the strong implementations for, 
+ * The RTOS is expected to provide the strong implementations for,
  *  1. irq_vector_external_interrupt()
  *  2. platform_irq_demuxer_default()
  * The RTOS is also expected to provide the ISR calling the platform_irq_demuxer() function:

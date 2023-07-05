@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['i2c_0',['I2C',['../group__group__hal__impl__i2c.html',1,'']]],
-  ['i2c_20_28inter_2dintegrated_20circuit_29_1',['I2C (Inter-Integrated Circuit)',['../group__group__hal__i2c.html',1,'']]],
-  ['i2c_20hal_20results_2',['I2C HAL Results',['../group__group__hal__results__i2c.html',1,'']]],
-  ['implementation_20specific_20types_3',['Implementation Specific Types',['../group__group__hal__types__implementation.html',1,'']]],
-  ['ipc_20_28inter_2dprocessor_20communication_29_4',['IPC (Inter-Processor Communication)',['../group__group__hal__ipc.html',1,'']]],
-  ['ipc_20hal_20results_5',['IPC HAL Results',['../group__group__hal__results__ipc.html',1,'']]]
+  ['hal_20driver_20availability_0',['HAL Driver Availability',['../group__group__hal__availability.html',1,'']]],
+  ['hal_20drivers_1',['HAL Drivers',['../group__group__hal.html',1,'']]],
+  ['hal_20general_20types_2fmacros_2',['HAL General Types/Macros',['../group__group__hal__types.html',1,'']]],
+  ['hwmgr_20_28hardware_20manager_29_3',['HWMGR (Hardware Manager)',['../group__group__hal__hwmgr.html',1,'']]],
+  ['hwmgr_20hal_20results_4',['HWMGR HAL Results',['../group__group__hal__results__hwmgr.html',1,'']]]
 ];

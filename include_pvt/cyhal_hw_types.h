@@ -44,6 +44,7 @@
 * | ------------------ | -------------------------------- |
 * | Clock              | All clocks (system & peripheral) |
 * | DMA                | M2M DMA                          |
+* | Ethernet           | Ethernet                         |
 * | GPIO               | GPIO                             |
 * | Hardware Manager   | NA                               |
 * | LPTimer            | PMU Timer                        |
@@ -65,19 +66,18 @@
 
 #pragma once
 
+#include <stdbool.h>
+#include <stddef.h>
 #include "cmsis_compiler.h"
 #include "cyhal_general_types.h"
 #include "cyhal_hw_resources.h"
 #include "cyhal_pin_package.h"
-#include <stdbool.h>
-#include <stddef.h>
 #include "cyhal_triggers.h"
 #include "ring_buffer.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 
 #ifndef CYHAL_ISR_PRIORITY_DEFAULT
 /** Priority that is applied by default to all drivers when initialized. Priorities can be
@@ -91,6 +91,32 @@ typedef void (* cy_israddress)(void);   /**< Type of ISR callbacks */
     typedef union { cy_israddress __fun; void * __ptr; } cy_intvec_elem;
 #endif  /* defined (__ICCARM__) */
 
+/** \addtogroup group_hal_ethernet_header
+ *  Ethernet Header field sizes
+ *  \{ *//**
+ */
+#define CYHAL_ETHER_PREAMBLE_LEN       (8)      /**< First part of ethernet frame header, all b10101010 (0xAA) + SFD (0xAB) */
+#define CYHAL_ETHER_ADDR_LEN           (6)      /**< The number of bytes (octets) in an ethernet (MAC) address. */
+#define CYHAL_ETHER_TYPE_LEN           (2)      /**< The number of bytes in the type field. */
+#define CYHAL_ETHER_CRC_LEN            (4)      /**< The number of bytes in the trailing CRC field. */
+#define CYHAL_ETHER_HDR_LEN         (CYHAL_ETHER_PREAMBLE_LEN + (CYHAL_ETHER_ADDR_LEN * 2) + CYHAL_ETHER_TYPE_LEN)   /**< The length of the combined header. */
+#define CYHAL_ETHER_MIN_LEN           (64)      /**< The minimum packet length. */
+#define CYHAL_ETHER_MIN_DATA          (46)      /**< The minimum packet user data length. */
+#define CYHAL_ETHER_MAX_LEN         (1518)      /**< The maximum packet length. */
+#define CYHAL_ETHER_MAX_DATA        (1500)      /**< The maximum packet user data length. */
+
+/**
+ * \}
+ */
+
+
+/** Ethernet MAC address (standard 6-byte (octet) MAC address) */
+typedef struct
+{
+    uint8_t octet[CYHAL_ETHER_ADDR_LEN];    /**< 48-bit Ethernet address */
+} cyhal_ether_addr_t;
+
+
 /** @brief Event callback data object */
 typedef struct {
     cy_israddress                       callback;
@@ -103,10 +129,15 @@ typedef struct {
 
 #define CYHAL_CLOCK_IMPL_HEADER         "cyhal_clock_impl.h"    //!< Implementation specific header for Clocks
 #define CYHAL_DMA_IMPL_HEADER           "cyhal_dma_impl.h"      //!< Implementation specific header for DMA
+#define _CYHAL_ETHERNET_IMPL_HEADER      "cyhal_ethernet_impl.h" //!< Implementation specific header for Ethernet
 #define CYHAL_SYSTEM_IMPL_HEADER        "cyhal_system_impl.h"   //!< Implementation specific header for System
 #define CYHAL_LPTIMER_IMPL_HEADER       "cyhal_lptimer_impl.h"  //!< Implementation specific header for Low Power Timer
 
 /** \endcond */
+
+/* Ethernet Clock block and channel */
+#define _CYHAL_ETHERNET_CLOCK_BLOCK      CYHAL_CLOCK_BLOCK_BACKPLANE    /**< Clock block */
+#define _CYHAL_ETHERNET_CLOCK_CHANNEL    0                              /**< Clock channel */
 
 /**
   * @brief DMA object
@@ -136,6 +167,42 @@ typedef struct {
   * 43907 does not support configurators, so this is a stub data type.
   */
 typedef void cyhal_dma_configurator_t;
+
+/** @brief Ethernet Info
+  * Application code should not rely on the specific contents of this struct.
+  * They are considered an implementation detail which is subject to change
+  * between platforms and/or HAL releases. */
+typedef struct
+{
+    void /* etc_info_t* */              *etc;                       /**< Ethernet Common data */
+    cyhal_ether_addr_t                  mac_address;                /**< Ethernet MAC address */
+    uint32_t                            watchdog_events;            /**< Ethernet Events since last watchdog call */
+    bool                                started;                    /**< Indicates that Ethernet has started */
+
+} _cyhal_ethernet_info_t;
+
+/**
+  * @brief Ethernet object
+  *
+  * Application code should not rely on the specific contents of this struct.
+  * They are considered an implementation detail which is subject to change
+  * between platforms and/or HAL releases.
+  */
+typedef struct {
+    uint32_t                    tag;                        /**< If == CYHAL_ETHERNET_OBJ_TAG, indicates object is initialized */
+    bool                        network_up;                 /**< Indicates if network is up
+                                                             *     true  = network is up
+                                                             *     false = network is down  */
+    uint32_t                    events_from_GMAC_irq;       /**< IRQ from GMAC informs us of interrupts */
+    void                        *user_callback;              /**< User callback function */
+    void                        *user_data;                 /**< Argument to be passed back to the user while invoking the callback */
+    uint32_t                    event_req;                  /**< User callback function event requests */
+    uint8_t                     intr_priority;              /**< User callback function interrupt priority */
+    cyhal_clock_t               clk;                        /**< Ethernet Clock */
+
+    _cyhal_ethernet_info_t      et_info;                    /**< Platform dependent Ethernet Info */
+
+} cyhal_ethernet_t;
 
 /**
  * @brief I2C object
@@ -317,6 +384,13 @@ typedef struct {
   * 43907 does not support configurators, so this is a stub data type.
   */
 typedef void cyhal_uart_configurator_t;
+
+/**
+  * @brief Ethernet configurator struct
+  *
+  * 43907 does not support configurators, so this is a stub data type.
+  */
+typedef void cyhal_ethernet_configurator_t;
 
 /**
   * @brief WDT object

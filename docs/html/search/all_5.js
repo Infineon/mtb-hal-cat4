@@ -6,6 +6,7 @@ var searchData=
   ['direction_3',['direction',['../group__group__hal__timer.html#abcacbb77905a45d92f9ecda65de6fe32',1,'cyhal_timer_cfg_t']]],
   ['dma_20_28direct_20memory_20access_29_4',['DMA (Direct Memory Access)',['../group__group__hal__dma.html',1,'(Global Namespace)'],['../group__group__hal__impl__dma.html',1,'(Global Namespace)']]],
   ['dma_20hal_20results_5',['DMA HAL Results',['../group__group__hal__results__dma.html',1,'']]],
-  ['dst_5faddr_6',['dst_addr',['../group__group__hal__dma.html#a4652fecb04594b84b09b07bee308e32a',1,'cyhal_dma_cfg_t']]],
-  ['dst_5fincrement_7',['dst_increment',['../group__group__hal__dma.html#ac294f82b4a288c8d9ad084b3a6e9a26e',1,'cyhal_dma_cfg_t']]]
+  ['drive_5fmode_6',['drive_mode',['../group__group__hal__ethernet.html#a5bd8acb55a9339b12cc36b9556222953',1,'cyhal_ethernet_config_t']]],
+  ['dst_5faddr_7',['dst_addr',['../group__group__hal__dma.html#a4652fecb04594b84b09b07bee308e32a',1,'cyhal_dma_cfg_t']]],
+  ['dst_5fincrement_8',['dst_increment',['../group__group__hal__dma.html#ac294f82b4a288c8d9ad084b3a6e9a26e',1,'cyhal_dma_cfg_t']]]
 ];

@@ -2,6 +2,7 @@ var group__group__hal =
 [
     [ "Clock", "group__group__hal__clock.html", "group__group__hal__clock" ],
     [ "DMA (Direct Memory Access)", "group__group__hal__dma.html", "group__group__hal__dma" ],
+    [ "Ethernet (Ethernet interface)", "group__group__hal__ethernet.html", "group__group__hal__ethernet" ],
     [ "System Power Management", "group__group__hal__syspm.html", "group__group__hal__syspm" ],
     [ "GPIO (General Purpose Input Output)", "group__group__hal__gpio.html", "group__group__hal__gpio" ],
     [ "HWMGR (Hardware Manager)", "group__group__hal__hwmgr.html", "group__group__hal__hwmgr" ],

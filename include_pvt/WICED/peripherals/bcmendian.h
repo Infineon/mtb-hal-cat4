@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -38,8 +38,7 @@
  * On big-endian architectures, IL_BIGENDIAN should be defined.
  */
 
-#ifndef _BCMENDIAN_H_
-#define _BCMENDIAN_H_
+#pragma once
 
 #include <typedefs.h>
 
@@ -370,4 +369,4 @@ ntoh32_ua(const void *bytes)
 }
 
 #endif /* !__GNUC__ */
-#endif /* !_BCMENDIAN_H_ */
+

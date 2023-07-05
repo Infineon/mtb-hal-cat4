@@ -8,9 +8,9 @@
  *
  * #include <packed_section_start.h>
  *
- * typedef BWL_PRE_PACKED_STRUCT struct foobar_t {
+ * typedef CYHAL_PRE_PACKED_STRUCT struct foobar_t {
  *    some_struct_members;
- * } BWL_POST_PACKED_STRUCT foobar_t;
+ * } CYHAL_POST_PACKED_STRUCT foobar_t;
  *
  * #include <packed_section_end.h>
  *
@@ -20,33 +20,33 @@
  */
 
 
-/* Error check - BWL_PACKED_SECTION is defined in packed_section_start.h
+/* Error check - CYHAL_PACKED_STRUCT is defined in packed_section_start.h
  * and undefined in packed_section_end.h. If it is NOT defined at this
  * point, then there is a missing include of packed_section_start.h.
  */
-#ifdef BWL_PACKED_SECTION
-	#undef BWL_PACKED_SECTION
+#ifdef CYHAL_PACKED_STRUCT
+    #undef CYHAL_PACKED_STRUCT
 #else
-	#error "BWL_PACKED_SECTION is NOT defined!"
+    #error "CYHAL_PACKED_STRUCT is NOT defined!"
 #endif
 
 
 #if defined(_MSC_VER)
-	/* Disable compiler warning about pragma pack changing alignment. */
-	#pragma warning(disable:4103)
+    /* Disable compiler warning about pragma pack changing alignment. */
+    #pragma warning(disable:4103)
 
-	/* The Microsoft compiler uses pragmas for structure packing. Other
-	 * compilers use structure attribute modifiers. Refer to
-	 * BWL_PRE_PACKED_STRUCT and BWL_POST_PACKED_STRUCT defined in
-	 * typedefs.h
-	 */
-	#if defined(BWL_DEFAULT_PACKING)
-		/* require default structure packing */
-		#pragma pack(pop)
-		#undef BWL_DEFAULT_PACKING
-	#else   /* BWL_PACKED_SECTION */
-		#pragma pack()
-	#endif   /* BWL_PACKED_SECTION */
+    /* The Microsoft compiler uses pragmas for structure packing. Other
+     * compilers use structure attribute modifiers. Refer to
+     * CYHAL_PRE_PACKED_STRUCT and CYHAL_POST_PACKED_STRUCT defined in
+     * typedefs.h
+     */
+    #if defined(BWL_DEFAULT_PACKING)
+        /* require default structure packing */
+        #pragma pack(pop)
+        #undef BWL_DEFAULT_PACKING
+    #else   /* CYHAL_PACKED_STRUCT */
+        #pragma pack()
+    #endif   /* CYHAL_PACKED_STRUCT */
 #endif   /* _MSC_VER */
 
 #if defined(__GNUC__) && defined(EFI)
@@ -57,5 +57,5 @@
  * packed_section_start.h. This marks the end of the structure packing section,
  * so, undef them here.
  */
-#undef	BWL_PRE_PACKED_STRUCT
-#undef	BWL_POST_PACKED_STRUCT
+#undef    CYHAL_PRE_PACKED_STRUCT
+#undef    CYHAL_POST_PACKED_STRUCT

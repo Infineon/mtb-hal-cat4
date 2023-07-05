@@ -36,10 +36,9 @@
  * $Id: siutils.h 474544 2014-05-01 18:58:53Z lut $
  */
 
-#ifndef	_siutils_h_
-#define	_siutils_h_
+#pragma once
 
-#include <bcmdefs.h>
+#include "bcmdefs.h"
 
 #ifdef SR_DEBUG
 #include "wlioctl.h"
@@ -422,9 +421,9 @@ extern void si_war42780_clkreq(si_t *sih, bool clkreq);
 extern void si_pci_down(si_t *sih);
 extern void si_pci_up(si_t *sih);
 #ifdef WLC_HIGH_ONLY
-#define si_pci_sleep(sih)	do { ASSERT(0); } while (0)
-#define si_pcie_war_ovr_update(sih, aspm)	do { ASSERT(0); } while (0)
-#define si_pcie_power_save_enable(sih, up)	do { ASSERT(0); } while (0)
+#define si_pci_sleep(sih)	do { CY_ASSERT(0); } while (0)
+#define si_pcie_war_ovr_update(sih, aspm)	do { CY_ASSERT(0); } while (0)
+#define si_pcie_power_save_enable(sih, up)	do { CY_ASSERT(0); } while (0)
 #else
 extern void si_pci_sleep(si_t *sih);
 extern void si_pcie_war_ovr_update(si_t *sih, uint8 aspm);
@@ -639,4 +638,3 @@ extern int32 si_serial_baudrate_set(si_t *sih, void* serialParam);
 #endif /* REROUTE_OOBINT */
 
 
-#endif	/* _siutils_h_ */

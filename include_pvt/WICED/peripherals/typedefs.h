@@ -1,7 +1,7 @@
 /*
- * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of 
+ * Copyright 2020, Cypress Semiconductor Corporation or a subsidiary of
  * Cypress Semiconductor Corporation. All Rights Reserved.
- * 
+ *
  * This software, associated documentation and materials ("Software"),
  * is owned by Cypress Semiconductor Corporation
  * or one of its subsidiaries ("Cypress") and is protected by and subject to
@@ -66,22 +66,22 @@
 
 #define TYPEDEF_BOOL
 #ifndef FALSE
-#define FALSE	false
+#define FALSE       false
 #endif
 #ifndef TRUE
-#define TRUE	true
+#define TRUE        true
 #endif
 
-#else	/* ! __cplusplus */
+#else    /* ! __cplusplus */
 
 #if defined(_WIN32)
 
 #define TYPEDEF_BOOL
-typedef	unsigned char	bool;			/* consistent w/BOOL */
+typedef unsigned char bool;            /* consistent w/BOOL */
 
 #endif /* _WIN32 */
 
-#endif	/* ! __cplusplus */
+#endif    /* ! __cplusplus */
 
 #if defined(_WIN64) && !defined(EFI)
 /* use the Windows ULONG_PTR type when compiling for 64 bit */
@@ -130,10 +130,10 @@ typedef unsigned long long int uintptr;
 typedef long unsigned int size_t;
 #endif
 
-#ifdef _MSC_VER	/* Microsoft C */
+#ifdef _MSC_VER    /* Microsoft C */
 #define TYPEDEF_INT64
 #define TYPEDEF_UINT64
-typedef signed __int64	int64;
+typedef signed __int64    int64;
 typedef unsigned __int64 uint64;
 #endif
 
@@ -167,7 +167,7 @@ typedef unsigned __int64 uint64;
 typedef unsigned int socklen_t;
 #endif
 
-#ifdef	linux
+#ifdef    linux
 /*
  * If this is either a Linux hybrid build or the per-port code of a hybrid build
  * then use the Linux header files to get some of the typedefs.  Otherwise, define
@@ -185,17 +185,17 @@ typedef unsigned int socklen_t;
 #include <linux/version.h>
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 19))
 #define TYPEDEF_BOOL
-#endif	/* >= 2.6.19 */
+#endif    /* >= 2.6.19 */
 /* special detection for 2.6.18-128.7.1.0.1.el5 */
 #if (LINUX_VERSION_CODE == KERNEL_VERSION(2, 6, 18))
 #include <linux/compiler.h>
 #ifdef noinline_for_stack
 #define TYPEDEF_BOOL
 #endif
-#endif	/* == 2.6.18 */
-#endif	/* __KERNEL__ */
+#endif    /* == 2.6.18 */
+#endif    /* __KERNEL__ */
 #endif  /* !defined(LINUX_HYBRID) || defined(LINUX_PORT) */
-#endif	/* linux */
+#endif    /* linux */
 
 #if defined(__ECOS)
 #define TYPEDEF_UCHAR
@@ -241,8 +241,8 @@ typedef unsigned int socklen_t;
 #endif /* __ICL */
 
 #if !defined(_WIN32) && !defined(_CFE_) && !defined(_HNDRTE_) && !defined(_MINOSL_) && \
-	!defined(__DJGPP__) && !defined(__IOPOS__) && !defined(__BOB__) && \
-	!defined(TARGETOS_nucleus) && !defined(EFI)
+    !defined(__DJGPP__) && !defined(__IOPOS__) && !defined(__BOB__) && \
+    !defined(TARGETOS_nucleus) && !defined(EFI)
 
 /* pick up ushort & uint from standard types.h */
 #if defined(linux) && defined(__KERNEL__)
@@ -252,7 +252,7 @@ typedef unsigned int socklen_t;
 #ifdef USER_MODE
 #include <sys/types.h>
 #else
-#include <linux/types.h>	/* sys/types.h and linux/types.h are oil and water */
+#include <linux/types.h>    /* sys/types.h and linux/types.h are oil and water */
 #endif /* USER_MODE */
 #endif /* !defined(LINUX_HYBRID) || defined(LINUX_PORT) */
 
@@ -291,8 +291,8 @@ typedef unsigned int bool;
 #endif
 #define TYPE_BOOL 1
 enum {
-    false	= 0,
-    true	= 1
+    false   = 0,
+    true    = 1
 };
 
 #if defined(KERNEL)
@@ -322,7 +322,7 @@ enum {
 
 #ifndef TYPEDEF_BOOL
 #if 0
-typedef	/* @abstract@ */ unsigned char	bool;
+typedef    /* @abstract@ */ unsigned char    bool;
 #endif
 #include <stdbool.h>
 #endif
@@ -330,33 +330,33 @@ typedef	/* @abstract@ */ unsigned char	bool;
 /* define uchar, ushort, uint, ulong */
 
 #ifndef TYPEDEF_UCHAR
-typedef unsigned char	uchar;
+typedef unsigned char    uchar;
 #endif
 
 #ifndef TYPEDEF_USHORT
-typedef unsigned short	ushort;
+typedef unsigned short    ushort;
 #endif
 
 #ifndef TYPEDEF_UINT
-typedef unsigned int	uint;
+typedef unsigned int    uint;
 #endif
 
 #ifndef TYPEDEF_ULONG
-typedef unsigned long	ulong;
+typedef unsigned long    ulong;
 #endif
 
 /* define [u]int8/16/32/64, uintptr */
 
 #ifndef TYPEDEF_UINT8
-typedef unsigned char	uint8;
+typedef unsigned char    uint8;
 #endif
 
 #ifndef TYPEDEF_UINT16
-typedef unsigned short	uint16;
+typedef unsigned short    uint16;
 #endif
 
 #ifndef TYPEDEF_UINT32
-typedef unsigned int	uint32;
+typedef unsigned int    uint32;
 #endif
 
 #ifndef TYPEDEF_UINT64
@@ -364,19 +364,19 @@ typedef unsigned long long uint64;
 #endif
 
 #ifndef TYPEDEF_UINTPTR
-typedef unsigned int	uintptr;
+typedef unsigned int    uintptr;
 #endif
 
 #ifndef TYPEDEF_INT8
-typedef signed char	int8;
+typedef signed char    int8;
 #endif
 
 #ifndef TYPEDEF_INT16
-typedef signed short	int16;
+typedef signed short    int16;
 #endif
 
 #ifndef TYPEDEF_INT32
-typedef signed int	int32;
+typedef signed int    int32;
 #endif
 
 #ifndef TYPEDEF_INT64
@@ -386,11 +386,11 @@ typedef signed long long int64;
 /* define float32/64, float_t */
 
 #ifndef TYPEDEF_FLOAT32
-typedef float		float32;
+typedef float        float32;
 #endif
 
 #ifndef TYPEDEF_FLOAT64
-typedef double		float64;
+typedef double        float64;
 #endif
 
 /*
@@ -419,60 +419,60 @@ typedef float64 float_t;
 /* define macro values */
 
 #ifndef FALSE
-#define FALSE	0
+#define FALSE   0
 #endif
 
 #ifndef TRUE
-#define TRUE	1  /* TRUE */
+#define TRUE    1  /* TRUE */
 #endif
 
 #ifndef NULL
-#define	NULL	0
+#define NULL    0
 #endif
 
 #ifndef OFF
-#define	OFF	0
+#define OFF     0
 #endif
 
 #ifndef ON
-#define	ON	1  /* ON = 1 */
+#define ON      1  /* ON = 1 */
 #endif
 
-#define	AUTO	(-1) /* Auto = -1 */
+#define AUTO    (-1) /* Auto = -1 */
 
 /* define PTRSZ, INLINE */
 
 #ifndef PTRSZ
-#define	PTRSZ	sizeof(char*)
+#define PTRSZ    sizeof(char*)
 #endif
 
 
 /* Detect compiler type. */
 #ifdef _MSC_VER
-	#define BWL_COMPILER_MICROSOFT
+    #define BWL_COMPILER_MICROSOFT
 #elif defined(__GNUC__) || defined(__lint)
-	#define BWL_COMPILER_GNU
+    #define BWL_COMPILER_GNU
 #elif defined(__CC_ARM) && __CC_ARM
-	#define BWL_COMPILER_ARMCC
+    #define BWL_COMPILER_ARMCC
 #elif defined ( __IAR_SYSTEMS_ICC__ )
-	#define BWL_COMPILER_IAR
+    #define BWL_COMPILER_IAR
 #else
-	#error "Unknown compiler!"
+    #error "Unknown compiler!"
 #endif /* _MSC_VER */
 
 
 #ifndef INLINE
-	#if defined(BWL_COMPILER_MICROSOFT)
-		#define INLINE __inline
-	#elif defined(BWL_COMPILER_GNU)
-		#define INLINE __inline__ __attribute__((always_inline))
-	#elif defined(BWL_COMPILER_ARMCC)
-		#define INLINE	__inline
-	#elif defined(BWL_COMPILER_IAR)
-		#define INLINE	__inline
-	#else
-		#define INLINE
-	#endif /* _MSC_VER */
+    #if defined(BWL_COMPILER_MICROSOFT)
+        #define INLINE __inline
+    #elif defined(BWL_COMPILER_GNU)
+        #define INLINE __inline__ __attribute__((always_inline))
+    #elif defined(BWL_COMPILER_ARMCC)
+        #define INLINE    __inline
+    #elif defined(BWL_COMPILER_IAR)
+        #define INLINE    __inline
+    #else
+        #define INLINE
+    #endif /* _MSC_VER */
 #endif /* INLINE */
 
 #undef TYPEDEF_BOOL
